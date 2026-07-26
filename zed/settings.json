@@ -1,0 +1,98 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "terminal": {
+    "shell": {
+      "program": "fish"
+    }
+  },
+  "diff_view_style": "unified",
+  "project_panel": {
+    "dock": "right",
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "right",
+  },
+  "agent_buffer_font_size": 13.0,
+  "preview_tabs": {
+    "enabled": false,
+    "enable_preview_from_project_panel": false,
+  },
+  "git_panel": {
+    "dock": "right",
+    "tree_view": true,
+  },
+  "agent_servers": {
+    "opencode": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "default_config_options": {
+        "model": "default"
+      },
+      "type": "registry",
+      "default_mode": "acceptEdits",
+    },
+  },
+  "show_completions_on_input": true,
+  "soft_wrap": "editor_width",
+  "autosave": {
+    "after_delay": {
+      "milliseconds": 1000,
+    },
+  },
+  "agent": {
+    "dock": "left",
+    "expand_terminal_card": false,
+    "tool_permissions": {
+      "default": "allow",
+    },
+    "play_sound_when_agent_done": "never",
+    "default_profile": "write",
+    "use_modifier_to_send": true,
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5",
+    },
+  },
+  "edit_predictions": {
+    "mode": "subtle",
+    "disabled_globs": ["**/src/content/*"],
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 15,
+  "buffer_font_size": 14,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "One Dark",
+  },
+  "lsp": {
+    "tailwindcss-language-server": {
+      "settings": {
+        "classFunctions": ["cva", "cx"],
+        "experimental": {
+          "classRegex": ["[cls|className]\\s\\:\\=\\s\"([^\"]*)"],
+        },
+      },
+    },
+  },
+  "languages": {
+    "CSS": {
+      "language_servers": [
+        "tailwindcss-intellisense-css",
+        "!vscode-css-language-server",
+        "...",
+      ],
+    },
+  },
+}

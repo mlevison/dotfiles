@@ -1,0 +1,12 @@
+# Generated/cache files
+**/cache/**
+**/logs/**
+**/*.pid
+**/*.lock
+**/tmp/
+gcloud/
+
+# Auto-generated state (machine-specific or sensitive)
+fish/fish_variables      # Theme, UI state, etc. auto-updates per machine
+nvim/swap/               # Neovim swap files
+**/.local/share/*        # Some apps store secrets/state here too
