@@ -1,3 +1,0 @@
-# This file contains fish universal variable definitions.
-# VERSION: 3.0
-SETUVAR --export fish_user_paths:/Users/marklevison/\x2ecache/lm\x2dstudio/bin\x1e/usr/local/opt/ruby/bin\x1e/opt/homebrew/opt/ruby/bin\x1e/opt/homebrew/lib/ruby/gems/3\x2e4\x2e0/bin/\x1e/Users/marklevison/\x2elocal/bin\x1e/Users/marklevison/Library/pnpm
