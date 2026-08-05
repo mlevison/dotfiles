@@ -1,1 +1,24 @@
 - [Minimal code comments](minimal-code-comments.md) — write few; they drift out of touch with reality.
+- [Only write code when asked](feedback_only_write_code_when_asked.md) — Assess/summarize/design requests are NOT authorization to implement; offer, don't build
+- [Solo project — no Owner field](project_single_maintainer_no_owner_field.md) — Mark is the only maintainer; omit Owner from PRDs, don't assign owners
+- [No git commits by LLM](feedback_no_git_commit.md) — Only the human creates git commits, never the LLM
+- [Bump version only on commit](feedback_version_bump_only_on_commit.md) — Don't increment src/lib/version.ts (or assert version tags in docs) for uncommitted work; the human bumps it at commit/push time
+- [No browser console reliance](feedback_no_console_reliance.md) — Console output is for debugging only; user-facing info must appear in the UI
+- [No confirm() for reversible actions](feedback_no_confirm_for_reversible.md) — Skip confirm prompts on reversible toggles (exclude/include, match/unmatch); keep them for deletes
+- [No Mistral in unit tests](feedback_no_mistral_in_tests.md) — Tests must never call the OCR API; assert prompt constants, keep logic pure, mock fetch
+- [OCR & upload resilience](feedback_ocr_resilience.md) — Upload pipeline must survive Mistral outages; no orphan storage files; render-time formatters must fail soft
+- [No `any` even in tests](feedback_no_any_in_tests.md) — Prefer typed mocks/Partial/MockedFunction; `as any` is last-resort with a reason, not the default
+- [Code style: returns](feedback_code_style_returns.md) — Guard clauses good; heterogeneous union return types bad (high pri); forced `T|null` tolerated (low pri)
+- [a11y labels & Prettier shorthand](project_a11y_label_and_prettier_shorthand.md) — for/id vs wrap-component vs span for labels; flowbite Datepicker doesn't forward id; Prettier shorthand can break source-regex tests
+- [Fix warnings in touched files](feedback_fix_warnings_in_touched_files.md) — When editing a file, clear its pre-existing lint/type warnings too, not just note them
+- [Validate characterization tests with an oracle](feedback_validate_characterization_tests_with_oracle.md) — For extract-refactors, run the original code verbatim as an oracle to prove hand-authored test expectations are correct
+- [Playwright is seam-only](feedback_testing_pyramid_playwright_seam_only.md) — Unit tests own correctness; Playwright only proves the UI is wired to the tested logic (one thin flow, no boundary matrices). No auth/seed harness exists yet.
+- [No repo-wide format](feedback_no_repo_wide_format.md) — Never run `npm run format` (prettier --write .); format only touched files with `npx prettier --write <files>`
+- [Component test harness](reference_component_test_harness.md) — Svelte render tests use vitest-browser-svelte in the browser `client` project; MUST be named `*.svelte.spec.ts` or they run node-side and fail
+- [Spec system is dead](project_spec_system_dead.md) — specs/specifications, `#{#id}` tags, and spec:validate are abandoned leftovers despite CLAUDE.md; write plain PRDs, no new tags
+- [Single working backlog](feedback_single_working_backlog.md) — One maintainer; all work in `docs/product-backlog.md`. Refactoring doc is RF-NN reference only; surface open RF items as one-liners, don't make parallel lists
+- [.env is a 1Password FIFO](project_env_is_1password_fifo.md) — Don't rm/overwrite `.env`; tooling (check/prepare/e2e build) injects fake PUBLIC_ env so it runs without 1Password — don't strip those prefixes
+- [Weak unit tests: source-introspection](project_weak_unit_tests_source_introspection.md) — Many .spec.ts files grep source text or reimplement logic inline instead of testing behavior; don't over-trust green checks (e.g. ReceiptImageViewer.spec.ts)
+- [Importance tier is fixed](project_importance_tier_fixed.md) — Spending hierarchy's 3 Areas of Importance are permanent; no Importance-area CRUD. Groupings are editable (add/rename shipped v0.67)
+- [Testable edge-function handler](reference_edge_function_testable_handler.md) — Resend webhook: functional-core/imperative-shell + esm.sh `import type` stripped by esbuild lets vitest import Deno handlers
+- [URL-backed page state via load](reference_app_state_page_in_derived.md) — Read URL query state (e.g. `?year=`) in a `+page.ts` `load` + `goto` for changes; client-side `$derived` off the page store (either `$app/stores` or `$app/state`) goes stale on Back. Expenses page has the same latent pattern
