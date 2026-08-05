@@ -1,0 +1,2 @@
+- [Prefer official packages](prefer-official-packages.md) — always pick first-party libs, don't re-ask
+- [No volatile counts in docs](no-volatile-counts-in-docs.md) — describe what a dir holds, not how many files

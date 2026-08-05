@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Wire package.json + CLAUDE.md; retire Playwright scrape",
+  "description": "Repoint npm run scrape to the API script, keep Playwright as scrape:playwright fallback, update CLAUDE.md docs and note the insights:read scope requirement. Remove throwaway introspection scripts.",
+  "activeForm": "Wiring scripts and docs",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

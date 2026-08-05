@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Verify links, add build-log entry",
+  "description": "Run the generator's validation to confirm no orphans/dead links, spot-check moved files, append a build-log entry.",
+  "activeForm": "Verifying and logging",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

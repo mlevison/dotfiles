@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Fix the drift found across the three repos",
+  "description": "Cadence in evergreen-posting (3/weekday -> 2), stale Playwright reference in vault weekly-analytics, dead dashboard script in package.json.",
+  "activeForm": "Fixing cross-repo drift",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

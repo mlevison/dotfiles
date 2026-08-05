@@ -1,0 +1,114 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "1b68ddb9-76e7-4e72-8f9c-53c0e21196db",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/1b68ddb9-76e7-4e72-8f9c-53c0e21196db.jsonl",
+      "fileMtime": 1769702553812,
+      "firstPrompt": "Update the Buffer export code to only check back for the last 6 weeks. And then update the package json so I can run export. Also update",
+      "messageCount": 40,
+      "created": "2026-01-28T15:43:43.385Z",
+      "modified": "2026-01-29T16:02:33.805Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "415235b2-3ec1-41d2-b9bd-24e29f641920",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/415235b2-3ec1-41d2-b9bd-24e29f641920.jsonl",
+      "fileMtime": 1769562298453,
+      "firstPrompt": "[@results](file:///Users/marklevison/Documents/GitHub/social-media-posting/buffer-export-via-playwright/results)",
+      "messageCount": 24,
+      "created": "2026-01-28T00:26:36.937Z",
+      "modified": "2026-01-28T01:04:58.440Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "df09046f-5c69-40a1-83e2-78a80849db6b",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/df09046f-5c69-40a1-83e2-78a80849db6b.jsonl",
+      "fileMtime": 1769467987680,
+      "firstPrompt": "I need to build a CLI tool in TypeScript that helps me adapt LinkedIn posts for multiple social media platforms.  ## Core Requirements  1. **Input**: Accept a LinkedIn post (via file or stdin)  2. **A…",
+      "messageCount": 53,
+      "created": "2026-01-26T02:00:50.842Z",
+      "modified": "2026-01-26T22:53:07.668Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "121e3171-0517-4489-a199-50e80eb46dd6",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/121e3171-0517-4489-a199-50e80eb46dd6.jsonl",
+      "fileMtime": 1769722496289,
+      "firstPrompt": "Time to create the Playwright tools to post to Buffer. We start on the following page: https://publish.buffer.com/all-channels and click button labelled: + New Post. It will open a dialog that overlay…",
+      "messageCount": 18,
+      "created": "2026-01-29T21:10:58.921Z",
+      "modified": "2026-01-29T21:34:56.275Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "76aad332-161d-4052-9c87-66d3dd02065c",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/76aad332-161d-4052-9c87-66d3dd02065c.jsonl",
+      "fileMtime": 1769723506557,
+      "firstPrompt": "Read posts/linkedin.txt and critique it. What works well? What could be improved? Context is people on LinkedIN.",
+      "messageCount": 9,
+      "created": "2026-01-29T21:37:30.129Z",
+      "modified": "2026-01-29T21:51:46.551Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "5b4ce3b4-0973-46e5-b0ba-1b50ca1a9681",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/5b4ce3b4-0973-46e5-b0ba-1b50ca1a9681.jsonl",
+      "fileMtime": 1769733711762,
+      "firstPrompt": "[@bufferPost.ts](file:///Users/marklevison/Documents/GitHub/social-media-posting/buffer-post/bufferPost.ts)",
+      "messageCount": 60,
+      "created": "2026-01-29T21:59:14.532Z",
+      "modified": "2026-01-30T00:41:51.750Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "352f4418-1449-4758-a632-357ab678a03c",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/352f4418-1449-4758-a632-357ab678a03c.jsonl",
+      "fileMtime": 1770059950844,
+      "firstPrompt": "Read posts/linkedin.txt and write adapted versions to posts/mastodon.json and posts/bluesky.json",
+      "messageCount": 27,
+      "created": "2026-01-30T01:02:04.672Z",
+      "modified": "2026-02-02T19:19:10.833Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "dd2a133f-006c-4ce6-b47b-ca0a85aa5dd3",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/dd2a133f-006c-4ce6-b47b-ca0a85aa5dd3.jsonl",
+      "fileMtime": 1770144089689,
+      "firstPrompt": "No prompt",
+      "messageCount": 2,
+      "created": "2026-02-03T18:41:29.473Z",
+      "modified": "2026-02-03T18:41:29.682Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "1da87a4c-f3b0-4219-83ca-f5208940d36b",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-social-media-posting/1da87a4c-f3b0-4219-83ca-f5208940d36b.jsonl",
+      "fileMtime": 1770219836919,
+      "firstPrompt": "Read posts/linkedin.txt and critique it. What works well? What could be improved?",
+      "messageCount": 22,
+      "created": "2026-02-04T15:25:35.737Z",
+      "modified": "2026-02-04T15:43:56.909Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/Documents/GitHub/social-media-posting",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/Users/marklevison/Documents/GitHub/social-media-posting"
+}

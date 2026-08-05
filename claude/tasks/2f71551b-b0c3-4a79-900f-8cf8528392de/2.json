@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Write demo-seed.ts (users, family, categories, data, edge cases)",
+  "description": "Create 2 auth users, family + members, call default category/hierarchy RPCs, generate ~120-150 receipts across 2025+2026 with transactions/matching and all 11 edge states. Auto-clean first. Print logins + counts.",
+  "activeForm": "Writing demo-seed.ts",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

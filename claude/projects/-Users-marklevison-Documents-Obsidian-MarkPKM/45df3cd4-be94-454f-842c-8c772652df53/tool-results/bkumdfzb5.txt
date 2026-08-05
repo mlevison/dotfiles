@@ -1,0 +1,305 @@
+############ BLOG: backlog-refinement-anti-patterns ############
+---
+title: "How Many of These Backlog Refinement Anti-Patterns Does Your Team Have?"
+date: "2026-06-24"
+categories:
+  - "scrum-events-and-artifacts"
+  - "anti-patterns"
+coverImage: '@/content/blog/how-many-of-these-backlog-refinement-anti-patterns-does-your-team-have/images/story-mapping-ready-for-development-waiting-for-refinement.png'
+excerpt: "Product Backlog refinement isn't about writing User Stories, it's about having conversations. Learn to fix some of the most common problems with the Refinement process."
+---
+
+In our workshops I often hear the complaint: "My team members don't want to attend backlog refinement" or "Backlog refinement is frustrating because we're constantly confused about what is important."
+
+In [Product Backlog Refinement Hell: 3 Problems and Solutions](/blog/product-backlog-refinement-hell-solutions/) we looked at the easiest problems to solve. Now we'll look at the deeper problems.
+
+Before we dive in, let's do a back to basics check.
+
+**What is Product Backlog Refinement?** It's an ongoing process (strictly speaking an activity), where the team and the Product Owner review and revise the Product Backlog. They reprioritize items, delete items that are no longer important and add new items. As Product Backlog items move up in priority, they're split into smaller, more manageable pieces. Items are estimated (hint: prefer T-shirt size estimates over story points). *It's not a marathon, instead it's a series of conversations that happen throughout the sprint.*
+
+**Why do we do Product Backlog Refinement?** To ensure the team and the Product Owner have a shared understanding of the work that will be coming up in the next few sprints. To help the Product Owner make better business decisions, as they get feedback from the team on what is possible.
+
+## Problem 4: Zombie Items & Anti-Patterns Lurk (No Real Value)
+
+How many of these anti-patterns do you see in your team right now?
+
+**Product Owner Challenges**
+
+- **Micromanagement** and ignoring the team's feedback: these are two sides of the same coin. *When the PO isn't listening or is micromanaging, this is a longer-term coaching issue.*
+- PO is unprepared, or worse, absent? *Cancel the session. There is no point in wasting everyone's time.*
+
+**Timing & cadence**
+
+- **Refining too far ahead.** Detailing items 6+ sprints out that may never get built.
+- **Running dry.** Too little refinement, so there's no ready work and Sprint Planning turns into emergency refinement.
+- **No decisions come out.** Items leave the session in the same state they entered. Talk, no change.
+
+**The items themselves**
+
+- **Nothing ever gets split.** Items stay too big to fit a sprint, so they never become ready.
+- **Backlog as a dumping ground.** It only grows, never gets pruned.
+- **Acceptance criteria gold-plating.** PO writes 15 criteria covering every edge case, killing the conversation. *Delay detailed discovery of the acceptance criteria until after Sprint Planning.*
+- **Surface level understanding.** Everyone nods that they understand the PBI, yet each has a different picture.
+- **Forgetting the User and the Why.** We build products to solve problems for real people. The people and their needs should be front and centre in Refinement.
+
+**Estimation (beyond "only seniors estimate")**
+
+- **Anchoring.** First or loudest number sets the estimate for everyone. *When estimating, have people write down their estimate and then reveal at the same time.*
+- **Estimates become commitments.** A sizing guess hardens into a deadline.
+
+**Facilitation & dynamics**
+
+- **Assigned Work.** Refinement is about understanding the work, not assigning it. In Scrum there is no assigned work, period. Often paired with **Drifts into Sprint Planning**: deciding who does what and committing, instead of shaping work.
+- **Jumping to solution.** Designing the "how" before anyone agrees on the "why/what."
+- **Unbalanced Participation.** This runs from near-silence on a PBI to a couple of voices dominating. This is often paired with **Present but absent**: people "attend" while buried in laptops and Slack.
+- **Limited Attendance.** Only a few select team members are invited to attend.
+
+Pretending that GenAI can magically speed up Product Backlog Refinement. Several voices in the community have suggested that GenAI can write the User Stories, the Acceptance Criteria and even do the estimation. The trouble: refinement isn't a writing task, it's how the team builds shared understanding. Hand the writing to a machine and you skip the conversation that was the whole point.
+
+I've made this case in more detail in [GenAI Won't Speed Up Your Scrum Events (and Shouldn't)](/blog/gen-ai-wont-speed-up-your-scrum-events-and-shouldnt/).
+
+The Liberators, Christiaan Verwijs and Barry Overeem, are famous (infamous?) for inventing the concept of Zombie Scrum. Zombie Scrum is where the team is doing all of the mechanics of Scrum, without any of the soul. Befitting the Liberators, they leaned into their community to find 8 tips ([How Product Backlog Refinement Can Prevent or Fix Zombie Scrum](https://medium.com/the-liberators/how-product-backlog-refinement-can-prevent-or-fix-zombie-scrum-5ba52a42e23d)). A couple of my favourites:
+
+- Vote on which PBI is the least well understood. In the next session clarify or kill it.
+- Bring the 10 lowest priority items to your next Sprint Review and suggest dropping them. If no one has a strong reason for the items, they should be dropped.
+
+## Problem 5: No Visibility Into the Mess (Can't See Progress)
+
+Blind refining? Visualize. Any Kanban board with multiple columns can give an organic, messy process just enough visible structure to track it.
+
+Kent McDonald suggests a Kanban Board ([Discovery Board](https://insideproduct.co/discovery-board/)) to help you visualize which Product Backlog items need refinement and which are ready to be worked on.
+
+Since I like Story Maps, I might also consider adding extra lanes to the [Story Map](/blog/drowning-in-oversized-product-backlog-story-mapping-is-your-life-raft/). Above a line the item is ready for Sprint Planning. Below the line, the item needs more refinement. We might also use colour: yellow for unrefined items, green for those ready for Sprint Planning.
+
+
+### CFD Tells a Story of History
+
+Peter Callies shows how we could use a cumulative flow diagram to look back at a team's history and sense how well refined the Product Backlog was at any moment: [Visual Evidence of an Agile Release](https://www.liminalarc.co/2013/06/visual-evidence-of-an-agile-release/). The tell: watch the band of items waiting to be worked. If it keeps collapsing to near-zero just before each Sprint, refinement wasn't keeping pace; a steady buffer means it was.
+
+## Problem 6: Stuck on Big Features (No Splits or Examples)
+
+When you're stuck and don't have agreement about a feature, write an example. I've been saying that in workshops for years.
+
+### Write or Sketch an Example
+
+In adult life, when we're stuck in a conversation with another person, we often use an example to break the logjam. For some reason, when we're working as a team, we forget to do the same thing. Examples can span a whole spectrum from:
+
+- Pencil sketch of the User Interface
+- A Happy Path, showing how a user would use the feature
+- ...more detail
+
+In Backlog Refinement, my rule is just enough detail to get everyone on the same page. I delay writing detailed acceptance criteria until after Sprint Planning (see: [Example Mapping: Your Secret Weapon for Effective Acceptance Criteria](/blog/example-mapping-your-secret-weapon-for-effective-acceptance-criteria/)). If you want more inspiration in the same vein: [Product Backlog Refinement in Action (Scrum by Example)](/blog/scrum-product-backlog-refinement/).
+
+### Story Splitting
+
+Story Splitting is Yin to Example Mapping's Yang. Christiaan Verwijs of the Liberators has a number of examples of using Story Splitting to break down complex User Stories. Even if the example splits themselves don't work, sometimes the process of talking about why a given split doesn't work is enough to find a better way to do this: [10 Powerful Strategies for Breaking Down User Stories in Scrum (with cheatsheet)](https://medium.com/the-liberators/10-powerful-strategies-for-breaking-down-user-stories-in-scrum-with-cheatsheet-2cd9aae7d0eb).
+
+### An Example of Putting it All Together
+
+Kent McDonald worked with the Agile Alliance to improve their search functionality. "[How To Refine Features](https://insideproduct.co/feature-refinement/)" tells the story of that process, from desired Outcome to first delivery.
+
+## The Wild Card
+
+[35 Cards to Provoke Engagement](https://hackernoon.com/35-cards-which-will-improve-your-backlog-refinement-process-and-engage-every-team-member-54f929fdd282). 35 Cards to hand out to team members during Product Backlog Refinement. These cards are intended to provoke engagement and get people to think about things that get forgotten. I like the idea of asking people to take on a role as a way to get them more engaged in the conversation. Some good ones are:
+
+- **Time Tracker** keeps track of how long the discussion has taken on a given item and tells the team when they're in overtime.
+- **Big Picture** describes the overall purpose of the feature/user story that we're discussing.
+- **Joker** raises a flag when the discussion is going off track or getting bogged down in too much detail.
+
+The only thing I don't love about these cards is that a number of them bleed into Sprint Planning. For example: **Point Blank** is about committing to work that is realistically achievable in the Sprint, or **Challenger** asks the team if they're sure they can finish "all the work they just committed to."
+
+## Conclusion
+
+Poor Product Backlog Refinement is a leading cause of poor [Sprint Planning](/blog/sprint-planning-from-hell/) and overall crappy products. In a world where we do more work with Generative AI, Product Backlog Refinement will become even more important. Instead of trying to speed up the process, we need to focus on ensuring that we're building the right thing.
+
+Done well, Product Backlog Refinement can be an engaging activity that gets team members on the same page. If you want to go deeper on shaping a healthy Product Backlog, my [Certified Scrum Product Owner (CSPO) training](/courses/certified-scrum-product-owner-cspo-training/) spends real time on exactly these skills.
+
+And if you've solved one of these problems in a way I haven't covered, I'd like to hear about it: [@mlevison@hachyderm.io](https://hachyderm.io/@mlevison) and [LinkedIn](https://www.linkedin.com/in/marklevison/).
+
+############ BLOG: scrum-team-size ############
+---
+title: "What is the Recommended Scrum Team Size?"
+date: "2020-03-13"
+lastUpdated: '2025-05-01'
+categories:
+  - 'team-dynamics-and-people'
+coverImage: "@/content/blog/scrum-team-size/images/APR-09_Blog-Illustrations_Mar2020_ScrumTeamSize_v2-A.jpg"
+excerpt: 'Discover the optimal Scrum team size based on research and 20+ years experience. Learn why 4-6 members works best, plus factors affecting team performance.'
+---
+
+Nearly every client I work with asks me this question: 'What's the optimal Scrum team size?' The [Scrum Guide](https://scrumguides.org/scrum-guide.html#team-dev) offers very limited guidance, suggesting 3-9 people per team (exclusive of ScrumMaster and Product Owner), without giving reasons or context for those numbers. The research and 20+ years of experience reveal a more nuanced answer that could dramatically impact your team's productivity.
+
+In many cases this question comes up as a side effect of [Sprint Planning from Hell](/blog/sprint-planning-from-hell/) or [Daily Scrum](/blog/modern-guide-to-daily-scrum-meeting/) that goes on too long.
+
+There isn't one universally correct answer for optimal team size, but there are a number of factors and trade-offs worth considering when figuring out what will work best for your team.
+
+In this post, we'll explore the research, and I'll share my personal experiences about effective team size. While this is primarily about Scrum, the lessons are applicable for any work that is collaborative and knowledge-based.
+
+
+<CalloutBox heading="Key Takeaways: Optimal Scrum Team Size">
+- **Best size**: There is no best size. However teams of 4-6 or often a good choice
+- **Communication cost**: Relationships grow exponentially (N(N-1)/2 formula)
+- **Avoid**: Teams of 8+ show diminishing returns
+- **Critical factors**: Skills, stability of membership, and psychological safety matter as much as size
+- **Evidence**: Multiple studies support smaller teams for knowledge work
+</CalloutBox>
+
+## Effective Scrum Team Size is More than Just a Number
+When you're trying to determine what will work best, your  Team's needs should be more important than any arbitrary number. Factors you should consider include:
+
+- A [sufficiently broad set of skills](/blog/how-to-cross-skill-and-grow-t-shaped-team-members/) to build their product – aka Cross-Functional
+- Team members dedicated to one, and only one, team
+- Diversity of thought – a sufficiently broad set of beliefs, attitudes and thinking patterns[^2]
+
+Once the Team is formed, these are often just as important as team size when predicting success:
+
+- Psychological safety – the environment is safe for all team members to share their ideas[^3][^4]
+- Collective Intelligence of the Team – strongly correlated with average sensitivity of team members[^4]
+- Equal Communication – the most expressive team member is no more than twice as expressive as the quietest[^5]
+- Open-Mindedness and Willingness to Learn[^6]
+- A Shared Vision of which all Team members are committed to achieving[^8]
+- Clear Roles and Responsibilities[^9]
+- Dynamically Shared Leadership[^10]
+- External Coach – in Scrum this is the ScrumMaster
+
+These factors don't exist in a void, so let's explore the evidence that supports what others, including myself, have discovered about team size, to help you consider what's most important for your Team. After all, there is no universal answer, there is only a range that will likely work best for your needs.
+
+## The Problem with Arbitrary Numbers for Optimal Team Size
+The earliest Scrum and XP books all suggest a team size number of 7+/-2, applying Miller's number,[^11] believed to be the number of integers you can hold in short-term memory. I'm troubled by this, since I can't see why one's ability to keep track of numbers should be correlated with team size. In addition, more recent research[^12] has shown that, as the things you're keeping track of become more complex, the number of items you can keep in your short-term memory drops to 4 or less. Clearly, we need more useful sources.
+
+Many other coaches cite historical examples going back to the Roman army, which used small military unit sizes of around 8 people. Others observe bonobos, one of the closest genetic relatives to humans, often split into groups of 6-7 to forage for a day. Both of these conveniently support the 7+/-2 number, but since neither example is about teams doing knowledge work, the relevance of these for Scrum is limited.
+
+## What Happens to Relationships When Teams Get Large?
+
+In a team, each individual will connect with another individual and form a unique relationship. The bigger the team, the more the relationships. The equation that describes this is N (N – 1)/2. But what exactly does that _mean_? More importantly, how is it supposed to help you? Let's start by treating it as a high-school math problem, then turn it into something we can actually use in real life.
+
+The above equation tells us how many different relationships will exist within a team of a certain size. N = the number of people in the team. So, in the first example of a team of 5 people, for N=5 you have 10 relationships: 10 different combinations of team members relating with other team members.
+
+In the second example, n=7, you have 21 relationships, and at n=9 in the third image you have 36 relationships.  Each pair of people represents one relationship, and that relationship is how they collaborate. High-performing teams, by their nature, must have strong relationships between each of the team members to collaborative effectively.
+
+Why does this matter, and how can it help you? Each new person adds some individual productivity to the Team, but they also increase the communications overhead in the form of an exponentially growing number of relationships. To increase a team from 5 to 7 people, you have to more than double the number of relationships. To go from 7 to 9, you don't quite double it, but the jump is still large.
+
+Just how expensive is it to maintain these relationships? Anecdotally, having studied team member interactions at clients' sites, I can say that in teams of 7-8 people, upwards of 90 minutes per person each day is spent interacting with other team members.[^13] This excludes pair programming time. Some of the interaction is talking about work, but just as much is spent socializing. This is good and important because it's the combination of work and socializing that builds a team's resilience and ability to handle challenges effectively (see the water cooler section in "[Five Steps Towards Creating High-Performance Teams](/learn/)").
+
+So the number of relationships between team members, and the time investment they require, needs to be a factor considered when choosing team size because it will influence productivity.
+
+A general rule of thumb suggests that people typically have from 3½ to 5 hours of productive time at work each day. As a team gets larger, we either lose productivity or, more often, we start to withdraw socially rather than sacrifice productive time for interacting with our peers because the communication costs for each team member is becoming too high to afford. We need strong relationships to become a high-performing team but, as group size grows, we start to avoid the interactions that build those relationships.[^14]
+
+### Many Hands Make Light Work… But Only to a Point
+We all want to believe that if we go from 1 person to 2 people, or from 2 to 4 people, we will get a doubling of the amount of work done. Yet, we know intuitively that isn't the case.
+
+What we're missing is _why_. Enter "[Amdahl's Law](https://en.wikipedia.org/wiki/Amdahl%27s_law)." The formula, first presented in 1967, estimates how much of a speedup might be gained if we took a computing task and ran parts of it in parallel. If that sounds like gobbledygook, it just means sometimes programs have parts that can be worked on by multiple processors at the same time (i.e. parallel processing), but other parts that must be done one at a time (i.e. serial programming).
+
+
+The first picture imagines work done by one processor. It takes 5 units of time.
+
+If we take the 5 units of work and apply 3 processors to the parts that can be done concurrently (parallel), it doesn't take 1 and 2/3 units of time (5 divided by 3) to complete. Instead, it takes 3 units because 2 of the units of work can only be done by one processor (serial). It's certainly an improvement in time, but not as much as you might expect.
+
+The math to explain the problem might look intimidating at first:
+
+
+
+
+Work in teams has similar properties. In fact, if we turn it into a graph, we see just how inefficient increased team size can be:
+
+
+Just focus for now on the 80% line (teal, at the top) of the graph. Let's be optimistic (and unrealistic) and assume that 80% of the work can be done by working in parallel. This suggests that the more people doing it, the faster it will get done – right?  Ah, but wait. If we go from 1 person to 2 people, we don't get twice as much done. To get a 2 times improvement in work completed, we actually need 3 people. 7 people only create a 3.2 times improvement over 1 person. To get 4 times as much work done as 1 person, we would need 16 people!
+
+What happens if even less of the work can be done concurrently (parallel)? What if 50% of the work must be done in serial (red line on the graph)? Then with 9 people, we still have only a 1.8 times speedup.
+
+What's the solution? There's no easy fix, but there are things you can do to mitigate the effect of Amdahl's Law:
+
+- Make it so as much of the work as possible can be done in parallel. This may mean increasing cross-skilling and collaboration.
+- Reduce cross-team dependencies, so there are no bottlenecks and delays.
+- Increase the speed of the work process overall by improving quality and practices.
+
+Speed doesn't come from throwing more people at the job and making bigger teams. It comes from [building a high-performance team](/learn/) that is an optimal size for effectiveness, communication, and quality.
+
+## Research-Backed Evidence on Team Size
+The American Sociological Association published a study by Hackman JR, Vidmar NJ on the "Effects of size and task type on group performance and member reactions."[^15]
+
+
+In this study, they had participants complete a number of tasks – a mix of Production (writing), Discussion, and Problem-Solving. The participants were placed in different groups sized from 2 to 7. After completing each task, volunteers were asked a number of questions, including two that this graph displays: "was your group too small?", "was your group too large?". As you can see from the graph, groups around 4-5 in size seemed to have the least negative reaction. The oft-cited number is 4.6. The participants were undergraduate students (all men, sadly), the tasks had a cognitive load but were not programming, and the groups weren't together long enough for a real sense of a "team" to form. Nonetheless, it is an interesting data point.
+
+By the time Hackman wrote the book _Leading Teams_, his rule of thumb for team size was 6.
+
+Jennifer Mueller cited in "[Is Your Team Too Big? Too Small? What's the Right Number?](https://knowledge.wharton.upenn.edu/article/is-your-team-too-big-too-small-whats-the-right-number-2/):"
+
+> _if companies are dealing with coordination tasks and motivational issues, and you ask, 'What is your team size and what is optimal?' that correlates to a team of six. "Above and beyond five, and you begin to see diminishing motivation," says Mueller. "After the fifth person, you look for cliques. And the number of people who speak at any one time? That's harder to manage in a group of five or more."_
+
+It's not just personal opinions from team members that teach us about optimal group size: we also have objective statistics. Putnam and Myers surveyed data from 491 software projects in a large corporation.[^16] These were projects with 35,000 – 90,000 source lines of code. They broke projects down into buckets based on the number of people involved in the project: 1.5-3, 3-5, 5-7, 9-11, and 15-20. On average, the smaller groups (3-5, 5-7) took significantly less time (11.9 and 11.6 months, respectively) than the larger groups (17.1 and 16.29 months) to complete similar-sized projects.
+
+When you multiply the number of team members times the number of months, you get a graph that is even more shocking:
+
+
+A team of 9-11 people took  around2.5-3.5 times as long as teams of 5-7 and 3-5 to complete projects of a similar size. That suggests that teams larger than seven in this dataset were just a way to spend money faster because of the increased team size but reduced net performance.
+
+## Evidence from Agile Projects
+Larry Maccherone, in his work through both Rally, Tasktop, and AgileCraft, has helped build large datasets about practices in Agile Teams. His data shows:
+
+
+Based on Larry's data, it would appear that teams of 1-3 are more productive but have lower quality. Teams of 3-5 are marginally more productive than 5-9, although they might still have slightly lower quality – the difference is small. Larry's notes suggest he thinks the entire range of 3-9 is fine.[^17] The reason for the lower quality in smaller teams is not apparent. Maybe a lack of stability? A lack of diversity of thought and experience? Reduced cross-functionality? We can't know, but it bears consideration.
+
+WAIT! Before you read on, remember that the whole point of this article is to stress that your mileage may vary! Don't substitute the opinions or evidence of others for your own knowledge of, and experimentation with, your teams. Start with this information, then tweak to find what works best for your team.
+
+
+## My Experience
+So, when clients and attendees of my [training](/choose-the-right-scrum-training-for-your-needs/) ask me what size Scrum teams should be, I don't have a "correct" answer. But I share the above data and my personal opinions and suggestions based on years of experience. Most of it is rooted in simple logic and common sense. For example, larger teams spend longer in forming, longer in normalizing, and therefore longer to reach high performance. Why? Because there are more relationships to be negotiated. As we saw before, on a team of 5, there are 10 relationships that need to form, a team of 7 has 21 relationships, and so on. More relationships take more time to build and establish trust, so that has to be factored into the decision of team size.
+
+Assuming everything else is equal (e.g. skills required to get the job done, diversity of thought, etc.), existing evidence supports the idea that teams of 4-6 work well for most situations. They take less time to form and are as productive as larger teams. In addition, teams of 5-6 can typically cross-skill enough to cover the loss of a team member after they win the lottery.
+
+Personally, I would only choose a team of 7 if other pressures, like a required breadth of skills, forced it to happen. I no longer recommend teams of 8, because the additional overhead overwhelms the value of the extra person.
+
+With teams of 9 or larger, I recommend splitting into 2 teams. My own experience mirrors that of other Scrum trainers and coaches – separate teams of 4 and 5 get more done than their original large team.
+
+Why not 3 or fewer? Because it would result in too little diversity of thought, and would likely be very challenging to find 3 individuals with sufficient skills to get the job done on a complex project. There also will be very little collaboration, which correlates with the reduction in quality that Figure #2 shows (data from "Impact of Agile Quantified"). And don't forget the obvious 2-on1 power issues that may make the journey more challenging for one team member.
+
+All of the focus has been on the number of people in the team, but the more important question should be this: does the team have the capacity to get to truly "done" (i.e. shippable) at the end of every Sprint? If it doesn't, then you will want to re-examine and reconfigure to achieve a more effective team size.
+
+What has been your experience with team size? Too small? Too big? Just right?
+
+### Check out the 5 Steps to High-Performance Teams
+As we've learned, big teams don't mean more work gets done faster. High-Performance Teams though… that's where the magic happens. Check out our [5 Steps to High-Performance Teams](/ebooks/) and get your own copy of the e-book by subscribing to our newsletter, and see what changes could help your team improve.
+
+Thanks to: [Peter Stevens and his own digging](https://saat-network.ch/2014/12/how-many-people-do-you-need-in-your-team/), Larry Maccherone and access to all of his work, Joseph Pelrine for pointing me to original research papers, Brent Barton for telling me about Putnam and Myers, Manoj Vadakkan and Angela Johnson for other references, and Pawel Brodzinksi, who offers [an alternate view](https://brodzinski.com/2014/01/ideal-team-size-fallacy.html).
+
+    - [Collaboration, Over Work in Isolation](/blog/collaboration-over-work-in-isolation/)
+    - [Characteristics of Effective Scrum Teams](/blog/characteristics-of-effective-scrum-teams/)
+    - [How to Build a Powerful Team from Scratch](/blog/how-to-build-a-powerful-team-from-scratch/)
+    - [The Spotify Model: Why Copying It Doesn't Work](/blog/the-spotify-model-of-scaling-spotify-doesnt-use-it-neither-should-you/)
+
+<CalloutBox heading="Frequently Asked Questions About Scrum Team Size">
+### What is the ideal Scrum team size?
+The optimal Scrum team size is 4-6 members, based on research and practical experience. This range balances productivity, communication overhead, and team dynamics while maintaining cross-functional capabilities.
+
+### Why does the Scrum Guide recommend 3-9 people?
+The Scrum Guide doesn't provide a clear reason. Neither Jeff or Ken are known for providing explanations of the Scrum Guide.
+
+### What happens if my Scrum team is too large?
+Teams larger than 7 experience exponentially growing communication overhead, reduced productivity per person, longer time to form high-performing relationships, and decreased individual contribution.
+
+### Can a Scrum team have 2-3 people?
+While possible, teams of 2-3 lack diversity of thought, struggle with skill coverage, and show reduced quality in Agile metrics. Teams of 4+ perform better overall.
+</CalloutBox>
+
+[^1]: ["The Impact of Lean and Agile Quantified" - Larry Maccherone demonstrated that dedicating team members to one team doubled productivity and stable teams improved productivity by 60%.](https://www.infoq.com/presentations/agile-quantify/)
+[^2]: Wilkinson, David. Group decision-making. What the latest research says. The Oxford Review, December 2019
+[^3]: ["What Google Learned From Its Quest to Build the Perfect Team"](https://www.nytimes.com/2016/02/28/magazine/what-google-learned-from-its-quest-to-build-the-perfect-team.html)
+[^4]: Psychological Safety and Learning Behavior in Work Teams – Amy Edmondson Administrative Science Quarterly 1999 44: 350 DOI: 10.2307/2666999
+[^5]: Anita Williams Woolley, Christopher F. Chabris, Alex Pentland, Nada Hashmi, Thomas W. Malone. Evidence for a Collective Intelligence Factor in the Performance of Human Groups. Science 29 Oct 2010: Vol. 330, Issue 6004, pp. 686-688
+[^6]: ["The New Science of Building Great Teams" - Alex "Sandy" Pentland and also "Evidence for a Collective Intelligence Factor in the Performance of Human Groups"](https://hbr.org/2012/04/the-new-science-of-building-great-teams)
+[^7]: [The Wisdom of Teams: Creating the High-Performance Organization by Jon Katzenbach and Douglas Smith – stated that the Skills Potential are as important as the skills people currently have in predicting effectiveness.](https://www.amazon.ca/Wisdom-Teams-Creating-High-Performance-Organization/dp/1633691063/&tag=notesfromatoo-2)
+[^8]: [Shared Vision or Common Goal - in Scrum this should be the Product Vision](/glossary/vision/)
+[^9]: [Clear Roles and Responsibilites - as part of Team Launch, we recommend Team Members negotiate roles](/glossary/team-launch/)
+[^10]: [Dynamically Shared Leadership - Neither the ScrumMaster, nor Team Lead nor Manager run a self organizing team](/glossary/self-organization/)
+[^11]: [Miller's Number](https://en.wikipedia.org/wiki/The_Magical_Number_Seven,_Plus_or_Minus_Two)
+[^12]: ["The Magical Mystery Four: How Is Working Memory Capacity Limited, and Why?" by Nelson Cowan](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2864034/)
+[^13]: These have been very informal observations – just sitting watching what was going on in team spaces and around the water cooler. This time didn't include lunch breaks.
+[^14]: This is also documented in: Mueller, J. S. Why individuals in larger teams perform worse. Organizational Behavior and Human Decision Processes (2011), doi:10.1016/j.obhdp.2011.08.004
+[^15]: ["Effects of size and task type on group performance and member reactions" - stable online reference](https://www.jstor.org/stable/2786271)
+[^16]: [Familiar Metric Management - Small is Beautiful-Once Again - Lawrence H. Putnam and Ware Myers](https://www.qsm.com/fmm_28.pdf)
+[^17]: Mark's Note: I wish the data had split the 5-9 group into separate sets of 5-7 and 7-9 so we could see if there is a noticeable difference in his data at the larger end.
+
+All images by Agile Pain Relief Consulting unless otherwise noted.
+Updated Dec 2025
+_6 March 2020: Updated for 2020 from 2016_

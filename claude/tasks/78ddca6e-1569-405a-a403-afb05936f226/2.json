@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "SpendingBridge.svelte component",
+  "description": "Horizontal waterfall component: rows = areas on Y, cumulative $ on X (percentage-scaled), floating bars, anchors, direction colors (red up/green down), accordion toggle on group rows, hover tooltip, Importance coloring.",
+  "activeForm": "Building the SpendingBridge component",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

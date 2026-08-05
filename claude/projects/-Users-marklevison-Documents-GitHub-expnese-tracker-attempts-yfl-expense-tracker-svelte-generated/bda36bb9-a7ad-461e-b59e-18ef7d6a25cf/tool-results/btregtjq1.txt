@@ -1,0 +1,1242 @@
+=== remaining #{# (should be 0) ===
+all zero
+
+############ DIFFS ############
+===== ReceiptService.split =====
+4,14c4,13
+<  * Specifications covered:
+<  * - #{#spl1a} Split receipt into partial amounts
+<  * - #{#spl1b} Split group tracking
+<  * - #{#spl2b} Split amount validation
+<  * - #{#spl4a} Category independence
+<  * - #{#spl4b} Transaction matching independence
+<  * - #{#spl5a} Data integrity (atomic operations)
+<  * - #{#spl5b} Storage access (shared image)
+<  * - #{#spl6a} Deletion behavior
+<  * - #{#spl7a} Per-split date override
+<  * - #{#spl7c} Split date validation
+---
+>  * - Split receipt into partial amounts
+>  * - Split group tracking
+>  * - Split amount validation
+>  * - Category independence
+>  * - Transaction matching independence
+>  * - Data integrity (atomic operations)
+>  * - Storage access (shared image)
+>  * - Deletion behavior
+>  * - Per-split date override
+>  * - Split date validation
+16,19d14
+<  * Authority: platform (spl1a, spl1b), system (spl5a, spl5b), developer (rest)
+<  * Priority: High/Critical
+<  *
+<  * TDD Phase: RED - All tests should FAIL until splitReceipt() is implemented
+28c23
+< vi.mock('$lib/supabaseClient', () => ({
+---
+> vi.mock('$lib/supabaseClient', => ({
+31c26
+< 			getUser: vi.fn()
+---
+> 			getUser: vi.fn
+33c28
+< 		from: vi.fn(),
+---
+> 		from: vi.fn,
+35c30
+< 			from: vi.fn()
+---
+> 			from: vi.fn
+40,41c35,36
+< vi.mock('$lib/utils/dateValidation', () => ({
+< 	isSuspiciousDate: vi.fn().mockReturnValue(false)
+---
+> vi.mock('$lib/utils/dateValidation', => ({
+> 	isSuspiciousDate: vi.fn.mockReturnValue(false)
+44,45c39,40
+< vi.mock('$lib/utils/signedUrl', () => ({
+< 	getSignedReceiptUrl: vi.fn()
+---
+> vi.mock('$lib/utils/signedUrl', => ({
+> 	getSignedReceiptUrl: vi.fn
+83c78
+< describe('ReceiptService - Receipt Split', () => {
+---
+> describe('ReceiptService - Receipt Split', => {
+92,93c87,88
+< 	beforeEach(() => {
+< 		vi.clearAllMocks();
+---
+> 	beforeEach(=> {
+> 		vi.clearAllMocks;
+101,105c96,100
+< 		//   from('receipts').select('*').eq('id', x).single()  -- fetch
+< 		//   from('receipts').insert({}).select('*').single()    -- insert
+< 		//   from('receipts').update({}).eq('id', x).select('*').single() -- update
+< 		//   from('receipts').delete().eq('id', x)              -- delete (rollback)
+< 		mockSingle = vi.fn();
+---
+> 		// from('receipts').select('*').eq('id', x).single -- fetch
+> 		// from('receipts').insert({}).select('*').single -- insert
+> 		// from('receipts').update({}).eq('id', x).select('*').single -- update
+> 		// from('receipts').delete.eq('id', x) -- delete (rollback)
+> 		mockSingle = vi.fn;
+107,112c102,107
+< 			.fn()
+< 			.mockReturnValue({ single: mockSingle, eq: vi.fn().mockReturnValue({ single: mockSingle }) });
+< 		mockEq = vi.fn().mockReturnValue({ select: mockSelect, single: mockSingle });
+< 		mockInsert = vi.fn().mockReturnValue({ select: mockSelect });
+< 		mockUpdate = vi.fn().mockReturnValue({ eq: mockEq });
+< 		mockDelete = vi.fn().mockReturnValue({ eq: vi.fn().mockResolvedValue({ error: null }) });
+---
+> 			.fn
+> 			.mockReturnValue({ single: mockSingle, eq: vi.fn.mockReturnValue({ single: mockSingle }) });
+> 		mockEq = vi.fn.mockReturnValue({ select: mockSelect, single: mockSingle });
+> 		mockInsert = vi.fn.mockReturnValue({ select: mockSelect });
+> 		mockUpdate = vi.fn.mockReturnValue({ eq: mockEq });
+> 		mockDelete = vi.fn.mockReturnValue({ eq: vi.fn.mockResolvedValue({ error: null }) });
+114c109
+< 		(supabase as { from: typeof supabase.from }).from = vi.fn().mockReturnValue({
+---
+> 		(supabase as { from: typeof supabase.from }).from = vi.fn.mockReturnValue({
+124c119
+< 	// #{#spl1a} Split Receipt Into Partial Amounts
+---
+> 	// Split Receipt Into Partial Amounts
+127,129c122,124
+< 	describe('#{#spl1a} Split Receipt Into Partial Amounts', () => {
+< 		it('should have a splitReceipt method', () => {
+< 			expect(service.splitReceipt).toBeDefined();
+---
+> 	describe('Split Receipt Into Partial Amounts', => {
+> 		it('should have a splitReceipt method', => {
+> 			expect(service.splitReceipt).toBeDefined;
+133c128
+< 		it('should create a new receipt with the split amount', async () => {
+---
+> 		it('should create a new receipt with the split amount', async => {
+162c157
+< 		it('should inherit merchant_name, transaction_date, and other fields from original', async () => {
+---
+> 		it('should inherit merchant_name, transaction_date, and other fields from original', async => {
+199c194
+< 		it('should clear matched_transaction_id on the original receipt', async () => {
+---
+> 		it('should clear matched_transaction_id on the original receipt', async => {
+220c215
+< 			expect(result.updatedOriginal.matched_transaction_id).toBeNull();
+---
+> 			expect(result.updatedOriginal.matched_transaction_id).toBeNull;
+223c218
+< 		it('should set matched_transaction_id to null on the new split receipt', async () => {
+---
+> 		it('should set matched_transaction_id to null on the new split receipt', async => {
+241c236
+< 			expect(result.newReceipt.matched_transaction_id).toBeNull();
+---
+> 			expect(result.newReceipt.matched_transaction_id).toBeNull;
+244c239
+< 		it('should allow splitting an already-split receipt further', async () => {
+---
+> 		it('should allow splitting an already-split receipt further', async => {
+277c272
+< 	// #{#spl1b} Split Group Tracking
+---
+> 	// Split Group Tracking
+280,281c275,276
+< 	describe('#{#spl1b} Split Group Tracking', () => {
+< 		it('should assign the same split_group_id to both receipts', async () => {
+---
+> 	describe('Split Group Tracking', => {
+> 		it('should assign the same split_group_id to both receipts', async => {
+303,304c298,299
+< 			expect(result.newReceipt.split_group_id).toBeTruthy();
+< 			expect(result.updatedOriginal.split_group_id).toBeTruthy();
+---
+> 			expect(result.newReceipt.split_group_id).toBeTruthy;
+> 			expect(result.updatedOriginal.split_group_id).toBeTruthy;
+308c303
+< 		it('should reuse existing split_group_id when splitting an already-split receipt', async () => {
+---
+> 		it('should reuse existing split_group_id when splitting an already-split receipt', async => {
+337c332
+< 		it('should generate a new split_group_id when splitting for the first time', async () => {
+---
+> 		it('should generate a new split_group_id when splitting for the first time', async => {
+360c355
+< 			expect(groupId).toBeTruthy();
+---
+> 			expect(groupId).toBeTruthy;
+366c361
+< 	// #{#spl2b} Split Amount Validation
+---
+> 	// Split Amount Validation
+369,371c364,366
+< 	describe('#{#spl2b} Split Amount Validation', () => {
+< 		it('should reject split amount of 0', async () => {
+< 			await expect(service.splitReceipt('receipt-original', 0)).rejects.toThrow();
+---
+> 	describe('Split Amount Validation', => {
+> 		it('should reject split amount of 0', async => {
+> 			await expect(service.splitReceipt('receipt-original', 0)).rejects.toThrow;
+374,375c369,370
+< 		it('should reject negative split amount', async () => {
+< 			await expect(service.splitReceipt('receipt-original', -10)).rejects.toThrow();
+---
+> 		it('should reject negative split amount', async => {
+> 			await expect(service.splitReceipt('receipt-original', -10)).rejects.toThrow;
+378c373
+< 		it('should reject split amount equal to total (would leave original at 0)', async () => {
+---
+> 		it('should reject split amount equal to total (would leave original at 0)', async => {
+384c379
+< 			await expect(service.splitReceipt('receipt-original', 120.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 120.0)).rejects.toThrow;
+387c382
+< 		it('should reject split amount greater than total', async () => {
+---
+> 		it('should reject split amount greater than total', async => {
+391c386
+< 			await expect(service.splitReceipt('receipt-original', 150.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 150.0)).rejects.toThrow;
+394,395c389,390
+< 		it('should reject NaN split amount', async () => {
+< 			await expect(service.splitReceipt('receipt-original', NaN)).rejects.toThrow();
+---
+> 		it('should reject NaN split amount', async => {
+> 			await expect(service.splitReceipt('receipt-original', NaN)).rejects.toThrow;
+398,399c393,394
+< 		it('should reject Infinity split amount', async () => {
+< 			await expect(service.splitReceipt('receipt-original', Infinity)).rejects.toThrow();
+---
+> 		it('should reject Infinity split amount', async => {
+> 			await expect(service.splitReceipt('receipt-original', Infinity)).rejects.toThrow;
+402,403c397,398
+< 		it('should reject split amount with more than 2 decimal places', async () => {
+< 			await expect(service.splitReceipt('receipt-original', 50.123)).rejects.toThrow();
+---
+> 		it('should reject split amount with more than 2 decimal places', async => {
+> 			await expect(service.splitReceipt('receipt-original', 50.123)).rejects.toThrow;
+406c401
+< 		it('should accept split amount with exactly 2 decimal places', async () => {
+---
+> 		it('should accept split amount with exactly 2 decimal places', async => {
+424c419
+< 			await expect(service.splitReceipt('receipt-original', 50.99)).resolves.toBeDefined();
+---
+> 			await expect(service.splitReceipt('receipt-original', 50.99)).resolves.toBeDefined;
+427c422
+< 		it('should reject split when original receipt has null total_amount', async () => {
+---
+> 		it('should reject split when original receipt has null total_amount', async => {
+431c426
+< 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow;
+434c429
+< 		it('should reject split when original receipt has total_amount of 0', async () => {
+---
+> 		it('should reject split when original receipt has total_amount of 0', async => {
+438c433
+< 			await expect(service.splitReceipt('receipt-original', 0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 0)).rejects.toThrow;
+443c438
+< 	// #{#spl5a} Data Integrity (Atomic Operations)
+---
+> 	// Data Integrity (Atomic Operations)
+446,447c441,442
+< 	describe('#{#spl5a} Data Integrity - Atomic Operations', () => {
+< 		it('should rollback new receipt if original update fails', async () => {
+---
+> 	describe('Data Integrity - Atomic Operations', => {
+> 		it('should rollback new receipt if original update fails', async => {
+460c455
+< 			const mockDeleteEq = vi.fn().mockResolvedValue({ error: null });
+---
+> 			const mockDeleteEq = vi.fn.mockResolvedValue({ error: null });
+463c458
+< 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow;
+469c464
+< 		it('should throw if insert of new receipt fails', async () => {
+---
+> 		it('should throw if insert of new receipt fails', async => {
+476c471
+< 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow;
+479c474
+< 		it('should not modify original receipt amount if insert fails', async () => {
+---
+> 		it('should not modify original receipt amount if insert fails', async => {
+494c489
+< 			expect(mockUpdate).not.toHaveBeenCalled();
+---
+> 			expect(mockUpdate).not.toHaveBeenCalled;
+499c494
+< 	// #{#spl5b} Storage Access (Shared Image)
+---
+> 	// Storage Access (Shared Image)
+502,503c497,498
+< 	describe('#{#spl5b} Storage Access - Shared Image', () => {
+< 		it('should copy receipt_image_path to the new split receipt', async () => {
+---
+> 	describe('Storage Access - Shared Image', => {
+> 		it('should copy receipt_image_path to the new split receipt', async => {
+526c521
+< 		it('should handle original receipt with no image (manual receipt)', async () => {
+---
+> 		it('should handle original receipt with no image (manual receipt)', async => {
+545c540
+< 			expect(result.newReceipt.receipt_image_path).toBeNull();
+---
+> 			expect(result.newReceipt.receipt_image_path).toBeNull;
+548c543
+< 		it('should NOT duplicate the image file in storage', async () => {
+---
+> 		it('should NOT duplicate the image file in storage', async => {
+564c559
+< 			expect(supabase.storage.from).not.toHaveBeenCalled();
+---
+> 			expect(supabase.storage.from).not.toHaveBeenCalled;
+569c564
+< 	// #{#spl4a} Category Independence
+---
+> 	// Category Independence
+572,573c567,568
+< 	describe('#{#spl4a} Category Independence', () => {
+< 		it('should not copy expense category to new split receipt', async () => {
+---
+> 	describe('Category Independence', => {
+> 		it('should not copy expense category to new split receipt', async => {
+601c596
+< 	// #{#spl4b} Transaction Matching Independence
+---
+> 	// Transaction Matching Independence
+604,605c599,600
+< 	describe('#{#spl4b} Transaction Matching Independence', () => {
+< 		it('should create split receipt with no transaction match', async () => {
+---
+> 	describe('Transaction Matching Independence', => {
+> 		it('should create split receipt with no transaction match', async => {
+625c620
+< 			expect(result.newReceipt.matched_transaction_id).toBeNull();
+---
+> 			expect(result.newReceipt.matched_transaction_id).toBeNull;
+627c622
+< 			expect(result.updatedOriginal.matched_transaction_id).toBeNull();
+---
+> 			expect(result.updatedOriginal.matched_transaction_id).toBeNull;
+632c627
+< 	// #{#spl6a} Deletion Behavior
+---
+> 	// Deletion Behavior
+635,636c630,631
+< 	describe('#{#spl6a} Deletion Behavior', () => {
+< 		it('should allow deleting a split receipt without affecting others in group', async () => {
+---
+> 	describe('Deletion Behavior', => {
+> 		it('should allow deleting a split receipt without affecting others in group', async => {
+640c635
+< 			const mockFetchSingle = vi.fn().mockResolvedValue({
+---
+> 			const mockFetchSingle = vi.fn.mockResolvedValue({
+645c640
+< 			const mockDeleteEq = vi.fn().mockResolvedValue({ error: null });
+---
+> 			const mockDeleteEq = vi.fn.mockResolvedValue({ error: null });
+647,651c642,646
+< 			// delete method chain: from('receipts').select('receipt_image_path').eq('id', x).single()
+< 			// then: from('receipts').delete().eq('id', x)
+< 			(supabase as { from: typeof supabase.from }).from = vi.fn().mockReturnValue({
+< 				select: vi.fn().mockReturnValue({
+< 					eq: vi.fn().mockReturnValue({ single: mockFetchSingle })
+---
+> 			// delete method chain: from('receipts').select('receipt_image_path').eq('id', x).single
+> 			// then: from('receipts').delete.eq('id', x)
+> 			(supabase as { from: typeof supabase.from }).from = vi.fn.mockReturnValue({
+> 				select: vi.fn.mockReturnValue({
+> 					eq: vi.fn.mockReturnValue({ single: mockFetchSingle })
+653c648
+< 				delete: vi.fn().mockReturnValue({ eq: mockDeleteEq })
+---
+> 				delete: vi.fn.mockReturnValue({ eq: mockDeleteEq })
+656,657c651,652
+< 			(supabase.storage as { from: typeof supabase.storage.from }).from = vi.fn().mockReturnValue({
+< 				remove: vi.fn().mockResolvedValue({ error: null })
+---
+> 			(supabase.storage as { from: typeof supabase.storage.from }).from = vi.fn.mockReturnValue({
+> 				remove: vi.fn.mockResolvedValue({ error: null })
+661c656
+< 			await expect(service.delete('receipt-split-1')).resolves.toBeDefined();
+---
+> 			await expect(service.delete('receipt-split-1')).resolves.toBeDefined;
+669,670c664,665
+< 	describe('Edge Cases', () => {
+< 		it('should handle splitting a receipt with amount of $0.02 (minimum splittable)', async () => {
+---
+> 	describe('Edge Cases', => {
+> 		it('should handle splitting a receipt with amount of $0.02 (minimum splittable)', async => {
+692c687
+< 		it('should reject splitting a receipt with amount of $0.01 (cannot split further)', async () => {
+---
+> 		it('should reject splitting a receipt with amount of $0.01 (cannot split further)', async => {
+697c692
+< 			await expect(service.splitReceipt('receipt-original', 0.01)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('receipt-original', 0.01)).rejects.toThrow;
+700c695
+< 		it('should handle receipt not found', async () => {
+---
+> 		it('should handle receipt not found', async => {
+703c698
+< 			await expect(service.splitReceipt('nonexistent-id', 50.0)).rejects.toThrow();
+---
+> 			await expect(service.splitReceipt('nonexistent-id', 50.0)).rejects.toThrow;
+706c701
+< 		it('should require authentication', async () => {
+---
+> 		it('should require authentication', async => {
+709c704
+< 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow(/auth|user/i);
+---
+> 			await expect(service.splitReceipt('receipt-original', 50.0)).rejects.toThrow(auth|user/i);
+714c709
+< 	// #{#spl7a} Per-Split Date Override
+---
+> 	// Per-Split Date Override
+717,718c712,713
+< 	describe('#{#spl7a} Per-Split Date Override', () => {
+< 		it('should accept an optional splitDate parameter', async () => {
+---
+> 	describe('Per-Split Date Override', => {
+> 		it('should accept an optional splitDate parameter', async => {
+750c745
+< 		it('should use original date when splitDate is omitted', async () => {
+---
+> 		it('should use original date when splitDate is omitted', async => {
+776c771
+< 		it('should use original date when splitDate is null', async () => {
+---
+> 		it('should use original date when splitDate is null', async => {
+802c797
+< 		it('should not modify the original receipt date when splitting with a different date', async () => {
+---
+> 		it('should not modify the original receipt date when splitting with a different date', async => {
+832c827
+< 		it('should allow future dates for deferred charges (AirBnB scenario)', async () => {
+---
+> 		it('should allow future dates for deferred charges (AirBnB scenario)', async => {
+860c855
+< 		it('should pass the splitDate to the insert call', async () => {
+---
+> 		it('should pass the splitDate to the insert call', async => {
+886c881
+< 			);
+---
+> );
+889c884
+< 		it('should recalculate suspicious_date based on split date, not inherit from original', async () => {
+---
+> 		it('should recalculate suspicious_date based on split date, not inherit from original', async => {
+926c921
+< 	// #{#spl7c} Split Date Validation
+---
+> 	// Split Date Validation
+929,930c924,925
+< 	describe('#{#spl7c} Split Date Validation', () => {
+< 		it('should reject invalid date string', async () => {
+---
+> 	describe('Split Date Validation', => {
+> 		it('should reject invalid date string', async => {
+933c928
+< 			);
+---
+> );
+936c931
+< 		it('should reject malformed date like 2026-13-45', async () => {
+---
+> 		it('should reject malformed date like 2026-13-45', async => {
+939c934
+< 			);
+---
+> );
+942c937
+< 		it('should reject empty string as date', async () => {
+---
+> 		it('should reject empty string as date', async => {
+945c940
+< 			);
+---
+> );
+948c943
+< 		it('should accept a valid past date', async () => {
+---
+> 		it('should accept a valid past date', async => {
+968c963
+< 			).resolves.toBeDefined();
+---
+> ).resolves.toBeDefined;
+971c966
+< 		it('should accept a valid future date', async () => {
+---
+> 		it('should accept a valid future date', async => {
+991c986
+< 			).resolves.toBeDefined();
+---
+> ).resolves.toBeDefined;
+994c989
+< 		it('should not affect original suspicious_date flag', async () => {
+---
+> 		it('should not affect original suspicious_date flag', async => {
+===== CategoryService =====
+13c13
+<  * Tests for #{#exp3a} - Family Category Management
+---
+>  * Tests for - Family Category Management
+15,18d14
+<  * Specification: specs/specifications/expense-categorization.md
+<  * Authority: developer
+<  * Priority: High
+<  *
+30c26
+< describe('CategoryService - #{#exp3a} User Category Management', () => {
+---
+> describe('CategoryService - User Category Management', => {
+33,34c29,30
+< 	beforeEach(() => {
+< 		mockSupabase = createMockSupabaseClient();
+---
+> 	beforeEach(=> {
+> 		mockSupabase = createMockSupabaseClient;
+37,38c33,34
+< 	describe('Requirement 1: Categories scoped to families', () => {
+< 		it('should query categories filtered by family_id', async () => {
+---
+> 	describe('Requirement 1: Categories scoped to families', => {
+> 		it('should query categories filtered by family_id', async => {
+50c46
+< 		it('should only return categories belonging to the specified family', async () => {
+---
+> 		it('should only return categories belonging to the specified family', async => {
+54c50
+< 			];
+---
+> ];
+68c64
+< 		it('should throw error if familyId is not provided', async () => {
+---
+> 		it('should throw error if familyId is not provided', async => {
+73c69
+< 			);
+---
+> );
+77,78c73,74
+< 	describe('Requirement 2 & 3: Default categories for new families', () => {
+< 		it('should create default categories for a new family', async () => {
+---
+> 	describe('Requirement 2 & 3: Default categories for new families', => {
+> 		it('should create default categories for a new family', async => {
+92c88
+< 			// Get the mock query object returned by from()
+---
+> 			// Get the mock query object returned by from
+94c90
+< 			expect(mockQuery.insert).toHaveBeenCalled();
+---
+> 			expect(mockQuery.insert).toHaveBeenCalled;
+105c101
+< 		it('should create all default categories from user specification', async () => {
+---
+> 		it('should create all default categories from user specification', async => {
+107c103
+< 			// Updated to match #{#exp3a} user's custom default category list
+---
+> 			// Updated to match user's custom default category list
+152c148
+< 			];
+---
+> ];
+155c151
+< 			const defaults = service.getDefaultCategoryList();
+---
+> 			const defaults = service.getDefaultCategoryList;
+160c156
+< 				expect(category.color).toBeDefined(); // All categories should have colors
+---
+> 				expect(category.color).toBeDefined; // All categories should have colors
+164c160
+< 		it('should not throw error if default categories already exist', async () => {
+---
+> 		it('should not throw error if default categories already exist', async => {
+166c162
+< 			mockSupabase.rpc = vi.fn().mockResolvedValue({ data: null, error: null });
+---
+> 			mockSupabase.rpc = vi.fn.mockResolvedValue({ data: null, error: null });
+170c166
+< 			await expect(service.createDefaultCategories('user-123')).resolves.not.toThrow();
+---
+> 			await expect(service.createDefaultCategories('user-123')).resolves.not.toThrow;
+174,175c170,171
+< 	describe('Requirement 4: Create custom categories', () => {
+< 		it('should create a new category with name and color', async () => {
+---
+> 	describe('Requirement 4: Create custom categories', => {
+> 		it('should create a new category with name and color', async => {
+184c180
+< 			expect(mockFrom.insert).toHaveBeenCalled();
+---
+> 			expect(mockFrom.insert).toHaveBeenCalled;
+187c183
+< 		it('should create category with name only (optional color)', async () => {
+---
+> 		it('should create category with name only (optional color)', async => {
+196c192
+< 			expect(category.color).toBeNull();
+---
+> 			expect(category.color).toBeNull;
+199c195
+< 		it('should validate category name is provided', async () => {
+---
+> 		it('should validate category name is provided', async => {
+204c200
+< 			);
+---
+> );
+207c203
+< 		it('should validate category name length (max 100 characters)', async () => {
+---
+> 		it('should validate category name length (max 100 characters)', async => {
+213c209
+< 			);
+---
+> );
+216c212
+< 		it('should return the created category', async () => {
+---
+> 		it('should return the created category', async => {
+237,238c233,234
+< 	describe('Requirement 5: Rename existing categories', () => {
+< 		it('should update category name', async () => {
+---
+> 	describe('Requirement 5: Rename existing categories', => {
+> 		it('should update category name', async => {
+247c243
+< 			expect(mockFrom.update).toHaveBeenCalled();
+---
+> 			expect(mockFrom.update).toHaveBeenCalled;
+251c247
+< 		it('should update category color', async () => {
+---
+> 		it('should update category color', async => {
+262c258
+< 		it('should update both name and color', async () => {
+---
+> 		it('should update both name and color', async => {
+274c270
+< 		it('should throw error if category ID is not provided', async () => {
+---
+> 		it('should throw error if category ID is not provided', async => {
+281,282c277,278
+< 	describe('Requirement 6: Delete categories', () => {
+< 		it('should delete a category by ID', async () => {
+---
+> 	describe('Requirement 6: Delete categories', => {
+> 		it('should delete a category by ID', async => {
+290c286
+< 			expect(mockFrom.delete).toHaveBeenCalled();
+---
+> 			expect(mockFrom.delete).toHaveBeenCalled;
+294c290
+< 		it('should check if category has associated expenses before deletion', async () => {
+---
+> 		it('should check if category has associated expenses before deletion', async => {
+301,302c297,298
+< 				select: vi.fn().mockReturnThis(),
+< 				eq: vi.fn().mockReturnThis()
+---
+> 				select: vi.fn.mockReturnThis,
+> 				eq: vi.fn.mockReturnThis
+305c301
+< 			mockSupabase.from = vi.fn().mockImplementation((table) => {
+---
+> 			mockSupabase.from = vi.fn.mockImplementation((table) => {
+309c305
+< 				return createMockSupabaseClient().from(table);
+---
+> 				return createMockSupabaseClient.from(table);
+317c313
+< 		it('should return false if category has no expenses', async () => {
+---
+> 		it('should return false if category has no expenses', async => {
+323,324c319,320
+< 				select: vi.fn().mockReturnThis(),
+< 				eq: vi.fn().mockReturnThis()
+---
+> 				select: vi.fn.mockReturnThis,
+> 				eq: vi.fn.mockReturnThis
+327c323
+< 			mockSupabase.from = vi.fn().mockImplementation((table) => {
+---
+> 			mockSupabase.from = vi.fn.mockImplementation((table) => {
+331c327
+< 				return createMockSupabaseClient().from(table);
+---
+> 				return createMockSupabaseClient.from(table);
+339c335
+< 		it('should throw error if category ID is not provided for deletion', async () => {
+---
+> 		it('should throw error if category ID is not provided for deletion', async => {
+346,347c342,343
+< 	describe('Requirement 7: Unique category names per user (case-insensitive)', () => {
+< 		it('should enforce unique constraint on category names', async () => {
+---
+> 	describe('Requirement 7: Unique category names per user (case-insensitive)', => {
+> 		it('should enforce unique constraint on category names', async => {
+360c356
+< 			);
+---
+> );
+363c359
+< 		it('should be case-insensitive (groceries = Groceries = GROCERIES)', async () => {
+---
+> 		it('should be case-insensitive (groceries = Groceries = GROCERIES)', async => {
+374c370
+< 			await expect(service.createCategory('user-123', 'GROCERIES')).rejects.toThrow();
+---
+> 			await expect(service.createCategory('user-123', 'GROCERIES')).rejects.toThrow;
+378,379c374,375
+< 	describe('Requirement 8: Optional color coding', () => {
+< 		it('should accept valid hex color codes', async () => {
+---
+> 	describe('Requirement 8: Optional color coding', => {
+> 		it('should accept valid hex color codes', async => {
+390c386
+< 		it('should validate hex color format (#RRGGBB)', async () => {
+---
+> 		it('should validate hex color format (#RRGGBB)', async => {
+395c391
+< 			);
+---
+> );
+398c394
+< 		it('should accept null/undefined for color (optional)', async () => {
+---
+> 		it('should accept null/undefined for color (optional)', async => {
+406c402
+< 			expect(category.color).toBeNull();
+---
+> 			expect(category.color).toBeNull;
+410,411c406,407
+< 	describe('Category ordering and retrieval', () => {
+< 		it('should return categories ordered by name alphabetically', async () => {
+---
+> 	describe('Category ordering and retrieval', => {
+> 		it('should return categories ordered by name alphabetically', async => {
+420c416
+< 		it('should return empty array when family has no categories', async () => {
+---
+> 		it('should return empty array when family has no categories', async => {
+432,433c428,429
+< 	describe('Error handling', () => {
+< 		it('should handle database errors gracefully', async () => {
+---
+> 	describe('Error handling', => {
+> 		it('should handle database errors gracefully', async => {
+442c438
+< 			);
+---
+> );
+445c441
+< 		it('should handle database errors when creating default categories', async () => {
+---
+> 		it('should handle database errors when creating default categories', async => {
+453,456c449,452
+< 				select: vi.fn().mockReturnThis(),
+< 				eq: vi.fn().mockReturnThis(),
+< 				order: vi.fn().mockReturnThis(),
+< 				insert: vi.fn().mockReturnThis(),
+---
+> 				select: vi.fn.mockReturnThis,
+> 				eq: vi.fn.mockReturnThis,
+> 				order: vi.fn.mockReturnThis,
+> 				insert: vi.fn.mockReturnThis,
+471c467
+< 			mockSupabase.from = vi.fn().mockReturnValue(mockQuery);
+---
+> 			mockSupabase.from = vi.fn.mockReturnValue(mockQuery);
+477c473
+< 			);
+---
+> );
+===== dateValidation =====
+4c4
+<  * Tests for #{#dtv1a} - Suspicious date detection algorithm
+---
+>  * Tests for - Suspicious date detection algorithm
+6,8d5
+<  * Authority: platform
+<  * Priority: High
+<  *
+22,23c19,20
+< describe('#{#dtv1a} - Suspicious Date Detection Algorithm', () => {
+< 	beforeEach(() => {
+---
+> describe('Suspicious Date Detection Algorithm', => {
+> 	beforeEach(=> {
+25c22
+< 		vi.useFakeTimers();
+---
+> 		vi.useFakeTimers;
+29,30c26,27
+< 	afterEach(() => {
+< 		vi.useRealTimers();
+---
+> 	afterEach(=> {
+> 		vi.useRealTimers;
+33,34c30,31
+< 	describe('isSuspiciousDate', () => {
+< 		it("should return false for today's date (0 days old)", () => {
+---
+> 	describe('isSuspiciousDate', => {
+> 		it("should return false for today's date (0 days old)", => {
+39c36
+< 		it('should return false for yesterday (1 day old)', () => {
+---
+> 		it('should return false for yesterday (1 day old)', => {
+44c41
+< 		it('should return false for 41 days ago (within threshold)', () => {
+---
+> 		it('should return false for 41 days ago (within threshold)', => {
+49c46
+< 		it('should return false for exactly 42 days ago (boundary - NOT suspicious)', () => {
+---
+> 		it('should return false for exactly 42 days ago (boundary - NOT suspicious)', => {
+54c51
+< 		it('should return true for 43 days ago (exceeds threshold)', () => {
+---
+> 		it('should return true for 43 days ago (exceeds threshold)', => {
+59c56
+< 		it('should return true for 6 months ago (very old)', () => {
+---
+> 		it('should return true for 6 months ago (very old)', => {
+64c61
+< 		it('should return true for 1 year ago (extremely old)', () => {
+---
+> 		it('should return true for 1 year ago (extremely old)', => {
+69c66
+< 		it('should return true for future date (tomorrow)', () => {
+---
+> 		it('should return true for future date (tomorrow)', => {
+74c71
+< 		it('should return true for far future date', () => {
+---
+> 		it('should return true for far future date', => {
+79c76
+< 		it('should return false for null date (graceful handling)', () => {
+---
+> 		it('should return false for null date (graceful handling)', => {
+84c81
+< 		it('should return false for undefined date (graceful handling)', () => {
+---
+> 		it('should return false for undefined date (graceful handling)', => {
+89c86
+< 		it('should return false for empty string (graceful handling)', () => {
+---
+> 		it('should return false for empty string (graceful handling)', => {
+94c91
+< 		it('should handle ISO 8601 datetime format (with time)', () => {
+---
+> 		it('should handle ISO 8601 datetime format (with time)', => {
+99c96
+< 		it('should use calendar days, ignoring time components', () => {
+---
+> 		it('should use calendar days, ignoring time components', => {
+108c105
+< 		it('should correctly handle leap years', () => {
+---
+> 		it('should correctly handle leap years', => {
+116c113
+< 		it('should handle timezone-independent date comparison', () => {
+---
+> 		it('should handle timezone-independent date comparison', => {
+123,124c120,121
+< 	describe('calculateDateAge', () => {
+< 		it("should return 0 for today's date", () => {
+---
+> 	describe('calculateDateAge', => {
+> 		it("should return 0 for today's date", => {
+129c126
+< 		it('should return 1 for yesterday', () => {
+---
+> 		it('should return 1 for yesterday', => {
+134c131
+< 		it('should return 42 for exactly 42 days ago', () => {
+---
+> 		it('should return 42 for exactly 42 days ago', => {
+139c136
+< 		it('should return 43 for 43 days ago', () => {
+---
+> 		it('should return 43 for 43 days ago', => {
+144c141
+< 		it('should return negative value for future dates', () => {
+---
+> 		it('should return negative value for future dates', => {
+146c143
+< 			expect(age).toBe(-1);
+---
+> 			expect(age).toBe(1);
+149c146
+< 		it('should return -365 for 1 year in future', () => {
+---
+> 		it('should return -365 for 1 year in future', => {
+151c148
+< 			expect(age).toBe(-365); // Exactly 1 year = 365 days
+---
+> 			expect(age).toBe(365); // Exactly 1 year = 365 days
+154c151
+< 		it('should handle ISO datetime format', () => {
+---
+> 		it('should handle ISO datetime format', => {
+160,161c157,158
+< 	describe('Edge Cases and Error Handling', () => {
+< 		it('should handle invalid date formats gracefully', () => {
+---
+> 	describe('Edge Cases and Error Handling', => {
+> 		it('should handle invalid date formats gracefully', => {
+167c164
+< 		it('should handle boundary case: exactly 6 weeks (42 days)', () => {
+---
+> 		it('should handle boundary case: exactly 6 weeks (42 days)', => {
+173c170
+< 		it('should handle dates at year boundaries', () => {
+---
+> 		it('should handle dates at year boundaries', => {
+181c178
+< 		it('should handle very old dates (multiple years)', () => {
+---
+> 		it('should handle very old dates (multiple years)', => {
+186c183
+< 		it('should handle dates at month boundaries', () => {
+---
+> 		it('should handle dates at month boundaries', => {
+195,196c192,193
+< 	describe('Real-World Scenarios', () => {
+< 		it('should flag uploaded/OCR receipt from 3 months ago (likely OCR error)', () => {
+---
+> 	describe('Real-World Scenarios', => {
+> 		it('should flag uploaded/OCR receipt from 3 months ago (likely OCR error)', => {
+202c199
+< 		it('should not flag receipt from last week', () => {
+---
+> 		it('should not flag receipt from last week', => {
+207c204
+< 		it('should flag OCR error: future year typo (2026 instead of 2025)', () => {
+---
+> 		it('should flag OCR error: future year typo (2026 instead of 2025)', => {
+212c209
+< 		it('should not flag receipt from 5 weeks ago (within threshold)', () => {
+---
+> 		it('should not flag receipt from 5 weeks ago (within threshold)', => {
+217c214
+< 		it('should flag receipt from 7 weeks ago (exceeds threshold)', () => {
+---
+> 		it('should flag receipt from 7 weeks ago (exceeds threshold)', => {
+225c222
+<  * getValidDate() — sanitizes untrusted date strings (URL params) to a valid
+---
+>  * getValidDate — sanitizes untrusted date strings (URL params) to a valid
+228c225
+<  * (#{#edf4a} URL Parameter Validation)
+---
+>  * (URL Parameter Validation)
+230,231c227,228
+< describe('getValidDate', () => {
+< 	it('should reject invalid date format', () => {
+---
+> describe('getValidDate', => {
+> 	it('should reject invalid date format', => {
+237c234
+< 	it('should reject invalid dates', () => {
+---
+> 	it('should reject invalid dates', => {
+242c239
+< 	it('should handle null and empty input', () => {
+---
+> 	it('should handle null and empty input', => {
+247c244
+< 	it('should accept valid dates in YYYY-MM-DD format', () => {
+---
+> 	it('should accept valid dates in YYYY-MM-DD format', => {
+253,254c250,251
+< 	it('should reject SQL-injection-shaped input', () => {
+< 		expect(getValidDate("2025-01-01'; DROP TABLE expenses; --")).toBe('');
+---
+> 	it('should reject SQL-injection-shaped input', => {
+> 		expect(getValidDate("2025-01-01'; DROP TABLE expenses; -")).toBe('');
+258c255
+< 	it('should reject XSS-shaped input', () => {
+---
+> 	it('should reject XSS-shaped input', => {
+===== passwordValidation =====
+16c16
+<  * All tests are traceable to specific requirements using specification IDs (#{#xxxNx})
+---
+>  * All tests are traceable to specific requirements using specification IDs
+19,21c19,21
+< describe('validatePassword', () => {
+< 	describe('#{#pwd1a} minimum length validation', () => {
+< 		it('should reject passwords shorter than minimum length', () => {
+---
+> describe('validatePassword', => {
+> 	describe('minimum length validation', => {
+> 		it('should reject passwords shorter than minimum length', => {
+28c28
+< 		it('should accept passwords exactly at minimum length with character type', () => {
+---
+> 		it('should accept passwords exactly at minimum length with character type', => {
+33c33
+< 		it('should accept passwords longer than minimum length with character type', () => {
+---
+> 		it('should accept passwords longer than minimum length with character type', => {
+38c38
+< 		it('should reject empty password', () => {
+---
+> 		it('should reject empty password', => {
+45,46c45,46
+< 	describe('#{#pwd1b} character type validation', () => {
+< 		it('should accept password with uppercase letter', () => {
+---
+> 	describe('character type validation', => {
+> 		it('should accept password with uppercase letter', => {
+51c51
+< 		it('should accept password with lowercase letter', () => {
+---
+> 		it('should accept password with lowercase letter', => {
+56c56
+< 		it('should accept password with number', () => {
+---
+> 		it('should accept password with number', => {
+61c61
+< 		it('should accept password with special character', () => {
+---
+> 		it('should accept password with special character', => {
+66,67c66,67
+< 		it('should accept password with multiple character types', () => {
+< 			const result = validatePassword('Abc123!@#$%^&*()');
+---
+> 		it('should accept password with multiple character types', => {
+> 			const result = validatePassword('Abc123!@#$%^&*');
+71c71
+< 		it('should reject password with no valid character types', () => {
+---
+> 		it('should reject password with no valid character types', => {
+79,80c79,80
+< 	describe('#{#pwd1c} overall validation', () => {
+< 		it('should accept valid password with uppercase only', () => {
+---
+> 	describe('overall validation', => {
+> 		it('should accept valid password with uppercase only', => {
+86c86
+< 		it('should accept valid password with lowercase only', () => {
+---
+> 		it('should accept valid password with lowercase only', => {
+92c92
+< 		it('should accept valid password with numbers only', () => {
+---
+> 		it('should accept valid password with numbers only', => {
+98,99c98,99
+< 		it('should accept valid password with special chars only', () => {
+< 			const result = validatePassword('!@#$%^&*()_+-=[]');
+---
+> 		it('should accept valid password with special chars only', => {
+> 			const result = validatePassword('!@#$%^&*_+-=[]');
+104c104
+< 		it('should accept valid password with mixed characters', () => {
+---
+> 		it('should accept valid password with mixed characters', => {
+110c110
+< 		it('should reject password that is too short even with character types', () => {
+---
+> 		it('should reject password that is too short even with character types', => {
+116c116
+< 		it('should reject password that is long enough but has no valid character types', () => {
+---
+> 		it('should reject password that is long enough but has no valid character types', => {
+122,123c122,123
+< 		it('should reject password that fails both checks', () => {
+< 			const result = validatePassword('   ');
+---
+> 		it('should reject password that fails both checks', => {
+> 			const result = validatePassword(' ');
+131,132c131,132
+< 	describe('#{#pwd2a} special character support', () => {
+< 		const specialChars = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+---
+> 	describe('special character support', => {
+> 		const specialChars = '!@#$%^&*_+-=[]{}|;:,.<>?';
+135c135
+< 			it(`should accept special character: ${char}`, () => {
+---
+> 			it(`should accept special character: ${char}`, => {
+143,144c143,144
+< 	describe('#{#pwd2b} edge cases', () => {
+< 		it('should handle unicode characters', () => {
+---
+> 	describe('edge cases', => {
+> 		it('should handle unicode characters', => {
+149c149
+< 		it('should handle very long passwords', () => {
+---
+> 		it('should handle very long passwords', => {
+156,157c156,157
+< describe('#{#pwd3a} passwordsMatch', () => {
+< 	it('should return true when passwords match and are non-empty', () => {
+---
+> describe('passwordsMatch', => {
+> 	it('should return true when passwords match and are non-empty', => {
+161c161
+< 	it('should return false when passwords do not match', () => {
+---
+> 	it('should return false when passwords do not match', => {
+165c165
+< 	it('should return false when both passwords are empty', () => {
+---
+> 	it('should return false when both passwords are empty', => {
+169c169
+< 	it('should return false when first password is empty', () => {
+---
+> 	it('should return false when first password is empty', => {
+173c173
+< 	it('should return false when second password is empty', () => {
+---
+> 	it('should return false when second password is empty', => {
+177c177
+< 	it('should handle special characters in matching passwords', () => {
+---
+> 	it('should handle special characters in matching passwords', => {
+181c181
+< 	it('should be case-sensitive', () => {
+---
+> 	it('should be case-sensitive', => {
+185c185
+< 	it('should handle whitespace correctly', () => {
+---
+> 	it('should handle whitespace correctly', => {
+191,192c191,192
+< describe('#{#pwd4a} exported constants', () => {
+< 	it('should export MIN_PASSWORD_LENGTH as 16', () => {
+---
+> describe('exported constants', => {
+> 	it('should export MIN_PASSWORD_LENGTH as 16', => {
+196c196
+< 	it('should export MIN_LENGTH_MESSAGE with correct value', () => {
+---
+> 	it('should export MIN_LENGTH_MESSAGE with correct value', => {
+200c200
+< 	it('should export CHAR_TYPE_MESSAGE', () => {
+---
+> 	it('should export CHAR_TYPE_MESSAGE', => {
+203c203
+< 		);
+---
+> );
+===== profile-page =====
+14,15c14,15
+< vi.mock('$app/stores', () => ({ page: pageStore }));
+< vi.mock('$lib/supabaseClient', () => ({ supabase: supabaseMock }));
+---
+> vi.mock('$app/stores', => ({ page: pageStore }));
+> vi.mock('$lib/supabaseClient', => ({ supabase: supabaseMock }));
+20c20
+<  * Behavior tests for the profile page (#{#upp1a}, #{#upp2b}, #{#upp4a}–d).
+---
+>  * Behavior tests for the profile page.
+29c29
+< describe('profile page', () => {
+---
+> describe('profile page', => {
+32c32
+< 	it('prompts to log in when there is no session', async () => {
+---
+> 	it('prompts to log in when there is no session', async => {
+39,40c39,40
+< 			.toBeVisible();
+< 		await expect.element(screen.getByRole('link', { name: 'Go to Login' })).toBeVisible();
+---
+> 			.toBeVisible;
+> 		await expect.element(screen.getByRole('link', { name: 'Go to Login' })).toBeVisible;
+43c43
+< 	it('shows account information from the session when signed in', async () => {
+---
+> 	it('shows account information from the session when signed in', async => {
+51,53c51,53
+< 			.toBeVisible();
+< 		await expect.element(screen.getByText('primary@example.com')).toBeVisible();
+< 		await expect.element(screen.getByText('user-42')).toBeVisible();
+---
+> 			.toBeVisible;
+> 		await expect.element(screen.getByText('primary@example.com')).toBeVisible;
+> 		await expect.element(screen.getByText('user-42')).toBeVisible;
+56,57c56,57
+< 	it('lists the additional emails from the profile with the used-slot count', async () => {
+< 		setSession(fakeSession());
+---
+> 	it('lists the additional emails from the profile with the used-slot count', async => {
+> 		setSession(fakeSession);
+62,64c62,64
+< 		await expect.element(screen.getByText('alt1@example.com')).toBeVisible();
+< 		await expect.element(screen.getByText('alt2@example.com')).toBeVisible();
+< 		await expect.element(screen.getByText('2 of 5 email addresses added')).toBeVisible();
+---
+> 		await expect.element(screen.getByText('alt1@example.com')).toBeVisible;
+> 		await expect.element(screen.getByText('alt2@example.com')).toBeVisible;
+> 		await expect.element(screen.getByText('2 of 5 email addresses added')).toBeVisible;
+67,69c67,69
+< 	it('shows the empty state when the profile has no additional emails', async () => {
+< 		setSession(fakeSession());
+< 		setProfile(makeProfile());
+---
+> 	it('shows the empty state when the profile has no additional emails', async => {
+> 		setSession(fakeSession);
+> 		setProfile(makeProfile);
+75c75
+< 			.toBeVisible();
+---
+> 			.toBeVisible;
+78,80c78,80
+< 	it('opens the add-email form when Add Email is clicked', async () => {
+< 		setSession(fakeSession());
+< 		setProfile(makeProfile());
+---
+> 	it('opens the add-email form when Add Email is clicked', async => {
+> 		setSession(fakeSession);
+> 		setProfile(makeProfile);
+84c84
+< 		await screen.getByRole('button', { name: 'Add Email' }).click();
+---
+> 		await screen.getByRole('button', { name: 'Add Email' }).click;
+86c86
+< 		await expect.element(screen.getByRole('textbox', { name: 'New email address' })).toBeVisible();
+---
+> 		await expect.element(screen.getByRole('textbox', { name: 'New email address' })).toBeVisible;
+89,90c89,90
+< 	it('asks for confirmation naming the email when Delete is clicked', async () => {
+< 		setSession(fakeSession());
+---
+> 	it('asks for confirmation naming the email when Delete is clicked', async => {
+> 		setSession(fakeSession);
+95c95
+< 		await screen.getByRole('button', { name: 'Delete email doomed@example.com' }).click();
+---
+> 		await screen.getByRole('button', { name: 'Delete email doomed@example.com' }).click;
+99,100c99,100
+< 			.toBeVisible();
+< 		await expect.element(screen.getByText(/Are you sure you want to delete/)).toBeVisible();
+---
+> 			.toBeVisible;
+> 		await expect.element(screen.getByText(Are you sure you want to delete)).toBeVisible;

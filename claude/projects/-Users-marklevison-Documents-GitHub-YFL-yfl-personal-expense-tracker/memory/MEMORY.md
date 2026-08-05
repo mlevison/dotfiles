@@ -1,0 +1,1 @@
+- [Minimal code comments](minimal-code-comments.md) — write few; they drift out of touch with reality.

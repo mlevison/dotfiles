@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "RF-04: unify the two findPotentialMatches methods",
+  "description": "Merge findPotentialMatches / findPotentialMatchesForTransaction into one direction-parameterised matcher (or shared generic). Preserve best-first sort + confidence output.",
+  "activeForm": "Unifying the findPotentialMatches pair (RF-04)",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

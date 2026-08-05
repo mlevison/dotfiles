@@ -1,0 +1,325 @@
+===== ALL COLLECTED QUIZ / IDENTITY-RELATED CLAIMS (from source extraction) =====
+
+- [central] Interactive quizzes report a 40.1-47.3% start-to-lead rate while ebooks/whitepapers convert at only 4-8% at the landing-page level, but the quiz figure counts only already-engaged users, not total visitors, so the two numbers are not directly comparable.
+    quote: "Interactive Quiz | 40.1–47.3% | Start-to-lead (engaged users) ... Ebook/Whitepaper | 4–8% | Landing page conversion ... "Quiz start-to-lead rate counts only people who already started an interaction, not total visitors.""
+    src: https://subpage.co/lead-magnet-conversion-benchmarks-2026/ (blog)
+
+- [central] Checklists/cheatsheets convert at 24-42% and free tools/calculators at 28-42% opt-in, outperforming ebooks/whitepapers (4-8%).
+    quote: "Checklist/Cheatsheet | 24–42% | Opt-in rate | Free Tool/Calculator | 28–42% | Opt-in rate"
+    src: https://subpage.co/lead-magnet-conversion-benchmarks-2026/ (blog)
+
+- [central] Interactive lead magnets (quizzes/assessments/calculators) convert substantially better than static formats, with an aggregate ~78% lift and quizzes reportedly converting at ~47.3% vs a 20-40% prior range.
+    quote: "Interactive Content: Overall lift: +78% vs static formats ... Quizzes generally: 47.3% (up from 20-40% range)"
+    src: https://www.amraandelma.com/lead-magnet-conversion-statistics/ (blog)
+
+- [tangential] Conversational/interactive forms lift completion rates by ~49.3% over standard static forms.
+    quote: "Conversational forms: +49.3% completion rate"
+    src: https://www.amraandelma.com/lead-magnet-conversion-statistics/ (blog)
+
+- [central] Interactive quiz funnels convert at 40.1% on average, versus 3-10% for static lead magnets (PDF guides, checklists, cheat sheets), a 4-13x gap.
+    quote: "Interactive quiz funnels convert at 40.1% on average. Traditional static lead magnets — the PDF guide, the checklist, the cheat sheet — convert at 3-10%. That's a 4-13x gap"
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] Data from 100 million+ quiz takers shows a 65% completion rate for quizzes.
+    quote: "Data from 100 million+ quiz takers shows a 65% completion rate."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] Quiz-based segmentation by answers produces 3x better email open rates than generic nurture from static lead magnets.
+    quote: "Segmented by answers" with "3x better open rates"
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] A DemandGen Report finding claims interactive content converts about 70% of the time versus 36% for passive content.
+    quote: "Interactive content converts at approximately 70% of the time, compared to 36% for passive content."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [central] Interactive quiz funnels convert at ~40% on average, versus 3-10% for static PDF/checklist lead magnets, per this vendor's framing.
+    quote: "Interactive quiz funnels convert at 40.1% on average. Traditional static lead magnets — the PDF guide, the checklist, the cheat sheet — convert at 3-10%."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [central] Interactive content converts roughly 70% of the time vs 36% for passive content, attributed to DemandGen Report.
+    quote: "The DemandGen Report found that interactive content converts at approximately 70% of the time, compared to 36% for passive content."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] Quizzes achieve ~65% completion rates versus 2-3% conversion for typical landing-page forms.
+    quote: "completion rates of 65% — far higher than the 2-3% conversion rates of typical landing page forms"
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] E-commerce brands using product recommendation quizzes report 30-50% conversion rates and 20% higher average order values.
+    quote: "E-commerce brands using product recommendation quizzes report 30-50% conversion rates and 20% higher average order values."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [supporting] Quiz effectiveness is driven by psychological mechanisms including the curiosity gap, endowment effect, instant gratification, zero-party data collection, and sunk-cost completion pressure.
+    quote: "The article attributes quiz effectiveness to four psychological factors: curiosity gap, endowment effect, instant gratification, and zero-party data collection. It also cites "sunk-cost psychology" driving the 65% completion rate."
+    src: https://getaiform.com/blog/quiz-funnels-vs-static-lead-magnets-interactive-content-conversion-2026 (blog)
+
+- [central] Interactive tools like ROI calculators convert at an 8.3% average opt-in rate, outperforming static PDFs, because they deliver personalized answers.
+    quote: "Interactive tools like ROI calculators convert at an 8.3% average rate because they deliver personalized answers, outperforming static PDFs."
+    src: https://www.schmidtconsulting.group/blog/lead-magnet-examples/ (blog)
+
+- [central] Generic lead magnets (e.g. 'Marketing Tips PDF') fail while specific, outcome-named ones (e.g. 'The Outreach Script That Books Calls') succeed; specificity of promise drives results.
+    quote: "Generic magnets ("Marketing Tips PDF") fail; targeted ones ("The Outreach Script That Books Calls") succeed"
+    src: https://www.schmidtconsulting.group/blog/lead-magnet-examples/ (blog)
+
+- [supporting] Warning signs a lead magnet is failing include high downloads with zero email replies, mostly personal (not business) email addresses, no mentions in sales conversations, and unsubscribe spikes after nurture emails.
+    quote: "High downloads with zero email replies; Predominantly personal email addresses rather than business domains; No mentions during sales conversations; Unsubscribe spikes after initial nurture emails"
+    src: https://www.schmidtconsulting.group/blog/lead-magnet-examples/ (blog)
+
+- [central] Interactive tools/lead magnets convert at 8.3% on average, higher than static PDF downloads.
+    quote: "Interactive tools convert at 8.3% on average versus static PDFs"
+    src: https://www.schmidtconsulting.group/blog/lead-magnet-examples/ (blog)
+
+- [supporting] A lead magnet is failing when downloads are high but email replies are low, addresses are mostly personal Gmail rather than business, unsubscribes spike after the first nurture email, and there are no mentions during sales calls.
+    quote: "Downloads are high but email replies are low; Mostly personal Gmail addresses (few business emails); Unsubscribes spike after first nurture email; No mentions during sales calls"
+    src: https://www.schmidtconsulting.group/blog/lead-magnet-examples/ (blog)
+
+- [central] Interactive quizzes convert far better than static formats, with AI-adaptive quizzes averaging a 47.3% opt-in conversion rate (up to 63.8% in beauty/wellness), per a ScoreApp analysis of 22,000 quiz funnels.
+    quote: "AI-adaptive quizzes achieved an average conversion rate of 47.3%"
+    src: https://www.amraandelma.com/lead-magnet-conversion-statistics/ (blog)
+
+- [central] Average landing page conversion is reported at 23.4%, with AI-personalized pages at 37.1% versus static pages at 19.2%, attributed to a HubSpot analysis of 150,000+ landing pages.
+    quote: "Average: 23.4% (up from ~18% baseline) ... AI-personalized pages: 37.1% ... Static pages: 19.2%"
+    src: https://www.amraandelma.com/lead-magnet-conversion-statistics/ (blog)
+
+- [supporting] Interactive content produces a 78% average lift in lead-capture rates versus static content, with 91% of buyers reportedly preferring interactive content (Demand Gen Report).
+    quote: "78% average lift in lead capture rates" vs. static content"
+    src: https://www.amraandelma.com/lead-magnet-conversion-statistics/ (blog)
+
+- [central] By lead-magnet format, giveaways/contests convert highest (29.37%), followed by learning resources (27.4%), interactive tools (26.44%), and reports/eBooks (24.61%); discounts convert lowest at 16.2% and plain newsletters/updates at 17.46%.
+    quote: "Giveaways/Contests 29.37% | Learning Resources 27.4% | Interactive Tools 26.44% | Reports/eBooks 24.61% ... Newsletters/Updates 17.46% | Discounts 16.2%"
+    src: https://www.mailerlite.com/blog/best-lead-magnet-statistics (primary)
+
+- [central] An ultra-specific promise (concrete timeline, measurable result, emotional hook) converts far better than a generic offer, e.g. 'Steal the exact 3-email welcome sequence I used to get 1,500 subscribers' vs 'Download my free guide.'
+    quote: "Steal the exact 3-email welcome sequence I used to get 1,500 subscribers"
+    src: https://www.beehiiv.com/blog/this-is-how-real-lead-magnets-grow-newsletters (blog)
+
+- [central] Wandering Aimfully's entrepreneur quiz converted at 38.8% and generated nearly $300,000 in revenue plus a 400% increase in email subscribers with no change in website traffic.
+    quote: "Wandering Aimfully: Quiz generated "nearly $300,000 in revenue" and produced "400% increase in email subscribers with zero change in website traffic""
+    src: https://encharge.io/lead-magnet-examples/ (blog)
+
+- [supporting] Quiz friction can act as a self-qualifying filter that improves lead quality rather than just lowering volume.
+    quote: "Quiz friction ("if someone doesn't have the patience to answer seven questions, we don't want them on our email list") acts as self-qualifying filter for higher-quality leads"
+    src: https://encharge.io/lead-magnet-examples/ (blog)
+
+- [central] Interactive lead magnets (calculators, quizzes, assessments, surveys, polls) convert 2-3 times better than static lead magnets like PDFs and ebooks.
+    quote: "convert 2-3 times better than static lead magnets"
+    src: https://outgrow.co/blog/high-converting-lead-magnet-ideas-2025/ (blog)
+
+- [supporting] Personalized quizzes convert well because they overcome choice paralysis by tailoring results to the user, rather than by the download itself.
+    quote: "Personalized quizzes: Overcome choice paralysis through customization"
+    src: https://outgrow.co/blog/high-converting-lead-magnet-ideas-2025/ (blog)
+
+- [tangential] ROI calculators convert by translating abstract benefits into concrete, personalized numbers for the prospect.
+    quote: "ROI calculators: Transform abstract benefits into concrete numbers"
+    src: https://outgrow.co/blog/high-converting-lead-magnet-ideas-2025/ (blog)
+
+- [central] Quiz length trades off volume against lead quality: shorter quizzes (5-10 questions) generate higher volume but lower-quality leads, while longer quizzes (20-30+ questions) produce more accurate assessments but suffer higher abandonment.
+    quote: "more accurate assessment of the visitor's situation"
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] Requiring more form fields on the quiz opt-in reduces conversion, so only vital information should be requested.
+    quote: "the more form fields you require, the less likely someone is to fill out the form."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [central] Quiz funnels fail without a follow-up email sequence because leads forget the quiz and need multiple contacts before buying.
+    quote: "quiz leads will start to forget about the quiz, their results and how you can help."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] Dynamic, personalized results pages outperform generic results pages as a key conversion element of a quiz funnel.
+    quote: "Clear beats clever… every time"
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] Newsletters that publish personal opinions and hot takes achieve the highest open, click, and conversion rates, and 30% of professionals anchor their strategy on industry opinions and tips.
+    quote: "Newsletters featuring "personal opinions and hot takes generate the highest open rates, click rates, and conversion rates.""
+    src: https://blog.hubspot.com/marketing/state-of-newsletters (primary)
+
+- [supporting] Lack of subscriber-demographic personalization correlates with lower newsletter revenue: among non-personalizing creators, 23% earn $0 monthly and 43% earn $1-$100 monthly.
+    quote: "Non-personalizing creators report: 23% earn $0 monthly, 43% earn $1-$100 monthly"
+    src: https://blog.hubspot.com/marketing/state-of-newsletters (primary)
+
+- [central] PDF lead-magnet landing pages convert at 1-5% opt-in, while quiz funnels achieve 30-50% completion rates, making quizzes far higher-converting than static PDFs.
+    quote: "PDF Landing Pages: "1-5% opt-in rate" ... Quiz Funnels: "30-50% completion rate""
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Quizzes outperform PDFs psychologically because curiosity drives action more than information and each question is a micro-commitment building momentum.
+    quote: "Two mechanisms are identified: "Curiosity is a stronger motivator than information" and "Micro-commitments create momentum.""
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Quiz funnels collect more lead data (5-7 data points) than PDF opt-ins (1-2 fields), enabling segmentation and personalization.
+    quote: "quizzes collect "5-7 data points" versus PDFs' "1-2 fields.""
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Leads captured via email produce far higher engagement from quizzes: 45-60% open rates (2-3x higher) versus 20-30% for PDF-generated leads.
+    quote: "Email open rates of "45-60% (2-3x higher)" ... [PDF] "20-30%" email open rates"
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Interactive lead magnets (quizzes, calculators, assessments) convert 2-3 times better than static lead magnets like PDFs and ebooks.
+    quote: "interactive content "convert 2-3 times better than static lead magnets""
+    src: https://outgrow.co/blog/high-converting-lead-magnet-ideas-2025/ (blog)
+
+- [central] Interact quizzes convert visitors to leads at an average 40.1% start-to-lead rate, a figure that has stayed roughly flat since 2013 across 80M+ generated leads.
+    quote: "Start to Lead: "40.1%" ... has "remained relatively unchanged since 2013" and held steady after "generating over 80 million leads.""
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (secondary)
+
+- [central] Quizzes in the coaching/courses category convert at 44.9% start-to-lead, higher than e-commerce (37.6%) and service providers (42.2%).
+    quote: "Coaching/Courses: Start to Lead: "44.9%" ... E-Commerce: Start to Lead: "37.6%" ... Service Providers: Start to Lead: "42.2%""
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (secondary)
+
+- [supporting] Quiz completion (start-to-finish) averages 65%, with coaching/courses at 59.1%, e-commerce at 55.5%, and service providers at 47.3%.
+    quote: "Start to Finish: "65%" ... Coaching/Courses: Start to Finish: "59.1%" ... E-Commerce: Start to Finish: "55.5%" ... Service Providers: Start to Finish: "47.3%""
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (secondary)
+
+- [central] The mechanism behind high-converting quizzes in 2026 is that they act as 'personalized question answering lead magnets' answering questions people want answered about themselves.
+    quote: "successful quizzes now function as "personalized question answering lead magnets" addressing questions audiences genuinely want answered about themselves"
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (secondary)
+
+- [central] Interactive quizzes convert engaged users at 40.1-47.3% (start-to-lead), and free tools/calculators at 28-42% opt-in, both far above ebooks/whitepapers at 4-8% landing-page conversion.
+    quote: "Interactive Quiz | 40.1–47.3% | Start-to-lead (engaged users only) ... Ebook/Whitepaper | 4–8% | Landing page conversion rate"
+    src: https://subpage.co/lead-magnet-conversion-benchmarks-2026/ (blog)
+
+- [central] Ebooks and whitepapers underconvert relative to interactive formats because they require longer commitment and offer less immediate perceived value.
+    quote: "Ebooks and whitepapers (4–8%) underconvert relative to interactive formats because they require longer commitment and offer less immediate perceived value."
+    src: https://subpage.co/lead-magnet-conversion-benchmarks-2026/ (blog)
+
+- [central] Interactive quizzes convert far higher than static landing pages: 40.1% start-to-lead for engaged quiz users vs a 6.6% median landing page conversion rate across 41K pages, indicating format alone can create large opt-in differences.
+    quote: "Interactive Quiz | 40.1% | Start-to-lead (engaged users only) | Interact 2026 ... Median Landing Page (all industries) | 6.6% | Visitor-to-lead across 41K pages, 464M visits | Unbounce"
+    src: https://www.digitalapplied.com/blog/lead-magnet-conversion-benchmarks-2026-b2b-data-reference (secondary)
+
+- [supporting] Lead magnets recommended for consultant newsletters include ebooks answering recurring client questions, industry reports with proprietary analysis, calculators/templates, quizzes diagnosing pain points, and free strategy sessions/audits.
+    quote: "Quizzes diagnosing pain points"
+    src: https://withpotions.com/blog/how-consultants-can-get-clients-with-newsletters.html (blog)
+
+- [central] Wandering Aimfully's quiz converted at 38.8% and drove a 400% increase in email subscribers with zero change in website traffic, evidencing that a well-targeted quiz can outperform passive opt-ins.
+    quote: "Quiz (Wandering Aimfully): "38.8% conversion rate" ... After implementing quiz, "400% increase in email subscribers" occurred despite "zero change in website traffic.""
+    src: https://encharge.io/lead-magnet-examples/ (blog)
+
+- [central] Interact quizzes convert visitors to leads at an average rate of 40.1% (start-to-lead), based on 80+ million leads generated since 2013.
+    quote: "Start to Lead: 40.1% (people who provide contact info after starting)"
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (primary)
+
+- [central] Coaching/courses quizzes have the highest start-to-lead conversion rate at 44.9%, versus 42.2% for service providers and 37.6% for e-commerce.
+    quote: "Coaching/Courses: Start to Lead: 44.9%"
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (primary)
+
+- [central] The primary reason quizzes underperform is a relevance mismatch with the audience they are shown to, not the quiz format itself.
+    quote: "Most quizzes suffering from low conversion rates are not relevant to the audience they are being put in front of."
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (primary)
+
+- [supporting] Low quiz start rates are driven by overly complicated cover pages; titles should be under 15 words and descriptions under 25 words to improve conversion.
+    quote: "Overly complicated cover pages; titles should be <15 words; descriptions <25 words"
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (primary)
+
+- [supporting] On average 65% of people who start an Interact quiz complete all the questions (start-to-finish).
+    quote: "Start to Finish: 65% (people completing all questions)"
+    src: https://www.tryinteract.com/blog/quiz-conversion-rate-report/ (primary)
+
+- [central] Interactive quizzes convert start-to-lead at 40.1% and start-to-finish at 65% per Interact platform data, far above typical PDF/popup opt-in rates.
+    quote: "Start-to-lead: 40.1% (Interact platform, vendor-stated)"
+    src: https://www.digitalapplied.com/blog/lead-magnet-conversion-benchmarks-2026-b2b-data-reference (secondary)
+
+- [supporting] Newsletters that do not personalize content to subscriber demographics earn markedly less revenue: 23% of non-personalizing newsletters earn $0/month and 43% earn just $1-$100/month, while 90% of creators actively tailor strategy to subscriber demographics.
+    quote: "Newsletters without personalization show lower revenue: 23% earn $0/month; 43% earn $1-$100/month"
+    src: https://blog.hubspot.com/marketing/state-of-newsletters (primary)
+
+- [central] Across 41,000+ opt-in forms analyzed, the overall average conversion rate is 22.16%, with 'learning resources' (webinars/courses) at 27.4% and interactive tools (calculators/quizzes) at 26.44%, both above the ebook/report format at 24.61%.
+    quote: "Learning resources (webinars, courses): 27.4% ... Interactive tools (calculators, quizzes): 26.44% ... Reports/ebooks: 24.61% ... Overall average: 22.16%"
+    src: https://www.mailerlite.com/blog/best-lead-magnet-statistics (secondary)
+
+- [central] Specificity of the promise beats format choice: a specific headline with a concrete result and timeline converts far better than a generic one (e.g. 'Free Guide to Marketing' vs 'The 5-Page Strategy That Got Me 1,000 Newsletter Subs in 30 Days').
+    quote: "specificity wins every time"
+    src: https://www.beehiiv.com/blog/this-is-how-real-lead-magnets-grow-newsletters (blog)
+
+- [central] PDF lead magnets typically achieve a 1-5% opt-in rate while quiz funnels achieve a 30-50% completion rate.
+    quote: "PDF Lead Magnets: "1-5% opt-in rate" ... Quiz Funnels: "30-50% completion rate""
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Quiz-based lead magnets drive email open rates of 45-60%, roughly 2-3x higher than the 20-30% typical of PDF lead magnets.
+    quote: "Email open rates: 45-60% (described as "2-3x higher")"
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] Quizzes outperform PDFs because curiosity and incremental commitment drive engagement: answering each question is a small investment that builds momentum.
+    quote: "Curiosity is a stronger motivator than information ... Each question answered is a small investment. By question 4, they've put in effort."
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [supporting] One client's close rate rose from 22% to 41% after implementing quiz-based lead qualification and segmentation.
+    quote: "One client's close rate jumped "from 22% to 41%" after implementing lead qualification through quiz-based segmentation."
+    src: https://brothersautomate.com/blog/quiz-funnels-vs-pdf-lead-magnets/ (blog)
+
+- [central] Static PDF lead magnets underperform because they are one-directional/passive ('a monologue'), whereas prospects now want interactive, personalized engagement.
+    quote: "It's a monologue—a one-way broadcast of information—at a time when people are desperate for a real conversation. They don't want to be talked at; they want to be seen and understood."
+    src: https://www.interactiveleadgen.com/blog/leadmagnet-pdf (blog)
+
+- [central] Interactive formats (quizzes, calculators, personalized audits) convert better than static PDFs because active participation makes the user co-create a tailored solution, a psychological shift a static document cannot replicate.
+    quote: "When someone uses an interactive tool, they're not just downloading generic information. They're actively co-creating a solution tailored specifically to their problem. It's a powerful psychological shift that a static document just can't replicate."
+    src: https://www.interactiveleadgen.com/blog/leadmagnet-pdf (blog)
+
+- [supporting] The recommended replacement for underperforming PDFs is interactive content such as quizzes, calculators, and personalized audits.
+    quote: "The real solution is interactive content. Quizzes, calculators, and personalized audits—simple tools that turn passive consumption into active engagement."
+    src: https://www.interactiveleadgen.com/blog/leadmagnet-pdf (blog)
+
+- [central] Quiz funnels average roughly a 40% conversion of quiz-starters into leads, with a ~65% completion rate, versus 3-10% opt-in for standard PDF lead magnet links.
+    quote: "the average quiz funnel converts ≈ 40% of those who start the quiz into leads. In particular, with a 65% completion rate"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [central] Traditional PDF lead magnets convert at a 3-10% opt-in rate, several times lower than quiz funnels at 30-50%.
+    quote: "Traditional lead magnets convert within a 3–10% opt-in rate for standard PDF links"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [central] Quiz funnels capture 30-50% of visitors who start the quiz as email leads.
+    quote: "Approximately 30–50% of visitors who start actually leave their email address"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] PDF lead magnets underperform because they attract free-seekers who aren't purchase-ready, whereas quizzes segment respondents via their answers (zero-party data).
+    quote: "often attract people who want something 'for free,' but they may not necessarily be ready to buy"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] Tara Robertson (Chili Piper) gained nearly 100 new newsletter subscribers from her personal LinkedIn profile, indicating personal social presence is an underrated B2B acquisition channel.
+    quote: "Unexpected growth source: "nearly 100 new subscribers" from personal LinkedIn profile"
+    src: https://databox.com/grow-newsletter-subscribers-b2b (secondary)
+
+- [central] Quiz funnels fail primarily due to a weak landing page: a poor landing page produces a poor conversion rate because visitors never reach the quiz itself.
+    quote: "If your landing page is poor, then your conversion rate is likely to be poor too."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] In quiz opt-in forms, each additional required form field reduces the likelihood that someone completes the form, so form-field count is a lever on conversion.
+    quote: "The more form fields you require, the less likely someone is to fill out the form."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [central] Clear, benefit-plain quiz copy converts better than clever/creative copy (e.g. 'How Eco Friendly are you?' beats 'Eco Warriors Unite').
+    quote: "Clear beats clever… every time."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] There is an inverse trade-off between quiz question volume and lead outcomes: fewer questions yield more but lower-quality leads, while more questions yield fewer but higher-quality leads (higher abandonment).
+    quote: "Fewer questions generate quantity of leads but lower quality. More questions improve lead quality but increase abandonment rates"
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [supporting] A quiz that ends without a clear call-to-action and follow-up email sequence loses the lead, because buyers typically need multiple contacts before purchasing.
+    quote: "Your visitors will often need to hear from you a few times before they buy from you."
+    src: https://www.scoreapp.com/quiz-funnel-mistakes/ (blog)
+
+- [central] Quiz funnels convert 30-50% of visitors who start into email subscribers, versus a 3-10% opt-in rate for standard PDF lead-magnet links.
+    quote: "30–50% of visitors who start actually leave their email address ... 3–10% opt-in rate for standard PDF links"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] Quizzes reach roughly a 65% completion rate, meaning most people who begin finish them.
+    quote: "Quiz completion rate: ~65%"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [central] Static PDF lead magnets underperform because they do not adapt to individual needs and attract free-content seekers without purchase intent, producing lower lead quality than quizzes.
+    quote: "static ... do not adapt to individual needs ... resulting in "medium" lead quality versus quiz funnels' "high" quality"
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] Quizzes outperform static lead magnets via three mechanisms: interactivity/gamification, zero-party-data segmentation, and personalized results tailored to answers.
+    quote: "Interactivity ... Segmentation: Quiz responses provide "zero-party data" ... Personalization: "Your result is exactly what you need""
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] Quiz funnels enable segmented, trigger-based email sequences whereas static lead magnets typically produce a single return with no further targeting.
+    quote: "Quiz funnels support "segmented email sequences" with trigger-based messaging, while lead magnets "often lead to a single return without further targeting.""
+    src: https://www.kyleads.com/blog/quiz-funnels-vs-lead-magnets/ (blog)
+
+- [supporting] Named B2B practitioners report meaningful list sizes and organic growth: Amanda Natividad (SparkToro) has ~10,000 subscribers growing ~200/month; Tara Robertson (Chili Piper's 'The Sauce') has 21,000+ with nearly 100 subscribers from her personal LinkedIn profile.
+    quote: "Amanda Natividad (SparkToro): - Current: 10,000 subscribers - Growth rate: ~200 new subscribers/month ... Tara Robertson (Chili Piper's "The Sauce"): - Subscriber count: 21,000+ - Unexpected source: "nearly 100 new subscribers" from personal LinkedIn profile"
+    src: https://databox.com/grow-newsletter-subscribers-b2b (secondary)
+
+- [central] Short, quick-to-consume formats like checklists, cheat sheets, templates, and interactive calculators convert better than traditional PDFs/ebooks; checklists specifically convert about 2.7x better than having no lead magnet.
+    quote: "Checklists convert "2.7 times better" than no lead magnet"
+    src: https://growleads.io/blog/why-b2b-lead-magnets-fail-and-how-to-fix-them/ (blog)

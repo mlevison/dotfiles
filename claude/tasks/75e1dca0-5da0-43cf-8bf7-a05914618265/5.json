@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Add the vendor-rule sweep to the Receipts page",
+  "description": "Run applyAllVendorRules on Receipts page load as the retroactive net, matching the Expenses page, so the new column does not show stale Uncategorized rows.",
+  "activeForm": "Adding the sweep to Receipts",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "ExpenseImportService (imperative shell)",
+  "description": "src/lib/services/ExpenseImportService.ts — read file (FileReader + Excel converter), run pure parser+plan, create missing categories, batch-insert receipts (.select() ids), batch-upsert expense_categories source manual. Preview + commit split. Spec with mock supabase.",
+  "activeForm": "Building ExpenseImportService",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

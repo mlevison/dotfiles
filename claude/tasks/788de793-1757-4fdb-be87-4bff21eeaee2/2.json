@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Add npm run db:fresh",
+  "description": "db:reset && seed:demo, so Bombadil runs start from a known state (--reproduce needs it).",
+  "activeForm": "Adding db:fresh script",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,464 @@
+src/lib/components/ReceiptImageViewer.svelte.spec.ts --- 1/4 --- TypeScript
+ 2 import { render } from 'vitest-brow    2 import { render } from 'vitest-brow
+ . ser-svelte';                           . ser-svelte';
+ 3 import ReceiptImageViewer from './R    3 import ReceiptImageViewer from './R
+ . eceiptImageViewer.svelte';             . eceiptImageViewer.svelte';
+ 4                                        4 
+ 5 /**                                    5 /**
+ 6  * Behaviour tests for the real <Re    6  * Behaviour tests for the real <Re
+ . ceiptImageViewer> zoom controls.       . ceiptImageViewer> zoom controls.
+ 7  *                                     7  *
+ 8  * The previous spec was hollow: ev    8  * The previous spec was hollow: ev
+ . ery `it()` re-declared the zoom ari    . ery `it()` re-declared the zoom ari
+ . thmetic                                . thmetic
+ 9  * inline (`let zoom = 100; zoom +=    9  * inline (`let zoom = 100; zoom +=
+ .  50; expect(zoom).toBe(150)`) and a    .  50; expect(zoom).toBe(150)`) and a
+ . sserted                                . sserted
+10  * against its own copy — 859 lines   10  * against its own copy — 859 lines
+..  that passed no matter what the com   ..  that passed no matter what the com
+.. ponent did                            .. ponent did
+11  * (its header even admitted it was   11  * (its header even admitted it was
+..  stale TDD RED-phase scaffolding).    ..  stale TDD RED-phase scaffolding). 
+.. These render                          .. These render
+12  * the actual component and drive i   12  * the actual component and drive i
+.. ts buttons/keyboard, asserting the    .. ts buttons/keyboard, asserting the 
+.. visible                               .. visible
+13  * zoom %, the disabled boundaries,   13  * zoom %, the disabled boundaries,
+..  and close wiring.                    ..  and close wiring.
+14  *                                    14  *
+15  * Pointer gestures (wheel-zoom, dr   15  * The zoom ceiling is derived from
+.. ag-pan, pinch) stay a manual-verify   ..  each image's own resolution ("zoom
+..  item — they                          ..  never
+..                                       16  * invents pixels" — see the domain
+..                                       ..  model), so these use SVG data URLs
+..                                       ..  of a known
+..                                       17  * natural size rather than a URL t
+..                                       .. hat never loads. The arithmetic its
+..                                       .. elf is
+..                                       18  * covered in `$lib/utils/imageZoom
+..                                       .. .spec.ts`; what matters here is the
+..                                       ..  resulting
+..                                       19  * button state and that the image 
+..                                       .. is never painted larger than it rea
+..                                       .. lly is.
+..                                       20  *
+..                                       21  * Pointer gestures (wheel-zoom, dr
+..                                       .. ag-pan, pinch) stay a manual-verify
+..                                       ..  item — they
+16  * use imperative `{ passive: false   22  * use imperative `{ passive: false
+..  }` listeners that unit tests can't   ..  }` listeners that unit tests can't
+..  faithfully                           ..  faithfully
+17  * drive (tracked in the backlog).    23  * drive (tracked in the backlog). 
+.. The button + keyboard path is the d   .. The button + keyboard path is the d
+.. eterministic,                         .. eterministic,
+18  * render-testable surface, and it'   24  * render-testable surface, and it'
+.. s where the real clamp/snap logic l   .. s where the real clamp/snap logic l
+.. ives.                                 .. ives.
+19  */                                   25  */
+..                                       26 
+..                                       27 /** A loadable image of an exact na
+..                                       .. tural size, with no network. */
+..                                       28 function imageUrl(width: number, he
+..                                       .. ight: number): string {
+..                                       29     const svg = `<svg xmlns="http:/
+..                                       .. /www.w3.org/2000/svg" width="${widt
+..                                       .. h}" height="${height}"><rect width=
+..                                       .. "100%" height="100%" fill="#ccc"/><
+..                                       .. /svg>`;
+..                                       30     return `data:image/svg+xml;base
+..                                       .. 64,${btoa(svg)}`;
+..                                       31 }
+..                                       32 
+..                                       33 /** Bigger than any test viewport, 
+..                                       .. so there is real headroom to zoom i
+..                                       .. nto. */
+..                                       34 const LARGE = imageUrl(4000, 6000);
+..                                       35 
+..                                       36 /** Smaller than any test viewport,
+..                                       ..  so it is already at native size at
+..                                       ..  100%. */
+..                                       37 const SMALL = imageUrl(80, 60);
+..                                       38 
+20 const props = { imageUrl: 'http://l   39 const props = { imageUrl: LARGE, sh
+.. ocalhost/receipt.jpg', show: true }   .. ow: true };
+.. ;                                     .. 
+..                                       40 
+..                                       41 /**
+..                                       42  * The <img> the viewer renders, on
+..                                       .. ce the browser has decoded it and t
+..                                       .. he load
+..                                       43  * handler has sized it. The elemen
+..                                       .. t is re-queried on each poll: the v
+..                                       .. iewer swaps
+..                                       44  * the placeholder <img> for an exp
+..                                       .. licitly-sized one once dimensions a
+..                                       .. re known.
+..                                       45  */
+..                                       46 async function loadedImage(screen: 
+..                                       .. ReturnType<typeof render>): Promise
+..                                       .. <HTMLImageElement> {
+..                                       47     return vi.waitUntil(() => {
+..                                       48         const img = screen.containe
+..                                       .. r.querySelector('img');
+..                                       49         return img?.style.width ? (
+..                                       .. img as HTMLImageElement) : false;
+..                                       50     });
+..                                       51 }
+21                                       52 
+22 describe('ReceiptImageViewer', () =   53 describe('ReceiptImageViewer', () =
+.. > {                                   .. > {
+23     it('renders nothing until show    54     it('renders nothing until show 
+.. is true', async () => {               .. is true', async () => {
+24         const screen = render(Recei   55         const screen = render(Recei
+.. ptImageViewer, { imageUrl: 'http://   .. ptImageViewer, { imageUrl: LARGE, s
+.. localhost/r.jpg', show: false });     .. how: false });
+25         await expect.element(screen   56         await expect.element(screen
+.. .getByRole('dialog')).not.toBeInThe   .. .getByRole('dialog')).not.toBeInThe
+.. Document();                           .. Document();
+26     });                               57     });
+27                                       58 
+
+src/lib/components/ReceiptImageViewer.svelte.spec.ts --- 2/4 --- TypeScript
+34         await expect.element(screen   65         await expect.element(screen
+.. .getByRole('button', { name: 'Zoom    .. .getByRole('button', { name: 'Zoom 
+.. in' })).toBeEnabled();                .. in' })).toBeEnabled();
+35     });                               66     });
+36                                       67 
+37     it('steps up by 50% on each Zoo   68     it('steps up by 50% on each Zoo
+.. m in click and clamps/disables at 4   .. m in click', async () => {
+.. 00%', async () => {                   .. 
+38         const screen = render(Recei   69         const screen = render(Recei
+.. ptImageViewer, { ...props });         .. ptImageViewer, { ...props });
+..                                       70         await loadedImage(screen);
+..                                       71 
+39         const zoomIn = screen.getBy   72         await screen.getByRole('but
+.. Role('button', { name: 'Zoom in' })   .. ton', { name: 'Zoom in' }).click();
+.. ;                                     .. 
+40                                       .. 
+41         await zoomIn.click();         .. 
+42         await expect.element(screen   73         await expect.element(screen
+.. .getByText('150%', { exact: true })   .. .getByText('150%', { exact: true })
+.. ).toBeVisible();                      .. ).toBeVisible();
+43                                       74 
+44         await zoomIn.click(); // 20   75         await screen.getByRole('but
+.. 0                                     .. ton', { name: 'Zoom in' }).click();
+45         await zoomIn.click(); // 25   .. 
+.. 0                                     .. 
+46         await zoomIn.click(); // 30   .. 
+.. 0                                     .. 
+47         await zoomIn.click(); // 35   .. 
+.. 0                                     .. 
+48         await zoomIn.click(); // 40   .. 
+.. 0                                     .. 
+49         await expect.element(screen   76         await expect.element(screen
+.. .getByText('400%', { exact: true })   .. .getByText('200%', { exact: true })
+.. ).toBeVisible();                      .. ).toBeVisible();
+50         await expect.element(zoomIn   .. 
+.. ).toBeDisabled();                     .. 
+51     });                               77     });
+..                                       78 
+..                                       79     it('stops zooming at the image’
+..                                       .. s own resolution and never paints i
+..                                       .. t larger', async () => {
+..                                       80         const screen = render(Recei
+..                                       .. ptImageViewer, { ...props });
+..                                       81         const img = await loadedIma
+..                                       .. ge(screen);
+..                                       82         const zoomIn = screen.getBy
+..                                       .. Role('button', { name: 'Zoom in' })
+..                                       .. ;
+..                                       83 
+..                                       84         // Climb until the control 
+..                                       .. turns itself off; the ceiling depen
+..                                       .. ds on the
+..                                       85         // viewport, so press rathe
+..                                       .. r than assume a number.
+..                                       86         for (let i = 0; i < 40 && !
+..                                       .. (await zoomIn.query())?.hasAttribut
+..                                       .. e('disabled'); i++) {
+..                                       87             await zoomIn.click();
+..                                       88         }
+..                                       89 
+..                                       90         await expect.element(zoomIn
+..                                       .. ).toBeDisabled();
+..                                       91         // 1:1 — the whole point. E
+..                                       .. very pixel on screen is now a real 
+..                                       .. pixel.
+..                                       92         expect(Math.round(parseFloa
+..                                       .. t(img.style.width))).toBe(img.natur
+..                                       .. alWidth);
+..                                       93     });
+..                                       94 
+..                                       95     it('offers no zoom at all for a
+..                                       .. n image already smaller than the vi
+..                                       .. ewport', async () => {
+..                                       96         const screen = render(Recei
+..                                       .. ptImageViewer, { imageUrl: SMALL, s
+..                                       .. how: true });
+..                                       97         await loadedImage(screen);
+..                                       98 
+..                                       99         // There are no further rea
+..                                       .. l pixels, so the control says so ra
+..                                       .. ther than
+..                                      100         // magnifying interpolation
+..                                      ... .
+..                                      101         await expect.element(screen
+..                                      ... .getByRole('button', { name: 'Zoom 
+..                                      ... in' })).toBeDisabled();
+..                                      102         await expect.element(screen
+..                                      ... .getByRole('button', { name: 'Zoom 
+..                                      ... out' })).toBeDisabled();
+..                                      103         await expect.element(screen
+..                                      ... .getByText('100%', { exact: true })
+..                                      ... ).toBeVisible();
+..                                      104     });
+52                                      105 
+53     it('steps back down on Zoom out  106     it('steps back down on Zoom out
+.. ', async () => {                     ... ', async () => {
+54         const screen = render(Recei  107         const screen = render(Recei
+.. ptImageViewer, { ...props });        ... ptImageViewer, { ...props });
+..                                      108         await loadedImage(screen);
+55                                      109 
+56         await screen.getByRole('but  110         await screen.getByRole('but
+.. ton', { name: 'Zoom in' }).click();  ... ton', { name: 'Zoom in' }).click();
+..  // 150                              ...  // 150
+57         await screen.getByRole('but  111         await screen.getByRole('but
+.. ton', { name: 'Zoom in' }).click();  ... ton', { name: 'Zoom in' }).click();
+..  // 200                              ...  // 200
+
+src/lib/components/ReceiptImageViewer.svelte.spec.ts --- 3/4 --- TypeScript
+61 115 
+62 116     it('Reset returns to 100%', async () => {
+63 117         const screen = render(ReceiptImageViewer, { ...props });
+.. 118         await loadedImage(screen);
+64 119 
+65 120         await screen.getByRole('button', { name: 'Zoom in' }).click(); // 150
+66 121         await screen.getByRole('button', { name: 'Zoom in' }).click(); // 200
+
+src/lib/components/ReceiptImageViewer.svelte.spec.ts --- 4/4 --- TypeScript
+70 125 
+71 126     it('supports keyboard zoom shortcuts (+ / - / 0)', async () => {
+72 127         const screen = render(ReceiptImageViewer, { ...props });
+.. 128         await loadedImage(screen);
+73 129 
+74 130         window.dispatchEvent(new KeyboardEvent('keydown', { key: '+', bubbles: true }));
+75 131         await expect.element(screen.getByText('150%', { exact: true })).toBeVisible();
+
+src/lib/services/ReceiptService.autoCategory.spec.ts --- Text (1 TypeScript parse error, exceeded DFT_PARSE_ERROR_LIMIT)
+35 }));                                  35 }));
+36                                       36 
+37 // Mock image resize so uploadAndCre  37 // Mock image resize so uploadAndCre
+.. ate passes the original File through  .. ate passes the original File through
+..  unchanged                            ..  unchanged
+38 vi.mock('$lib/utils/imageResize', ()  38 vi.mock('$lib/utils/imageResize', as
+..  => ({                                .. ync (importOriginal) => ({
+..                                       39     ...(await importOriginal<typeof 
+..                                       .. import('$lib/utils/imageResize')>())
+..                                       .. ,
+39     resizeImage: vi.fn((file: File)   40     resizeImage: vi.fn((file: File) 
+.. => Promise.resolve(file))             .. => Promise.resolve(file))
+40 }));                                  41 }));
+41                                       42 
+
+src/lib/services/ReceiptService.suspiciousDate.spec.ts --- Text (1 TypeScript parse error, exceeded DFT_PARSE_ERROR_LIMIT)
+38 }));                                  38 }));
+39                                       39 
+40 // Mock image resize so uploadAndCre  40 // Mock image resize so uploadAndCre
+.. ate passes the original File through  .. ate passes the original File through
+..  unchanged                            ..  unchanged
+41 vi.mock('$lib/utils/imageResize', ()  41 vi.mock('$lib/utils/imageResize', as
+..  => ({                                .. ync (importOriginal) => ({
+..                                       42     ...(await importOriginal<typeof 
+..                                       .. import('$lib/utils/imageResize')>())
+..                                       .. ,
+42     resizeImage: vi.fn((file: File)   43     resizeImage: vi.fn((file: File) 
+.. => Promise.resolve(file))             .. => Promise.resolve(file))
+43 }));                                  44 }));
+44                                       45 
+
+src/lib/services/ReceiptService.uploadMeta.spec.ts --- Text (1 TypeScript parse error, exceeded DFT_PARSE_ERROR_LIMIT)
+38 }));                                  38 }));
+39                                       39 
+40 // Mock image resize so uploadAndCre  40 // Mock image resize so uploadAndCre
+.. ate passes the original File through  .. ate passes the original File through
+..  unchanged                            ..  unchanged
+41 vi.mock('$lib/utils/imageResize', ()  41 vi.mock('$lib/utils/imageResize', as
+..  => ({                                .. ync (importOriginal) => ({
+..                                       42     ...(await importOriginal<typeof 
+..                                       .. import('$lib/utils/imageResize')>())
+..                                       .. ,
+42     resizeImage: vi.fn((file: File)   43     resizeImage: vi.fn((file: File) 
+.. => Promise.resolve(file))             .. => Promise.resolve(file))
+43 }));                                  44 }));
+44                                       45 
+
+src/lib/utils/imageResize.spec.ts --- 1/3 --- TypeScript
+  1 /**                                    1 /**
+  2  * Test Suite for Receipt Image Res    2  * Test Suite for Receipt Image Res
+  . izing                                  . izing
+  3  *                                     3  *
+  4  * Tests for:                          4  * `resizeImage` itself needs Canva
+  .                                        . s and runs only in a browser, so wh
+  .                                        . at is
+  5  * - Resize images before Mistral O    5  * covered here are the decisions i
+  . CR (max 2000px, 85% quality)           . t delegates: the target dimensions,
+  .                                        .  which
+  6  * - Client-side image resizing imp    6  * Source File types are worth deco
+  . lementation                            . ding, and the name the resulting Re
+  .                                        . ceipt
+  7  */                                    7  * Image carries. See `docs/adr/000
+  .                                        . 6-the-stored-image-is-the-contract.
+  .                                        . md`.
+  .                                        8  */
+  8                                        9 
+  9 import { describe, it, expect } fro   10 import { describe, it, expect } fro
+  . m 'vitest';                           .. m 'vitest';
+ 10 import { calculateResizeDimensions,   11 import {
+ ..  resizeImage } from './imageResize'   .. 
+ .. ;                                     .. 
+ ..                                       12     MAX_IMAGE_DIMENSION,
+ ..                                       13     calculateResizeDimensions,
+ ..                                       14     isResizableImage,
+ ..                                       15     toJpegFilename,
+ ..                                       16     resizeImage
+ ..                                       17 } from './imageResize';
+ 11                                       18 
+
+src/lib/utils/imageResize.spec.ts --- 2/3 --- TypeScript
+ 65             expect(result.height).t   72             expect(result.height).t
+ .. oBe(2000);                            .. oBe(2000);
+ 66         });                           73         });
+ 67                                       74 
+ 68         it('should use default max    75         it('should default to the 2
+ .. size of 2000 when not provided', ()   .. 400px budget when no max size is gi
+ ..  => {                                 .. ven', () => {
+ 69             const result = calculat   76             const result = calculat
+ .. eResizeDimensions(4000, 3000);        .. eResizeDimensions(4800, 3600);
+ ..                                       77             expect(MAX_IMAGE_DIMENS
+ ..                                       .. ION).toBe(2400);
+ 70             expect(result.width).to   78             expect(result.width).to
+ .. Be(2000);                             .. Be(2400);
+ 71             expect(result.height).t   79             expect(result.height).t
+ .. oBe(1500);                            .. oBe(1800);
+ 72         });                           80         });
+ 73                                       81 
+ 74         it('should allow custom max   82         it('should allow custom max
+ ..  size parameter', () => {             ..  size parameter', () => {
+
+src/lib/utils/imageResize.spec.ts --- 3/3 --- TypeScript
+ 84         });                           92         });
+ 85     });                               93     });
+ ..                                       94 
+ ..                                       95     describe('isResizableImage', ()
+ ..                                       ..  => {
+ ..                                       96         it('accepts every image typ
+ ..                                       .. e a person can upload', () => {
+ ..                                       97             expect(isResizableImage
+ ..                                       .. ('image/jpeg')).toBe(true);
+ ..                                       98             expect(isResizableImage
+ ..                                       .. ('image/png')).toBe(true);
+ ..                                       99             expect(isResizableImage
+ ..                                       .. ('image/heic')).toBe(true);
+ ..                                      100         });
+ ..                                      101 
+ ..                                      102         it('rejects PDFs, which are
+ ..                                      ...  stored exactly as received', () =>
+ ..                                      ...  {
+ ..                                      103             expect(isResizableImage
+ ..                                      ... ('application/pdf')).toBe(false);
+ ..                                      104         });
+ ..                                      105 
+ ..                                      106         it('rejects image types the
+ ..                                      ...  upload control never offers', () =
+ ..                                      ... > {
+ ..                                      107             expect(isResizableImage
+ ..                                      ... ('image/webp')).toBe(false);
+ ..                                      108             expect(isResizableImage
+ ..                                      ... ('image/gif')).toBe(false);
+ ..                                      109         });
+ ..                                      110     });
+ ..                                      111 
+ ..                                      112     describe('toJpegFilename', () =
+ ..                                      ... > {
+ ..                                      113         it('rewrites the extension 
+ ..                                      ... so the stored object is honestly na
+ ..                                      ... med', () => {
+ ..                                      114             expect(toJpegFilename('
+ ..                                      ... IMG_4821.HEIC')).toBe('IMG_4821.jpg
+ ..                                      ... ');
+ ..                                      115             expect(toJpegFilename('
+ ..                                      ... screenshot.png')).toBe('screenshot.
+ ..                                      ... jpg');
+ ..                                      116         });
+ ..                                      117 
+ ..                                      118         it('leaves a JPEG name alon
+ ..                                      ... e apart from normalizing the extens
+ ..                                      ... ion', () => {
+ ..                                      119             expect(toJpegFilename('
+ ..                                      ... receipt.jpeg')).toBe('receipt.jpg')
+ ..                                      ... ;
+ ..                                      120             expect(toJpegFilename('
+ ..                                      ... receipt.jpg')).toBe('receipt.jpg');
+ ..                                      121         });
+ ..                                      122 
+ ..                                      123         it('appends an extension wh
+ ..                                      ... en the name has none', () => {
+ ..                                      124             expect(toJpegFilename('
+ ..                                      ... receipt')).toBe('receipt.jpg');
+ ..                                      125         });
+ ..                                      126 
+ ..                                      127         it('only replaces the final
+ ..                                      ...  extension in a dotted name', () =>
+ ..                                      ...  {
+ ..                                      128             expect(toJpegFilename('
+ ..                                      ... costco.2026-08-01.png')).toBe('cost
+ ..                                      ... co.2026-08-01.jpg');
+ ..                                      129         });
+ ..                                      130     });
+ 86                                      131 
+ 87     describe('resizeImage - Type Ha  132     describe('resizeImage - Type Ha
+ .. ndling', () => {                     ... ndling', () => {
+ 88         it('should return original   133         it('should return original 
+ .. file for non-JPEG/PNG types', async  ... file for non-image types', async ()
+ ..  () => {                             ...  => {
+ 89             const pdfFile = new Fil  134             const pdfFile = new Fil
+ .. e(['pdf data'], 'receipt.pdf', { ty  ... e(['pdf data'], 'receipt.pdf', { ty
+ .. pe: 'application/pdf' });            ... pe: 'application/pdf' });
+ 90             const result = await re  135             const result = await re
+ .. sizeImage(pdfFile, 2000, 0.85);      ... sizeImage(pdfFile);
+ 91             expect(result).toBe(pdf  136             expect(result).toBe(pdf
+ .. File);                               ... File);
+ 92         });                          137         });
+ 93                                      138 
+ 94         it('should return original   139         it('should return original 
+ .. file for HEIC images', async () =>   ... file for unsupported image types', 
+ .. {                                    ... async () => {
+ 95             const heicFile = new Fi  140             const webpFile = new Fi
+ .. le(['heic data'], 'receipt.heic', {  ... le(['webp data'], 'receipt.webp', {
+ ..  type: 'image/heic' });              ...  type: 'image/webp' });
+ 96             const result = await re  141             const result = await re
+ .. sizeImage(heicFile, 2000, 0.85);     ... sizeImage(webpFile);
+ 97             expect(result).toBe(hei  142             expect(result).toBe(web
+ .. cFile);                              ... pFile);
+ 98         });                          143         });
+ 99                                      144 
+100         it('should return original   145         it('should attempt HEIC rat
+... file for unsupported image types',   ... her than silently passing it throug
+... async () => {                        ... h', async () => {
+...                                      146             // Undecodable bytes ou
+...                                      ... tside a browser — the point is that
+...                                      ...  it TRIES, so the
+...                                      147             // caller gets a failur
+...                                      ... e it can report instead of a full-s
+...                                      ... ize upload.
+101             const webpFile = new Fi  148             const heicFile = new Fi
+... le(['webp data'], 'receipt.webp', {  ... le(['heic data'], 'receipt.heic', {
+...  type: 'image/webp' });              ...  type: 'image/heic' });
+102             const result = await re  ... 
+... sizeImage(webpFile, 2000, 0.85);     ... 
+103             expect(result).toBe(web  149             await expect(resizeImag
+... pFile);                              ... e(heicFile)).rejects.toThrow();
+104         });                          150         });
+105     });                              151     });
+106 });                                  152 });
+

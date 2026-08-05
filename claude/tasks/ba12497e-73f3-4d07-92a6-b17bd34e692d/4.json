@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Update all Skills/*.md path references across the vault + CLAUDE.md",
+  "description": "Rewrite every Skills/<old>.md path reference to the new folder/SKILL.md path in skill bodies, CLAUDE.md, and the ~6 vault docs. Add .DS_Store to .gitignore.",
+  "activeForm": "Updating cross-references and gitignore",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

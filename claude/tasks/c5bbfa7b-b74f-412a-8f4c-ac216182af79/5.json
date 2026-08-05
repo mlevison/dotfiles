@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Import route + preview UI",
+  "description": "/expenses/import/+page.svelte — upload, preview (rows, new categories warning, duplicates), confirm→commit. Nav link + buttons on /expenses and /spending. Warn that new categories land Uncategorized.",
+  "activeForm": "Building import route + preview UI",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

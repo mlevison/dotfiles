@@ -1,0 +1,41 @@
+# Memory Index
+
+- ["One shot" critique delivery](feedback_critique_delivery_oneshot.md) — When Mark says "one shot"/"all at once", give the whole critique in one response, overriding section-by-section default
+
+- [Newsletter subject lines](feedback_newsletter_subject_lines.md) — Avoid insider jargon (no "compute blocks") and the "receipts" idiom; number-plus-deflation hooks work
+
+- [APR Analytics Architecture](apr_analytics_architecture.md) — Raw data in Astro repo, analysis + experiments in vault; how to add new experiments
+- [Glossary dual location](reference_glossary_dual_location.md) — APR glossary entries live in both the Astro source and a vault mirror; edit both, via git-diff-reviewed direct edits
+- [APR direct traffic is activity-driven](reference_apr_direct_traffic_activity_driven.md) — A direct-traffic drop while GSC is flat means Mark went quiet, not a tracking break; run the page-level test
+- [Calendar defaults](calendar_defaults.md) — Default to Personal + APR Business + TripIt; add Time Blocking for planning tasks
+- [Business/Personal calendar split](reference_calendar_business_personal_split.md) — 2026-07-16: primary renamed "Business" (Zoom/invite catch-all); new "Personal" secondary holds personal events
+- [Git workflow preference](feedback_git_workflow.md) — Work directly on main; no worktrees, no merge commits
+- [Persona / summary tone](feedback_persona_tone.md) — Avoid hype words ("obsession," "passion") in personas/recaps; prefer neutral framing
+- [Course-relevance triage — grep the vault](feedback_course_triage_vault_check.md) — Before recommending Reader articles for APR courses, grep vault for title/author hits to skip already-cited sources
+- [AI suggests via CriticMarkup](feedback_no_ai_edits_to_copy.md): For Mark's Markdown writing, suggest via inline CriticMarkup (reviewed in Track Changes), never rewrite prose outside a markup wrapper. Chat fallback for pasted text.
+- [CriticMarkup terse corrections](feedback_criticmarkup_terse_corrections.md): Deliver corrections as bare substitutions, no explanatory comment; comment only for genuine judgement calls.
+- [Italics are author notes](feedback_italics_are_author_notes.md): Italicised passages in Mark's draft sales pages and course outlines are his own hints, not buyer-facing content.
+- [AI Tsunami course title](project_ai_tsunami_course_title.md): Title feels too negative to Mark; he wants a more pragmatic rename, but it's not a priority now.
+- [Glass 1/3 full framing](reference_glass_one_third_full.md) — Mark's honest-middle stance on GenAI (real but modest value); default tone for his AI content
+- [Scrum by Example is fiction](reference_scrum_by_example_fiction.md) — SbE posts are fictionalized teaching stories; never summarize them as "I watched this happen" in a real event
+- [StoryBrand marketing copy](feedback_storybrand_marketing_copy.md) — Reader is the hero, Mark is the guide who's made mistakes too; keep promo rhetoric measured
+- [Bullet head: no period](feedback_bullet_head_no_period.md): Use "**Head** Capital sentence" with no period after the bold head; bold reads as a heading.
+- [Gmail triage rules](feedback_gmail_triage.md) — Batches of 10 max; notifications stay until replied or 10+ days old; newsletters route to Courses and Memberships / GrowthMaterial, not trash; only pure out-of-email actions become OmniFocus tasks.
+- [Delete Claude-created OmniFocus items](feedback_omnifocus_delete_history.md) — When cleaning up assistant-generated projects/tasks, delete (don't drop). Mark only preserves history for items he created.
+- [Mode-based project organization](feedback_mode_based_organization.md) — When subject-area buckets degrade into mixed idea-queues, reorganise by mode (Initiatives / Operations / Ideas & Reading) with theme tags carrying the subject dimension.
+- [No unsolicited files](feedback_no_unsolicited_files.md) — Deliver instructions/recaps in chat; only create a file when Mark explicitly asks. Never drop scratch files into the APR repos.
+- [Social draft location](feedback_social_draft_location.md) — Post drafts go in vault APR/Efforts/Social Media/ with filenames ending -drafts; pipeline JSON still goes to the APR repo
+- [Thread the social link](feedback_social_thread_link.md) — When a Bluesky/Mastodon post overflows from the link, thread it: message in post 1, link in post 2/3 (needs a batch-JSON schema change; posting layer already supports threads)
+- [Fragments go to Obsidian](feedback_fragments_to_obsidian.md) — In Drafts triage, "fragment" items go to the vault (not Content Ideas.md); ask for destination since Free Writing is now frozen
+- [Free Writing is read-only](reference_free_writing_read_only.md) — APR/Efforts/Free Writing/ is historical/read-only; never write there, ask for a destination instead
+- [Evergreen post length](feedback_evergreen_post_length.md) — Evergreen posts can run a bit longer; don't over-compress to ~450-500 chars
+- [Blog slug URL format](feedback_blog_slug_url_format.md) — Always write blog paths as `/blog/<slug>/` via the slug convention (drop parenthetical, apostrophe→-, ScrumMaster→scrum-master); never leave as TBD.
+- [Bare "AI" in public-perception context](feedback_ai_term_public_perception.md) — Don't force GenAI/LLM when Mark is describing public discourse/hype; only flag bare "AI" in his own claims about the tools.
+- [CLAUDE.md defers to skills](feedback_claude_md_defers_to_skills.md) — When CLAUDE.md and a skill overlap and disagree, the skill is authoritative; slim CLAUDE.md to a pointer rather than duplicating rules.
+- ["Missed opportunity" not "failure"](feedback_missed_opportunity_not_failure.md) — In Mark's writing, prefer "missed opportunity" over "failure" and frame setbacks as learning moments (from Buckingham's MMO tool); suggestion, not a hard rule.
+- [YFL tracker spec migration](project_yfl_tracker_spec_migration.md) — Moving the expense tracker off rigid SpecDriven AI to Matt Pocock's lightweight approach; Phase 1 (freeze specs) done 2026-06-24
+- [Matt vs obra vs PaulDuvall skills](reference_matt_vs_obra_skills.md) — How the skill libraries compare on lightweight-vs-heavyweight; separate a spec's value from its ceremony
+- [No invented tags](feedback_no_invented_tags.md) — Don't add OmniFocus tags speculatively during triage; discuss value first (he rejected an auto "Errands")
+- [Weekly analytics: run scripts unprompted](feedback_weekly_analytics_run_scripts.md) — In apr-weekly-analytics, run all three npm pull scripts without re-asking; Cakemail token refresh is interactive (Mark only)
+- [Shutdown: ignore chronic-dirty repos](feedback_shutdown_git_ignore_repos.md) — In shutdown git scan, silently skip redirect-checker and scrumquestions dirty trees (expected scratch/data noise)
+- [No "overdue"/pressure framing](feedback_no_overdue_capacity_framing.md) — One-person business, finite capacity; present findings as capacity-based options, never deadlines or invented tasks from cadence gaps

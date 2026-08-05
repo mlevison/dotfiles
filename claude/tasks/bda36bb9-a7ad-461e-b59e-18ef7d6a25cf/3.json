@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Consolidate ExpenseService test helper",
+  "description": "Point expenseServiceTestHelpers.ts at the shared fixture (re-export shared builder/getMockQuery/setFromResult, keep CategoryUpsertRow local). Run all 4 ExpenseService suites (133 tests). If single-semantics diverge, keep ExpenseService builder independent and document why.",
+  "activeForm": "Consolidating ExpenseService test helper",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,315 @@
+======== 2026-03-09-Radio silence and the AI tsunami.md ========
+I've disappeared for the past two weeks; I needed to deal with some back-end issues. In particular, any of you who have used the Three Percent Better community have already received a notification that it is shutting down. This wasn't on my list of quarterly goals, and so it has soaked up a considerable amount of my time. Later in 2026, I will consider launching a new discussion platform with a narrower focus. In the meantime, I apologize for any inconvenience the shutdown causes.
+
+## AI Tsunami
+I can't go even a few minutes without hearing more noise about AI. I've survived every Gartner Hype Cycle since they were established, and this is noisest of them all. Between 1995 and 2001, the dot-com bubble was based on the promise that the internet would change everything. It did, just a lot later than Nortel, JDS Uniphase, Pets.com and WebVan expected it to pay off.
+
+AI is a louder, noisier version of the dot-com bubble. Real changes are happening, and they will impact our world. We can't predict whether this is a bubble or the beginning of a new era. If it's a bubble, we will still end up with GenAI tools with capabilities similar to those we have today. If it’s not a bubble and companies like OpenAI and Anthropic succeed, then the size of the changes will be much larger.
+
+No matter what happens, we need to adapt to the changes. The key question is, are these tools that augment our work or are corporations going to shrink?
+
+Even if the tools don’t get better, they're already impacting our world. In software development, we already see more lines of code being written and more bugs being introduced: https://agilepainrelief.com/blog/ai-generated-code-quality-problems/. Yet, I also find teams that claim to be using AI and knocking it out of the park. Better quality than ever before.
+
+As it currently stands, AI appears to be an amplifier. If you’re already doing well, AI seems to be a force multiplier. If your team/organization has challenges, AI will make them worse. Classic example: A team with either a bottleneck in either Decision-Making or Quality Assurance. They use AI to generate code, and now the bottleneck is worse. There are more decisions to make and a larger product surface area to test.
+
+## Agile More Relevant Than Ever
+Agile has always been about adapting to change. GenAI requires us to: look for the bottlenecks; run more process experiments; and run more product experiments. From a product management perspective, I can already see that these tools make it easier to run more product experiments. In my own experience, they make it easier to move my data from one product to another. Without good Quality and Product Market Fit, speed doesn’t matter.
+
+There is a lot of work ahead of us to explore this new territory.
+
+Pssst, I still write about Scrum: [Product Backlog Refinement Hell: 3 Problems and Solutions](https://agilepainrelief.com/blog/product-backlog-refinement-hell-solutions/)
+
+## Help Me Name What I'm doing
+What I want to be is the person you trust to share both sides, the good and the bad. Someone mapping the territory as it actually is, not as vendors promise it will be.
+
+I've been searching for a label that captures that middle ground. Three candidates:
+
+🗺️ AI Cartographer - mapping the terrain, cliffs and all 
+🏔️ AI Sherpa - trusted guide through difficult, uncertain territory 
+📐 AI Surveyor - measuring what is really on the ground
+
+Which one resonates with you? Tell me why you voted. Or suggest something better.
+
+## What’s Next?
+I'm off for the next two and a half weeks, exploring the Canary Islands (warmer than Ottawa in March) and trying to understand my place in this fast-changing world.
+
+See you all in April.
+Mark
+
+## Reading Rabbit Hole
+- [The 2028 global intelligence crisis](https://www.citriniresearch.com/p/2028gic) - **Not a prediction.** The authors use a thought experiment to explore the implications of GenAI for society. It is one possible outcome, not the most likely one. Read it to understand just how big the changes could be.
+
+
+
+======== 2026-04-02 - Are You Planning Enough? (Spoiler Probably Not).md ========
+Hi {{ subscriber.first_name }}, 
+Timing is everything. Just before disappearing on vacation, I asked for your help naming what I'm doing with GenAI. 
+
+Am I acting as a:
+🗺️ AI Cartographer - mapping the terrain, cliffs and all 
+🏔️ AI Sherpa - trusted guide through difficult, uncertain territory 
+📐 AI Surveyor - measuring what is really on the ground
+
+I got some great feedback, and I'm still digesting it all. I even got a write-in candidate: AI Pathfinder - because I'm helping find the path through rocky terrain. Doing this right before a vacation may not have been my brightest move.
+
+So what do you think - which label fits best?
+## Intentional
+I travelled to the Canary Islands for a hiking vacation. On the Island of La Gomera, I experienced [Storm "Therese](https://lagomera1.blogspot.com/2026/03/la-gomera-hit-by-storms-torrential-rain.html)". Hiking got replaced by reflection and reading more of [Chris Bailey's book: "Intentional: How to Finish What You Start"](https://www.amazon.ca/Intentional-How-Finish-What-Start/dp/1039011608/ref=sr_1_1?crid=3PAS3E9MMIJSK&dib=eyJ2IjoiMSJ9.6bbqAWns9DH4qy97NTKbr0uaVrrK7wWxnu7IEn2rRxI.foN2UrwRvkBVjvzc2RS1-HNZY6Fg_sASA-Svcnn5i08&dib_tag=se&keywords=intentional+chris+bailey&qid=1775144954&sprefix=chris+bai%2Caps%2C210&sr=8-1). I thought I was reading this only for me. Now, as I look back, I realize the book has value for Agile teams. By default, as humans we spend about 5% of our time planning and 95% implementing those plans. (I don't even think I hit 5%.) The research suggests that the number should be closer to 20% planning and 80% action. In the book, he shows that goal attainment happens in part because we plan on many levels, from life goals, all the way down to what is the best thing I should do today.
+
+Thinking about Scrum, all of Sprint Planning, Review, Retrospective, and Daily Scrum are about planning and goal attainment. Officially, they're supposed to occupy 10% of the Sprint. We also have Backlog Refinement, which, based on experience, takes up another 3-5% of a Sprint. Scrum anticipated the research that Chris found for his book by more than a decade.
+
+When we see teams first adopt Scrum, there is often pushback: too much time spent on planning and not enough time doing. I've always known the pushback was misplaced and now I have research to support it.
+
+If you want to make Backlog Refinement better for your team, look at: [Product Backlog Refinement Hell: 3 Problems and Solutions](https://agilepainrelief.com/blog/product-backlog-refinement-hell-solutions/)
+
+As we move into a world where GenAI can help us do some of the heavy lifting, intentions and planning will be ever more important. Shipping unproven features faster is not winning. Yet many teams are using GenAI to rip through their Product Backlog without considering whether the work has any value.
+
+To thrive in this new world, we will need better Product Ownership and Quality.
+## Ottawa Product Camp 2026
+If you want to hone your Product Ownership skills and meet with other professionals, join me on April 18th for Ottawa Product Camp. It's an unconference where the audience selects the sessions. From the description: "This event is for anyone involved or interested in managing, marketing, developing, building, and/or scaling a product. Whether you are curious to learn more about product management & marketing or want to accelerate your career and expand your knowledge, this is a great opportunity to learn and network in a collaborative, fun, informal and supportive environment."
+
+[https://www.ottawapmma.ca](https://www.ottawapmma.ca/productcampottawa) -- if you scroll down you can see the sessions proposed thus far. I've proposed one session: "Where Do Product Managers need to go to survive AI?"
+
+Once you have signed up, you can also propose a session: 
+https://docs.google.com/forms/d/e/1FAIpQLSfGd8aQJI13Ed90e8f2ZZtVRbWcR5ZJAFL7GvK_I0vzA641DQ/viewform
+
+In the days before the event, we will vote on which sessions will be held. 
+
+## Quality
+If GenAI needs better Product Management, it also needs a real emphasis on Quality. You used Lean Startup to run experiments and validated the feature. Awesome. Now we need to work on quality. Back by popular demand [Certified Scrum Developer Workshop](https://agilepainrelief.corsizio.com/event/69cd8ce7066b8e5ce999e15d).  - June 22 - 25, 12:30 pm - 5:00 pm Eastern time. Along with quality, we also tackle what it takes to build productive teams. As long as humans are doing work, we will need teams. This isn't going away.
+
+Cheers
+Mark
+
+P.S. Take some time to look at the leaked portion of Claude Code. Many people have commented on hidden features (meh), how much you have to beg an LLM to behave (not surprised). I'm shocked at the quality and the volume of duplication. Print.ts has a single function over 3000 lines with 12 levels of nesting. This isn't maintainable. The situation is so bad that if you work for Anthropic, I will offer a discount on my upcoming [CSD workshop](https://agilepainrelief.corsizio.com/event/69cd8ce7066b8e5ce999e15d).
+
+- **Certified Scrum Product Owner (CSPO)** — Apr 9-10, 2026, Virtual — [Register](https://agilepainrelief.corsizio.com/register/6977cdef36890519ab2b14ba)
+- **Certified ScrumMaster (CSM)** — Apr 13-14, 2026, Virtual — [Register](https://agilepainrelief.corsizio.com/register/6977ce1736890519ab2b2370)
+- **Certified ScrumMaster (CSM)** — May 14-15, 2026, Virtual — [Register](https://agilepainrelief.corsizio.com/register/69c55204066b8e5ce903618b)
+- **Certified Scrum Product Owner (CSPO)** — May 19-20, 2026, Virtual — [Register](https://agilepainrelief.corsizio.com/register/69c550f6066b8e5ce90317d7)
+- **Certified Scrum Developer (CSD)** — Jun 22-25, 2026, Virtual — [Register](https://agilepainrelief.corsizio.com/register/69cd8ce7066b8e5ce999e15d)
+======== 2026-04-09 - Where is Product Ownership headed in 2026?.md ========
+Apparently, I promised to give a talk at Product Camp Ottawa. The usual Agile question: what is the last responsible moment to start? Is the day of the session too early? 
+
+My topic: How is GenAI reshaping Product Ownership?
+
+AI Vendors would have us believe that developing with their tools is easy and that code is almost free. In reality, we all know that is far from true. However, many people in the alleged real world are behaving as if this is true. I'm already seeing vibe-coded apps in real life. It is a mess out there.
+
+In a world where people think that code is free, how should we respond?
+
+I'm already seeing GenAI-generated apps in the wild. They have a lot of features, but they aren't coherent and lack polish. Much of the generated code is hard to read and so will be hard to maintain. Overall, very mixed quality
+
+In this environment, we can't compete on the number of features. We compete on Product Solution Fit and Quality. We get there using tools that the Agile community has been honing for years:
+- Lean Startup
+- Lean UX
+- Set-Based Design
+- BDD (Behaviour Driven Development)
+
+Eventually, this all leads to: "Continuous Discovery." The idea is that instead of working from a large Product Backlog, we work with the client on a continuous basis. We discover the next most valuable work and then build it.
+
+In a world that is being upended on a regular basis, having a roadmap that extends 6-12 months out is waste (in the Lean Waste sense). Keep using Story Maps or other Strategic tools to show options, but organizations need to acknowledge that our map is showing options and choices.
+
+Come join me at Product Camp Ottawa, April 18th: https://www.ottawapmma.ca scroll down, you can see the sessions proposed thus far.
+
+Once you have signed up, you can also propose a session:  https://docs.google.com/forms/d/e/1FAIpQLSfGd8aQJI13Ed90e8f2ZZtVRbWcR5ZJAFL7GvK_I0vzA641DQ/viewform
+
+In the days before the event, we will vote on which sessions will be held.
+
+More than just learning, it's also a good networking opportunity. Given the nature of the Canadian job market right now, building a solid network while you have a job makes it easier when you need help later.
+
+The products and teams that are succeeding with GenAI, seem to come from teams that already had the Agile Engineering Practices in place before GenAI appeared. They're working in small batches, focusing on quality rather than speed. If you want to practice that join our next CSD workshop: 
+
+Cheers
+Mark
+======== 2026-04-23-Product Management and New Mailing List Platform.md ========
+Have you ever been annoyed enough with a tool that you finally did something about it? That was me and mailing lists. For years, Heather smoothed out the rough edges of the mailing list platform we used. Now it’s just me. I realized just how bad it was. Seven years ago, when we migrated into the platform from MailChimp, it took several weeks of work for two of us. There was a lot of discussion and emailing their support. 
+
+Fast forward to today. With more complex automations and more email content, it has taken less than 3 days to complete the bulk of the work.
+
+Changing mailing list platforms isn't really something that should need announcing in a newsletter. Yet it's a perfect illustration of how GenAI is affecting the Products we build and how we work. GenAI enabled me to extract all the content from the old platform, even though it was not designed for easy export. It allowed us to experiment with several different platforms before settling on CakeMail, in large part because it has an excellent API.
+
+This is going to be a double-edged sword. The lack of an API is part of why I migrated to CakeMail; the existence of an API makes it easier to migrate away if I'm not happy.
+
+I think GenAI will have a significant impact on the kinds of products we build. It's also affecting how to determine what to build. This was the topic of my session at Product Camp Ottawa 2026.
+
+## Product Management with GenAI: What Changes and What Doesn't
+A tsunami of GenAI-created products has already hit the App Store(s). In many cases, the products look like a badly assembled jigsaw puzzle. (That’s not a form of praise :-)). In other cases, the product poses a massive security risk by uploading content to poorly secured servers.
+
+In an environment like this, how do we compete? "More features, faster, cheaper" is not going to cut it.
+
+My session and blog post, "[Product Management with GenAI: What Changes and What Doesn't](https://agilepainrelief.com/blog/product-management-and-genai/)", explores how to respond to this challenge. Hint: the answer is hiding in plain sight. All of the experimental tools we’ve been using for years have just become more important and easier to use. All features should start with a hypothesis. Every week, we should learn something from the experiments and customer feedback that prompts us to change something.
+
+Mine:
+- I want to test how many people are interested in how the ScrumMaster role can adapt to our changing world.
+- I learned that the interest in GenAI is very high; many people are worried about the effects on their work.
+
+// Call to Action callout (?)
+Shoot me an email sharing one thing you've learned from an experiment recently. **OR**
+What do you want me to explore next?
+
+### Reading Rabbit Hole
+I continue to read the book: "Reshuffle: Who wins when AI restacks the knowledge economy" by Sangeet Paul Choudary. The author does a very good job of showing how this transition is similar to the way shipping changed post war. Our jobs will change, but the skills that ScrumMasters, Agile Coaches and Product Owners have will be even more valuable in the future. It’s too bad that so many of the examples in the book are from companies that make me cringe (Palantir, Shein, Uber).
+======== 2026-06-03-I Fell off the face of the Earth.md ========
+I have not written a newsletter in the entire month of May. You would be forgiven for thinking that I disappeared. We did have a two-week family vacation in Croatia (with a side trip to Mostar). That was planned. Then I had a few minor health challenges, and so I had no time for a newsletter.
+
+## Surviving the AI Tsunami
+During that time, I did manage to create a new course, and I need your help. It's based on the conversations I have had with you and others in the community. It’s called "[Surviving the AI Tsunami](https://agilepainrelief.com/surviving-the-ai-tsunami-an-evidenced-based-course/)." and it's about understanding how GenAI works, where we can use it and where it will fail.
+
+Your help: read the sales page and give me feedback. Don’t worry; clicking on the link will not sign you up for anything else.
+
+Specific questions:
+- "Surviving the AI Tsunami" is a fun tagline and awkward course name - what name would attract you?
+- Do you see your GenAI-related problems in "What this course helps you solve"?
+
+If you want to download a copy of the "AI Failure Modes," Click here:  -- that will tag you as interested in GenAI.
+
+### My experience 
+I am making extensive use of Claude Code to do time-consuming tasks:
+- Creating the AI Failure Modes Test
+- Building the AI Tsunami course page
+- ... in general, to help automate the repetitive tasks
+
+In short, it would be difficult to run the small business on my own without these tools.
+### What's good for one person may not be good for a team
+Assuming I'm working on the highest-priority things at any given moment, I am the bottleneck. Speeding up that activity, assuming it's not thinking/reflective work, is a good thing. (This also assumes that I can trust that the output is correct. Again, in my narrow context, this is true.)
+
+When we're part of a team, making an individual more productive in the wrong place will just make the bottleneck worse. The now-classic example of generating a large new feature for your product just makes the review and testing process worse. In almost all teams I see, the review process was already the bottleneck. (Hence the strong recommendation not to use Pull Requests and instead do either Pair or Ensemble Programming.)
+
+These problems are made worse by perverse incentives. In some organizations, people have AI usage incorporated into their performance review. What could possibly go wrong? Surprise! One team member generates multiple new features with 1000+ line pull requests, then drowns the rest of the team in a review overload. Measuring individual productivity has always been a bad idea. Measuring in an organization that is using AI is even worse.
+
+### Measuring the wrong thing is expensive
+If GenAI is an amplifier, then it amplifies both the good and the bad. If your system is measuring velocity or individual productivity, it will be amplified. If your system measures AI usage, people will find a way to use it. You will soon get a large bill from Anthropic/OpenAI to celebrate your success. And you’ll be swimming in a sea of AI-generated technical debt and security flaws.
+
+Focus on the product and the team, not the individual. Don’t measure AI usage or velocity.
+
+Hit reply and tell me one thing you’ll change about how your team measures (or uses) GenAI. I read every reply.
+
+Mention the upcoming CSD workshop
+Also CSM workshop
+
+**Mark's Reading Rabbit Hole**
+- [Potemkin Understanding in Large Language Models](https://arxiv.org/html/2506.21521v2): The paper shows how these tools don’t understand anything about what they're doing. They're just very good mimics.
+- [AI is a High Pass Filter for Software Delivery](https://bryanfinster.substack.com/p/ai-is-a-high-pass-filter-for-software): argues AI amplifies strong delivery practices and exposes weak ones.
+======== 2026-06-11-gen-ai-is-very-good-at-rabbit-holes.md ========
+// How GenAI made a 15-minute task into a 3-hour odyssey
+
+Without GenAI, and specifically, Claude Code I couldn’t run the Agile Pain Relief business on my own. It helps me make small changes to the code of the website, it gives me feedback on my writing especially grammatical errors. It did all of the heavy lifting migrating the mailing list from Drip to Cakemail. Useful, yet it's not without its challenges.
+
+Last week I wanted to schedule July and August courses. I hate picking dates because there are so many constraints that will affect who can attend. Holidays, common vacation periods and a million other things. I thought I would ask Claude Code to provide sober second thought on my initial suggestions. Claude decided that I should consider an experiment, running the CSPO course over 4 days x 4 hours. Why not? We hadn't tried this in a few years, not since we revamped the entire website.
+
+... And that was the problem. I needed to scour the website to see if we mentioned 2 day x 8 hours explicitly in the course description. (At least Claude helped there.) Then I had to check the Scrum Alliance course listings and Corsizio (course registration system).  What should have been a 15-minute task turned into a 3-hour odyssey. 
+
+The payoff? I'm actually running that experiment: the CSPO as four mornings instead of two full days, starting the day after my birthday ([Aug 11-14, 9am to 1pm](https://agilepainrelief.corsizio.com/event/6a23328e5fe95b0ca47759ce)).
+
+Here's the thing about that rabbit hole: the goal was never speed. It rarely is. And that's exactly what this week's post is about: "[GenAI Won't Speed Up Your Scrum Events (and Shouldn't)](https://agilepainrelief.com/blog/gen-ai-wont-speed-up-your-scrum-events-and-shouldnt/)". The post is an invitation to take our understanding of Scrum events back to first principles. I don’t think this is just an AI issue. Anytime we seek to "improve" a process, especially by speeding it up, we need to ask why we are doing it in the first place. Make sure the improvement is real and not turning the process into a hollowed version of the original.
+
+When it comes to AI and Agile, no matter what I write, I seem to offend one group or another. There are people (mostly on LinkedIn) who repeat the mantra that AI will replace team members in the next year, claiming that AI is already doing all of the coding at Anthropic and Google. On the other side, I also get comments from people who see only the bad with AI (mostly on Mastodon). I wish there was a forum called “glass 1/3 full”.
+
+## Surviving the AI Tsunami
+I got a lot of feedback on the Surviving the AI Tsunami course and so I’ve done another revision. The central premise of the course is that we can use GenAI to help build better products or drive our organizations off a cliff.  Visit the revised page: https://agilepainrelief.com/surviving-the-ai-tsunami-an-evidenced-based-course/
+
+Some questions:
+- What is a better name for this course? I'm trying to find a glass 1/3 full name
+- How important is having a certification?
+
+**Mark's Reading Rabbit Hole**
+- [You're About to Feel the AI Money Squeeze](https://www.theverge.com/ai-artificial-intelligence/917380/ai-monetization-anthropic-openai-token-economics-revenue): on AI vendors' token economics and coming price pressure on users.
+- [The Echo Chamber in Your Pocket](https://c3.unu.edu/blog/the-echo-chamber-in-your-pocket): how AI-mediated, personalized media narrows what we see.
+- [The Peril of Laziness Lost](https://bcantrill.dtrace.org/2026/04/12/the-peril-of-laziness-lost/): Bryan Cantrill on what's lost when AI removes productive friction.
+
+Hit reply and tell me about the time GenAI turned a 15-minute task into a rabbit hole. I read and respond to every reply. (Slowly, because I do it the old-fashioned way.)
+======== 2026-06-18-Failure-Bow-I-Sent-Two-Copies-of-the-Same-Newsletter-Last-Week.md ========
+[Failure Bow](https://agilepainrelief.com/glossary/failure-bow/), I sent everyone two copies of last week’s newsletter. I didn’t even need a generative AI to help me make this mistake.
+
+I'm trying to automate all of the repetitive tasks I do to run Agile Pain Relief. Scheduling and sending the newsletter are among them. Over a month ago, I automated that process, and it has been working well. I write in Obsidian/Markdown and then use the Cakemail API to send it to everyone. I never need to open the web interface and fiddle with formatting.
+
+This past week, I tried using the A/B subject line test feature in Cakemail to see which subject line would get more people to open the newsletter.
+
+Instead, I sent two copies of the same newsletter to everyone. The irony is that I try to avoid using web interfaces to do things like this because I'm more likely to make mistakes, and here I did it anyway.
+
+The real problem here is that I was trying to go too fast and didn’t take the time to log in to the Cakemail web interface to see what it would send.
+
+Automation is excellent. However, it really does pay to check the output carefully the first few times before trusting it.
+
+## GenAI - the Costs Are Going Up
+The whole GenAI industry is about to suffer a massive cost increase, which will force us all to question how much value it adds. It feels like GenAI has been sold to CEOs as a magic bullet that will replace many of their employees. We've already seen the evidence that this is a gross exaggeration. Useful tools, yes. Replacement for people, no. If anything, they need more human oversight and not less.
+
+Today I'm focusing on the economics. We've been promised that GenAI was different from every other technology ever. As OpenAI and Anthropic approach IPOs, we’re starting to learn more about the reality. These companies are entirely normal venture-backed startups; they attempt to hook you with a lower price and then raise it to make a profit. Unlike most venture-backed startups, it looks like prices will need to increase by 10-15x to make a profit.
+
+The CEOs of these companies sometimes claim, “We’re losing money on training, but breaking even on inference.” The evidence doesn’t even seem to support that.
+
+The most interesting read of the week on this topic was from Gerben Wierda: "Anthropic/OpenAI may be spending more than $1000 for every $100 you pay them". It's a dense read; the key takeaway is that the models are getting better by using more tokens. This is not a good thing. The more tokens they use, the more expensive it will be for us when they start charging honest prices.
+
+This is already happening; Anthropic's initial release of the Fable 5.0 model will soon switch to API-based pricing. (Assuming the US government allows them to release it at all.)
+
+Just to make it worse, when we're using these models on a large codebase (or any other large dataset), token usage increases. More for the LLM to read == more tokens. This is especially hard because we can never predict at the start of a session with a GenAI how many tokens it will use. When tokens become real money, this will be expensive fast. It might be cheap to generate the core of an application, but increasingly expensive to build out the rest. Let alone maintain it.
+
+The question that should be on everyone’s mind: Can we afford the code we've already written with GenAI?
+
+If "AI" is a feature in your product, can you afford to pay for it?
+### The answer to the cost crunch is hiding in plain sight: Modern Agile Practices are required
+When you're building applications, focus first and foremost on making sure that the features we're planning to build have been validated with customers. Instead of trying to build everything in the Product Backlog, focus on validating the next few features with customers. Lean Startup and/or Lean UX experiments are a good approach here. Use GenAI here to build prototypes and get feedback - amazing.
+
+Slice the work into small parts, then collaborate to create the Acceptance Criteria. This is [Product Backlog Refinement](https://agilepainrelief.com/blog/scrum-product-backlog-refinement/) and [Example Mapping](https://agilepainrelief.com/blog/example-mapping-your-secret-weapon-for-effective-acceptance-criteria/) in practice. The GenAI can be used as an aid to ask questions when we're stuck and test for missed edge cases or Acceptance Criteria. It doesn’t replace the people doing the work.
+
+If it's going to work on the codebase, give it a narrow scope. For example, write acceptance tests for a specific feature based on the acceptance criteria. Then perhaps work on it iteratively to create the feature itself.
+
+If this looks a lot like traditional Scrum and Agile Engineering Practices, that’s because it appears to be the only sustainable way to use GenAI when you actually have to pay the real cost of the tokens.
+
+If we're going to thrive in this new world, we need to double down on many of the existing Agile practices to improve product-market fit, quality and flow.
+
+This is the heart of what I teach in [Surviving the AI Tsunami](https://agilepainrelief.com/surviving-the-ai-tsunami-an-evidenced-based-course/) - using the Agile practices you already have to turn GenAI into validated value instead of a runaway bill.
+
+Hit reply and tell me: what's the one thing about GenAI and the coming cost explosion that's on your mind right now?
+
+Cheers
+Mark
+
+## Reading Rabbit Hole
+- [Anthropic/OpenAI may be spending more than $1000 for every $100 you pay them](https://ea.rna.nl/2026/06/07/anthropic-openai-may-be-spending-more-than-1000-for-every-100-you-pay-them/) - this destroys the economics of the people who spin up "Agents" all day long.
+- [Exclusive: OpenAI Losses Increased Nearly 8X in 2025, With Spending Hitting $34 Billion](https://www.wheresyoured.at/exclusive-openai-financials/) - Ed Zitron has seen audited financial statements for OpenAI. It's a mess.
+- [AI Doesn't Have ROI](https://www.wheresyoured.at/ai-doesnt-have-roi/) - Ed Zitron - a long read, the upshot of which is that no one has found a measurable return on investment for AI.
+- [Breaking news, and how the end might begin](https://garymarcus.substack.com/p/breaking-news-and-how-the-end-might) - Gary Marcus - a machine learning researcher who thinks that LLMs are a dead end. This article examines how the collapse might happen.
+======== 2026-06-26-Nearly-Trillon-Dollar-Valuations-GenAI-Still-Cant-follow-instructons.md ========
+// Subject line above is a placeholder — refine before sending.
+
+I think we humans have a great future continuing to do real work. This week has provided good reminders that LLMs have real limitations.
+
+It's amazing how LLMs can quickly go down the wrong path, wasting time and energy. I'm thinking about buying a new bike. It's been 20 years since I last looked seriously so I wanted to understand the state of modern biking technology, e.g. Gravel vs Hybrid vs Touring and everything else that has changed.
+
+Since I wanted depth and not a listicle, I thought I would use Gemini Flash as a search engine. I wrote a prompt covering my current bike and limitations, then what I was looking to read about. I ended the prompt with a specific instruction: "Instead of doing analysis, I want to read long form articles that cover modern bike choices."
+
+What I got back was a detailed analysis that summarized articles. When I asked for links I found I was getting very narrow articles like: [a 2016 post on tire pressure](https://janheine.wordpress.com/2016/03/09/tire-pressure-take-home/) - which might be great reading at the end of my process, not now. (Also 2016 - is this still current? I'll have to check.) If the analysis from Gemini were taken at face value, I would seriously consider hookless rims. I already know the answer is no unless you have very specific needs.
+
+I assumed by asking Flash, it would do less "thinking". I fed the same prompt into Claude Sonnet - set for low effort. I spent my lunchtime reading some very good articles on how gravel bikes perform - far better than 20 year old hybrid.
+
+This isn't about Claude being better than Gemini. I'm more interested from a professional perspective. This is a good reminder. These models are often awful at following instructions.
+
+Gemini was good at summarizing, so when I wanted to build a table of the bikes I'm considering, I gave it the URLs of each specific bike from Ottawa bike shops and asked it to build a table.
+
+The problem is that I knew some of the facts in the table were wrong. After some searching, I think that Gemini had trouble accessing the specific pages. Instead of telling me, it went off and found descriptions of older models.
+
+I'm really hoping the bike fitting I get next week will not involve AI.
+
+## Backlog Refinement Anti-Patterns
+I published a blog post: "[How Many of These Backlog Refinement Anti-Patterns Does Your Team Have?](https://agilepainrelief.com/blog/how-many-of-these-backlog-refinement-anti-patterns-does-your-team-have/)" and even here an LLM managed to make an interesting mistake.
+
+*Background:* I do my writing in Markdown (Obsidian) and the website is built with Astro (a static site generator that uses MDX - Markdown with JSX).
+
+When a blog post is ready for publishing, I copy the Markdown file into the Astro project. Since there are a number of small formatting differences between Obsidian and Astro (handling of images, callouts, etc.), I have a Claude Skill that is supposed to do the conversion. Claude deleted the file. It had found a rule to check for warnings, found warnings associated with the post and deleted it.
+
+Since it was just operating on a copy of the original Markdown file this didn’t matter.
+
+## Humans still matter
+In spite of the continued hype (Anthropic has upped its pre-IPO valuation to nearly $1 trillion), it seems that LLMs are still far from being ready to replace humans on many simple tasks.
+
+This was a big topic of discussion in this week’s Certified Scrum Developer workshop. As a result of the discussion, I did a significant update to the [Agile Architecture Glossary](https://agilepainrelief.com/glossary/agile-architecture/).
+
+Running a technical workshop is time-consuming and so there isn’t a reading list this week.
+
+## Next Week
+Between Canada Day and my regular Quarterly Review, there won’t be a newsletter next week. Let's all take time to enjoy family and friends.
+
+Tell me what your plans are.
+
+

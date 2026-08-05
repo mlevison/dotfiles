@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Tests + verification",
+  "description": "spendingWaterfall.spec.ts (reconciliation, disappeared/new steps, accordion split, ordering, window truncation) + SpendingBridge.svelte.spec.ts (render anchors, expand). Run check/eslint/prettier + full suite.",
+  "activeForm": "Writing tests and verifying",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,3 @@
+- [Code is reality](code-is-reality.md) — docs follow code; when they disagree, fix the doc, and verify by running it
+- [Social media repo ownership](social-media-repo-ownership.md) — three repos stay, but rules are encoded in exactly one of them
+- [AI vs code split](social-media-ai-vs-code-split.md) — what Mark wants as a tested command vs left to the model

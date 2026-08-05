@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Verify batch: run check + reconciliation tests",
+  "description": "npm run check and the reconciliation/matching unit tests stay green after the batch.",
+  "activeForm": "Verifying the batch",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

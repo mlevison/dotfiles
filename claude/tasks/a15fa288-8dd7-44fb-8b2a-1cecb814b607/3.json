@@ -1,0 +1,8 @@
+{
+  "id": "3",
+  "subject": "Add bulk recategorize to expenses page",
+  "description": "Add a bulk \"Set category for N selected\" control (reusing CategoryDropdown) + recategorizeSelected handler calling ExpenseService.bulkAssignCategory; add render test.",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

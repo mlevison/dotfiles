@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Write demo seed common lib (client, guard, teardown)",
+  "description": "scripts/demo/common.ts: service-role client factory, env guard, constants (family name + demo emails), teardownDemo() that deletes demo users + demo family (cascades).",
+  "activeForm": "Writing demo seed common lib",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

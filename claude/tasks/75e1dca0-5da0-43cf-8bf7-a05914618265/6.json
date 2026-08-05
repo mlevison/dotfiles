@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Amend the domain model glossary",
+  "description": "Update the \"talk about Expenses when categorizing; Receipts when capturing\" line so it stops contradicting the UI, and update the design doc status.",
+  "activeForm": "Amending the domain model",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

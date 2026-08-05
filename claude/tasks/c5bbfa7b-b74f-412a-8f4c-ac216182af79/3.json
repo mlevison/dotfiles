@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Pure import plan / dedup (TDD)",
+  "description": "src/lib/utils/expenseImportPlan.ts — given parsed rows + existing receipts-in-range + existing categories → { toInsert, duplicatesSkipped, newCategoryNames }. Count-based dedup keyed date|merchant|amount|category. Write spec first.",
+  "activeForm": "Building import plan",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

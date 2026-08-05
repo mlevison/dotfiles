@@ -1,0 +1,4 @@
+- [Cakemail Migration](project_mailjet_migration.md) -- Phase 1 working; API gotchas documented in CLAUDE.md
+- [Cakemail signup account](reference_cakemail_newsletter_account.md) -- `mlevison+cakemail@gmail.com` owns CAKEMAIL_SIGNUP_REFRESH_TOKEN; regenerate via `npm run refresh-cakemail -- --purpose signup`
+- [No plaintext credentials](feedback_no_plaintext_credentials.md) -- use refresh tokens, never username/password in .env
+- [Delete unused files](feedback_delete_unused_files.md) -- don't keep dead code as "legacy reference"

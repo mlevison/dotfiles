@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "6e9a32fb-05a6-4206-ab58-e473648825b0",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/6e9a32fb-05a6-4206-ab58-e473648825b0.jsonl",
+      "fileMtime": 1768668321112,
+      "firstPrompt": "Help me build an Obsidian Canvas that will become a personal dashboard. Your job is to lay it out well and make it visual pleasing. It should display well in canvas that is 1000 pixels wide allowing t…",
+      "messageCount": 9,
+      "created": "2026-01-17T16:04:13.226Z",
+      "modified": "2026-01-17T16:45:21.058Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "00178a07-3f25-4dcf-89d9-11084b0c793b",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/00178a07-3f25-4dcf-89d9-11084b0c793b.jsonl",
+      "fileMtime": 1768945306912,
+      "firstPrompt": "I would like to use my Systems Thinking skill to help with a problem (this is a fictional example) **Horizontally Stratified Teams and 8-Hour Sessions**  An architect in an organisation horizontally s…",
+      "messageCount": 18,
+      "created": "2026-01-20T21:28:06.541Z",
+      "modified": "2026-01-20T21:41:46.855Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "946f57fe-00d0-479f-bdac-279bdaed5126",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/946f57fe-00d0-479f-bdac-279bdaed5126.jsonl",
+      "fileMtime": 1768264969677,
+      "firstPrompt": "What is wrong with my settings.json file (just a fragment):    \"permissions\": {     \"deny\": [       \"Read(**/llm_history/**)\",       \"Bash(git commit:*)\",       \"Bash(curl:*)\",       \"Bash(wget:*)\",…",
+      "messageCount": 2,
+      "created": "2026-01-13T00:42:40.255Z",
+      "modified": "2026-01-13T00:42:49.655Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "27e4e163-6552-459f-8d49-8c37895ac71d",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/27e4e163-6552-459f-8d49-8c37895ac71d.jsonl",
+      "fileMtime": 1770136539315,
+      "firstPrompt": "Download the following papers:# AI Coding Tools Research Papers Summary  > Extracted from \"AI IDEs or Autonomous Agents? Measuring the Impact of Coding Agents on Software Development\" (Agarwal et al.,…",
+      "messageCount": 8,
+      "created": "2026-02-03T16:34:12.030Z",
+      "modified": "2026-02-03T16:35:39.297Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "b7b0e171-92f7-439b-bcfc-8eb7712b228d",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/b7b0e171-92f7-439b-bcfc-8eb7712b228d.jsonl",
+      "fileMtime": 1770230573973,
+      "firstPrompt": "Using the Systems Thinking skill, help create Causal Loop Diagrams for the following topics blog post. Start with one for \"State of AI vs. Human Code Generation Report\" and then: \"AI IDEs or Autonomou…",
+      "messageCount": 20,
+      "created": "2026-02-04T17:27:37.988Z",
+      "modified": "2026-02-04T18:42:53.947Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "8a895245-b029-4f55-81dc-5d15c5e588ca",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/8a895245-b029-4f55-81dc-5d15c5e588ca.jsonl",
+      "fileMtime": 1770400911227,
+      "firstPrompt": "There is a mailbox archive in the folder: mbox. I would like you write a to extract a list all people who corresponded with the user of that mbox, on more than three separate threads over more than th…",
+      "messageCount": 17,
+      "created": "2026-02-06T17:48:25.245Z",
+      "modified": "2026-02-06T18:01:51.205Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "f0c879e2-36cb-4a7f-acf4-ee4bf397b9aa",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-Temp-ClaudeScratch/f0c879e2-36cb-4a7f-acf4-ee4bf397b9aa.jsonl",
+      "fileMtime": 1770427266254,
+      "firstPrompt": "Use the Systems Thinking skill to help turn the following text into a Causal Loop Diagram. There are too many variables, so first we will to boil it down. In addition, let's assume that we will split…",
+      "messageCount": 42,
+      "created": "2026-02-06T21:34:00.191Z",
+      "modified": "2026-02-07T01:21:06.233Z",
+      "gitBranch": "",
+      "projectPath": "/Users/marklevison/Documents/Temp/ClaudeScratch",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/Users/marklevison/Documents/Temp/ClaudeScratch"
+}

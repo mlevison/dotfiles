@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Create shared supabaseMock fixture",
+  "description": "Create src/lib/tests/fixtures/supabaseMock.ts as the canonical chainable Supabase client mock (superset of expenseServiceTestHelpers + CategoryService local copy)",
+  "activeForm": "Creating shared supabaseMock fixture",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

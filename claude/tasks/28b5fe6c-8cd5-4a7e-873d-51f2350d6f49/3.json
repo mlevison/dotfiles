@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Unit tests for pure logic",
+  "description": "buffer-post/metricsSync.test.ts covering metric mappers, ET conversion, and merge (match/backfill/skip/create) with synthetic data.",
+  "activeForm": "Writing unit tests",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

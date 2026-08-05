@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Migration: normalize_vendor + AFTER INSERT trigger",
+  "description": "SQL normalize_vendor(text) matching ExpenseService.normalizeVendor exactly, plus an AFTER INSERT trigger on receipts that applies the family's vendor rule when no expense_categories row exists. Verify with npm run db:reset.",
+  "activeForm": "Writing the migration",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

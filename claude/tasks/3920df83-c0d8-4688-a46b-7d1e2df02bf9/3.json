@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "2C: Small test-coverage follow-ups",
+  "description": "CSV export filename branching; getSignedReceiptUrl null/error/expiry edges; PDFExportService US-Letter dims + per-category row restart. Skip Resend (blocked on PRD).",
+  "activeForm": "Adding small test-coverage follow-ups",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

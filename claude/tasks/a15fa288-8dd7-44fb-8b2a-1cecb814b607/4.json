@@ -1,0 +1,8 @@
+{
+  "id": "4",
+  "subject": "Typecheck, run tests, code-review",
+  "description": "Run svelte-check, affected specs, full unit suite, then /code-review. Do not git commit (human-only).",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

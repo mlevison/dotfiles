@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Restructure skills into theme folders as SKILL.md, drop prefixes",
+  "description": "git mv each homegrown flat skill into its theme folder as SKILL.md, dropping subject prefixes. Move storybrand into Marketing. Delete Roles.",
+  "activeForm": "Restructuring skills into theme folders",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

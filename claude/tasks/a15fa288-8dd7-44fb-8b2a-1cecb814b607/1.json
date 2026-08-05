@@ -1,0 +1,8 @@
+{
+  "id": "1",
+  "subject": "Add countCategoryExpenses to CategoryService (TDD)",
+  "description": "Add a countCategoryExpenses(categoryId) method + spec, used for the delete-confirmation impact message.",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

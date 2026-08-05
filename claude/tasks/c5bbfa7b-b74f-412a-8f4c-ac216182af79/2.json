@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Pure expense-import CSV parser (TDD)",
+  "description": "src/lib/utils/expenseImportCsv.ts — parseExpenseImportCsv(text) → { rows, errors }. Columns Timestamp/Merchant/Amount/Category (Tag ignored). Keep sign. Write spec first.",
+  "activeForm": "Building expense-import parser",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

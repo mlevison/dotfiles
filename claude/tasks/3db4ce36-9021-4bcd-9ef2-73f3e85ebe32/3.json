@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Add npm run reshare-report",
+  "description": "Codify the clicks-per-reshare table: PostHog archive-reshare rows (latest snapshot per entry_path+utm_source), platform weighting, times-reshared from history.json. Pure logic + tests; update reshare-queue-tune skill to call it.",
+  "activeForm": "Building reshare-report",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

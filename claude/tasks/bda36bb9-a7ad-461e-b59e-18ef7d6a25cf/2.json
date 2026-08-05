@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Dedupe CategoryService.spec mock",
+  "description": "Migrate CategoryService.spec.ts to import the shared supabaseMock fixture; delete its near-verbatim local createMockSupabaseClient/getMockQuery/MockQueryBuilder. Run the 28 CategoryService tests.",
+  "activeForm": "Deduping CategoryService.spec mock",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

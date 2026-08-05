@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Extract CSV primitives into shared module",
+  "description": "Create src/lib/utils/csvPrimitives.ts with tokenizeCsv/parseFlexibleDate/parseCsvAmount/removeBom (moved verbatim from BaseCSVParser); refactor BaseCSVParser protected methods to delegate. Run full parser test suite as oracle.",
+  "activeForm": "Extracting CSV primitives",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

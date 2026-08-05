@@ -1,0 +1,65 @@
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC": "true",
+    "BASH_DEFAULT_TIMEOUT_MS": "120000",
+    "SECURITY_WEBHOOK_URL": "https://hooks.slack.com/services/YOUR/SLACK/WEBHOOK",
+    "CLAUDE_SECURITY_OVERRIDE": "false"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm run:*)",
+      "Bash(python -m:*)",
+      "Bash(git add:*)",
+      "Bash(git status:*)",
+      "Bash(git push:*)",
+      "Bash(git pull:*)",
+      "Edit(*)",
+      "Read(*)",
+      "Write(*)"
+    ],
+    "deny": [
+      "Read(//Users/marklevison/Documents/Obsidian/LifeHQ-Mark/**)",
+      "Edit(//Users/marklevison/Documents/Obsidian/LifeHQ-Mark/**)",
+      "Write(//Users/marklevison/Documents/Obsidian/LifeHQ-Mark/**)",
+      "Read(**/llm_history/**)",
+      "Bash(git commit:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(ssh:*)",
+      "Bash(sudo:*)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Edit|Write|MultiEdit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "~/.claude/hooks/prevent-credential-exposure.sh",
+            "timeout": 10000
+          }
+        ]
+      }
+    ]
+  },
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true,
+    "criticalthink@criticalthink": true,
+    "supabase@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true
+  },
+  "allowedTools": [
+    "Edit",
+    "Bash",
+    "Read",
+    "Write",
+    "MultiEdit"
+  ],
+  "hasTrustDialogAccepted": true,
+  "hasCompletedProjectOnboarding": true,
+  "parallelTasksCount": 3,
+  "theme": "light",
+  "skipWorkflowUsageWarning": true
+}

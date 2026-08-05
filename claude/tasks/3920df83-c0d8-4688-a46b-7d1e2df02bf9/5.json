@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Tier 2: fix navigation-without-resolve + svelte-reactivity + fileValidation any",
+  "description": "Wrap layout/profile hrefs in resolve(); swap URLSearchParams→SvelteURLSearchParams in +layout.svelte; type the 2 any in fileValidation.ts. Verify routing still works.",
+  "activeForm": "Fixing Tier 2 ESLint errors",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

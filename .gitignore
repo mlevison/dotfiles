@@ -10,3 +10,19 @@ gcloud/
 fish/fish_variables      # Theme, UI state, etc. auto-updates per machine
 nvim/swap/               # Neovim swap files
 **/.local/share/*        # Some apps store secrets/state here too
+zed/prompts/prompts-library-db.0.mdb/lock.mdb
+
+
+# .claude directory ignores
+# Ignore conversation logs and session data
+claude/projects/**/*.log
+claude/logs/
+claude/backups/
+claude/debug/
+
+# Ignore machine-specific runtime state
+claude/state/
+claude/cache/
+
+# If you use plugins that generate runtime data, add them here
+claude/plugins/runtime-data/

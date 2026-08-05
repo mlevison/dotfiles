@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "RF-10: move display-row shaping out of ReconciliationService",
+  "description": "Relocate convertToDisplayRows/sortDisplayRows to a presenter layer so the service returns domain results only.",
+  "activeForm": "Moving display shaping out of the service (RF-10)",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

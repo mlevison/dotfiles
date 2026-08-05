@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Reposition CategoryDropdown with floating-ui",
+  "description": "Add @floating-ui/dom as a direct dep; swap CategoryDropdown's menu from `absolute right-0` to a fixed, floating-ui-positioned element with flip/shift/autoUpdate. Fixes the modal clipping bug and both tables on phones.",
+  "activeForm": "Repositioning CategoryDropdown",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

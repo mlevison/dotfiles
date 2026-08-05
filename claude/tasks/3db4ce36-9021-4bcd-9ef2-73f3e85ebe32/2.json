@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Auto-mark calendar and quiz seeds from batchPost",
+  "description": "Pure marking functions + tests; wire into batchPost so a successfully scheduled entry flips the calendar item to [x] (date) and prepends [POSTED date] to the quiz seed. Remove the pre-mark/un-mark ceremony from the skill.",
+  "activeForm": "Building auto-marking",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

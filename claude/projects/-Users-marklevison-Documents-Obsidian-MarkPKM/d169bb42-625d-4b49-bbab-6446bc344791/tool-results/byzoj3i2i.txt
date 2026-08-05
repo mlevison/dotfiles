@@ -1,0 +1,459 @@
+===== CANADA AI =====
+---
+title: "Canada's AI Strategy Mistakes Adoption for Productivity"
+date: "2026-07-10"
+categories:
+  - "artificial-intelligence"
+coverImage: '@/content/blog/canadas-ai-strategy-mistakes-adoption-for-productivity/images/GenAIGamblingWithYourProductivity.png'
+excerpt: There is a massive gap between claiming AI will boost productivity and actually fixing bottlenecks. Lessons from Canada's healthcare system and Humber River Hospital.
+---
+import Figure from '@/components/global/figure.astro';
+import Loopy from '@/components/global/Loopy.astro';
+import genAIGambling from '@/content/blog/canadas-ai-strategy-mistakes-adoption-for-productivity/images/GenAIGamblingWithYourProductivity.png';
+
+Canada has a real productivity problem. We have for decades. In 1984, the Canadian economy was 88% as productive as the US per hour worked. In 2022, it had fallen to 71%.[^1]
+
+The new AI strategy is an attempt to fix that. It promises a 3 percent increase in GDP, from labour productivity. “Increase Canada’s business adoption of AI from 12 percent today to 60 percent by 2034, through boosting SMEs and business adoption supports.”[^2] I’m reminded of the mineshaft gap in Dr Strangelove (Stanley Kubrick was satirizing the military focus on the missile gap in the 1950s). Adoption of AI doesn’t make an organization more productive. I made [the same argument about the federal government](/blog/will-ai-make-the-federal-government-more-efficient-or-just-more-busy/): dropping AI onto a broken process just automates the mess. A target like this invites AI washing: measure success by adoption rate and organizations will claim they're "doing AI" to hit the number, whether or not anything meaningful changes.
+
+Saying a new technology will magically make us more productive doesn’t make it so.
+
+## Sectors
+The strategy names sectors where AI will create “outsized value”: healthcare, energy and natural resources, transportation, agriculture, and manufacturing. Why these sectors? Based on what evidence?
+
+<Figure
+  src={genAIGambling}
+  alt="Illustration of a robot labelled AI next to a pair of dice, headed “Canada's AI Strategy: Will AI Make Us More Productive?” and captioned “Gambling with Your Productivity”"
+  caption="Naming sectors without evidence of where AI actually helps is a bet, not a plan."
+/>
+
+There are many ways AI could help and harm in all of these sectors. The strategy doesn’t say anything useful about how AI will help.
+
+## Healthcare
+I will focus on the health sector, because it’s the one we hear about most often. In Ontario, the stories are of emergency rooms overflowing. In some rural communities, the emergency rooms operate on reduced hours due to staffing shortages. To make the emergency room more efficient, we might try to use AI to help in the triage process. Assuming the AI doesn’t make any mistakes (unwise assumption), we’ve sped up the triage process. Unfortunately if the hospital is operating at 100% or more of capacity in terms of the number of beds, speeding triage doesn’t help. It helps a handful leave faster but doesn’t make a meaningful difference.
+
+Our mistake? We tackled the emergency room problem in isolation.
+
+Putting on our [Systems Thinking](/blog/genai-systems-thinking-team-problems/) hat, we want to ask two questions:
+- Why are there so many people visiting emergency rooms?
+- Why are hospital beds so full?
+
+### Hospital beds
+- Low population to hospital bed ratio
+- Waiting lists for long term care
+- Staffing shortages
+
+### Emergency Room Volume
+- Lack of family doctor
+- Lack of family doctor turns simple problems into more complex problems, which in turn might result in a hospital stay
+- Unsure where to go: walk in clinic? Emergency?
+- Seasonal flu et al
+
+These factors don’t sit in neat boxes; they feed each other. Drag any node in the diagram below to see how a change ripples through the system. Notice the reinforcing loop on the left: admin burden burns doctors out, so fewer family doctors remain, which piles more admin on those still practising. That shortage pushes people into the ER, and the beds, our real bottleneck, stay full whether or not triage runs faster.
+
+<Loopy
+  data="[[[1,440,270,0.5,%22Family%2520Doctors%22,3],[2,200,410,0.5,%22Admin%2520Burden%22,1],[3,200,150,0.5,%22Doctor%2520Burnout%22,0],[4,660,150,0.5,%22ER%2520Visits%22,2],[5,880,300,0.5,%22Bed%2520Occupancy%22,0],[6,660,430,0.5,%22LTC%2520Waitlist%22,5]],[[2,3,40,1],[3,1,40,-1],[1,2,150,-1],[1,4,-40,-1],[4,5,-40,1],[6,5,40,1]],[[200,500,%22Reinforcing%2520loop%22],[880,190,%22The%2520bottleneck%22]],7%5D"
+  title="Causal loop diagram: why faster ER triage doesn't empty full hospital beds"
+/>
+
+None of these problems will magically get fixed by AI. If we want our healthcare system to help us get well/stay well, look at the overall system.
+
+One example of a hospital taking a systemic approach? Humber River Hospital has a command centre where they’re paying attention[^3] to:
+- Emergency Department volume
+- Bed allocations and assignments
+- Room cleaning
+- Critical care capacity
+- Surgical scheduling
+- Discharge planning
+
+Reading the promotional PDF from GE[^4] the command centre is focused on getting the patients who need admission a bed faster and reducing pain, complications and secondary infections.
+
+GE promotes this system as using AI. However, the AI isn’t the central feature. The value of this system is that people in the hospital are paying constant attention to how the hospital is working. If there is a constraint, they make changes to reduce the problem. The command centre is staffed by a cross disciplinary group of people, so that there is enough knowledge in the room to make good decisions.
+
+AI is useful here, because they’ve studied the flow of the system. They’ve established useful metrics: getting people healthy and allowing them to leave hospital. Here’s the irony: the pattern-finding that actually helps predates ChatGPT and GenAI entirely. GE brands it “AI” but it’s not the AI the strategy is betting on.
+
+The material available in public is promotional so the actual effectiveness of the real system is something I can’t see.
+
+AI didn’t make Humber River Hospital more effective. Improving the flow in the system made it more effective. Predictive analytics is just a tool in this picture.
+
+### Family Doctors and GenAI
+Earlier we noted that the lack of family doctors is a contributing factor to over capacity.
+
+After a full day of seeing patients, family doctors still have to write up charts documenting their findings, treatment and prescriptions. This is unpaid labour, the doctor is paid for the patient visit and the documentation is treated as overhead.
+
+Family doctors are already dealing with burnout, it turns out that OHIP payments in many cases don’t cover the realistic costs of running a clinic (rental, front office staff, medical equipment, computers, etc.) In an attempt to reduce the unpaid labour, many doctors I know have turned to GenAI transcription tools. There are clearly documented problems with some of these tools making mistakes with both the diagnoses and medications[^5]. Yet the physicians I know report saving a considerable amount of time. Possibly another example of [GenAI making us feel more productive](/blog/using-genai-to-code-not-so-fast/) without making a big difference.
+
+GenAI might help here, however we’ve solved a symptom. Family doctors are expected to run businesses (not their training) and are expected to handle a large number of administrative tasks along with seeing patients.
+
+Transcription tools may help, but they don’t solve the underlying problem. The administrative burden on family doctors is a major factor in their burnout.
+
+We need to fix the system, and not just the symptoms.
+
+## Not a Magic Wand
+GenAI isn’t a magic wand and it isn’t a panacea. In the right context, it can be very useful. Used in the wrong place, it can [make an organization more fragile, not more resilient](/blog/is-ai-making-your-organization-fragile-or-more-resilient/).
+
+Humber River Hospital’s command centre is a good step in the right direction. If we want to make a meaningful difference in the healthcare system, we need to look wider than just an emergency room. In short, we want to understand why family doctors are leaving the profession. If we can’t keep them happy to stay in the profession, then we can’t expect to keep patients out of the emergency room. At the other end of the spectrum, since many hospital beds are occupied by patients waiting for long term care, we need to find compassionate ways to improve the long term care system. We may also need more hospital staff and more beds.
+
+The Healthcare system in Canada is just one example of many. We have a productivity problem, but we can’t just tell people to use GenAI and expect an improvement. If we want to improve productivity, we need to look at each organization as a system, understand the bottlenecks in the system and focus on eliminating that bottleneck.
+
+[^1]: Bank of Canada, [Time to Break the Glass: Fixing Canada's Productivity Problem](https://www.bankofcanada.ca/2024/03/time-to-break-the-glass-fixing-canadas-productivity-problem/)
+[^2]: Innovation, Science and Economic Development Canada, [Canada's National Artificial Intelligence Strategy](https://ised-isde.canada.ca/site/ised/en/canadas-national-artificial-intelligence-strategy-ai-all)
+[^3]: Humber River Hospital Foundation, [Humber River Hospital's Command Centre Has Created 23 Virtual Beds](https://www.hrhfoundation.ca/blog/humber-river-hospitals-command-centre-has-created-23-virtual-beds/)
+[^4]: GE Healthcare, [Humber River Hospital Command Centre: One Year in Review](https://www.gehealthcare.com/content/dam/gehc/sitecore-migrated-assets/gehc/us/files/services/value-partnerships/20190121-humber-river-hospital-command-centre-one-year-in-review.pdf) (PDF)
+[^5]: CBC News, [Medical AI transcriber for Ontario doctors 'hallucinated,' generated errors: auditor general](https://www.cbc.ca/news/canada/toronto/ai-scribe-system-hallucinations-9.7197049)
+
+*Image attribution: Agile Pain Relief Consulting (July 2026)*
+===== GENAI SYSTEMS THINKING =====
+---
+title: "Systems Thinking with GenAI: Solve Deep Team Problems"
+date: "2026-01-22"
+lastUpdated: '2026-01-22'
+categories:
+- "artificial-intelligence"
+coverImage: "@/content/blog/genai-systems-thinking-team-problems/images/causal-loop-diagram-for-inbox.png"
+excerpt: 'GenAI helps you apply Systems Thinking to team problems. Understand the interconnected parts and avoid common traps like local optimization.'
+---
+
+import CalloutBox from '@/components/global/callout-box.astro';
+import Figure from '@/components/global/figure.astro';
+import HighlightBox from '@/components/global/highlight-box.astro';
+import LinkList from '@/components/global/link-list.astro';
+import CLDForInboxOverwhelm from '@/content/blog/genai-systems-thinking-team-problems/images/causal-loop-diagram-for-inbox.png'
+import CLDForHorizontalTeam from '@/content/blog/genai-systems-thinking-team-problems/images/causal-loop-diagram-for-horizontal-team.png'
+
+Inbox zero was sold to us by productivity experts, and yet it never seems to happen in real life. When we take a step back, the pattern becomes clear: Fast responses to email -> People learn you get stuff done -> More requests for your help appear in your inbox -> ... . Without a fancy label, we engaged in Systems Thinking, a mental model that looks at a problem not in isolation but as a series of interconnected parts. For once, I will find a use for GenAI. (Using GenAI as a sparring partner for Systems Thinking is a core practice in our [Surviving the AI Tsunami course](/surviving-the-ai-tsunami-an-evidenced-based-course/).)
+<Figure
+  src={CLDForInboxOverwhelm}
+  alt="Systems Thinking Causal Loop Diagram showing email inbox overwhelm feedback loop"
+  caption="Systems Thinking Causal Loop Diagram showing email inbox overwhelm feedback loop"
+  align='right'
+/>
+
+## What is Systems Thinking in the Agile World?
+Systems Thinking is a mental model that views problems as interconnected parts
+rather than isolated issues, it means:
+- Looking beyond surface symptoms to find deeper causes
+- Understanding how changes in one area affect others
+- Identifying feedback loops that create recurring problems
+- Avoiding local optimization at the expense of the overall system
+
+## Systems Thinking in Scrum Master Training
+In [CSM workshops](/courses/certified-scrummaster-csm-training/), my final major exercise is to give attendees a coaching problem and ask them to consider how they would coach through it.
+
+Throughout the workshop, we cover team-level improvements through:
+- Retrospectives and clear action items
+- Working Agreements to clarify how we work together
+- Improving Product Backlog Refinement
+- Sprint Backlogs and improving flow
+- Definition of Done and improving quality
+- Most groups even ask questions that get us to discuss what motivates people
+- ... the list goes on
+
+Most of these are clear and likely sources of improvement for a good Scrum Master. The final exercise is intended to take them to a higher level, helping them start thinking about the bigger picture and ask why some challenges are recurring problems. The group is given one of several stories about teams that are struggling, and they're invited to help coach the fictional team. The problems are challenging enough that small improvements at the team level are helpful, but not enough. The idea is to consider many real problems at work and to understand the bigger picture.
+
+My goal is to introduce the attendees to the rudiments of Systems thinking. I give people just a few questions:
+- What happened weeks ago? months ago? years ago? Many challenges are buried years in the past.
+- If this continues, what will the effects be in months? years? Delay effects are especially interesting as they hide cause and effect.
+- Use different perspectives? How would someone with a different background see this situation? How would a manager see it? A senior executive?
+- If we looked from 30,000 ft, what would it look like?
+- What assumptions are we making?
+- ...
+
+There isn't a complete list of questions; I normally suggest attendees look at the Water's Centre System Thinking Cards[^1]. However, it's hard to keep the questions in mind while exploring a problem. I've been using systems thinking as a lens or mental model for years, and I still forget to ask some of the questions. For someone new, the whole thing can be intimidating, and that isn't good.
+
+## Using GenAI as a Systems Thinking Coach
+I've been thinking about how GenAI can aid critical thinking rather than generate more slop. That is when I realized I could create a set of prompts to help with using Systems Thinking as a mental model. I created it as a Claude Skill[^2], so that it can be added to your Claude environment and always be available for use. (The standard has been adopted by OpenAI and others, as [Agent Skills](https://agentskills.io/home) so without too much effort, you should be able to use the skill in most LLMs)
+
+Since most people in a workshop don't already have Claude Code running, they just copied my Claude skill text: https://github.com/mlevison/systems-thinking -- specifically this file: references/questions-of-a-systems-thinker.md and put it at the start of their conversations
+
+I also crafted a challenging situation where I thought Systems thinking would help. Let's run with an example here:
+
+<HighlightBox heading="Our Fictional Problem" variant="caseStudy">
+## Case Study: Horizontally Stratified Teams
+A senior architect is trapped in what he calls a "vicious death spiral." His project connects to dozens of external systems, and the Scrum Master decided to split the work: one team handles user stories while another manages technical integrations. Six sprints in, refinement and planning sessions routinely exceed eight hours. Stories arrive incomplete, missing critical integration details. The technical team launches into deep dives the story team can't follow. Meanwhile, the story team keeps surfacing requirements that expose unexpected integration challenges. Dependencies bounce between groups, estimates become guesswork, and team members mentally check out around hour five.
+
+The architect has watched the same story carry over three sprints because the slicing never works. The Scrum Master keeps extending sessions, believing more time will surface all hidden complexity. The architect is convinced there must be a way to groom, slice, and size stories in under ten minutes. He just can't see how to get there from here.
+</HighlightBox>
+As usual with a GenAI model, the conversation is long. I'm excerpting key details and then sharing my response.
+> Let me start with a foundational question: What organizational forces or constraints led to the decision to horizontally stratify teams in the first place?
+
+**My response:** In the past, before Scrum, the whole stratified by specialized teams. Since Scrum has come in, nothing has changed. Everyone says it is just more efficient.
+> The phrase "everyone says it is just more efficient" is particularly telling—it points to an unexamined mental model that may be creating a self-reinforcing loop.
+> ...
+> Question for you: When people say "it's more efficient," what evidence are they using? Are they measuring:
+> - Individual utilization rates? (people staying busy in their specialty)
+> - Or actual throughput of completed, valuable features to customers?
+
+**My response:** They're measuring how much work (output) each person gets done.
+> There it is. This is a classic systems thinking trap called local optimization at the expense of global optimization. The organization is measuring output (how busy each specialist is) but not outcome (how quickly customer value flows through the system).
+>...
+> What's happening to the people in this system? You mentioned team members "checking out mentally around hour five." What are you observing in terms of morale, turnover, or people's sense of effectiveness?
+
+**My response:** At the start of each big release people are enthusiastic. As release wears on, priorities change and the pressure to get everything done increases.
+
+<CalloutBox heading="The following was the most insightful element of the whole exchange">
+>The system keeps trying to solve a structure problem with a process problem.
+>
+>**Question for you**:
+> When a release ends—does the organization do retrospectives or post-mortems? And if so, what explanations do people give for why things took longer than expected?
+> Do they say:
+> - "Requirements weren't clear enough"
+> - "We didn't plan well enough"
+>- "The technology was more complex than we thought"
+>
+> Or do they ever say:
+>  - "Our team structure creates coordination overhead we're not accounting for"?
+</CalloutBox>
+**My response:** They tend to comment on the requirements because that is another department.
+
+## Visualizing Problems with Causal Loop Diagrams
+This could go on forever, and the [conversation was already over 300 lines](/sample-systems-thinking-conversation/), so I asked: "Before we go any further, let's visualize what we have so far with a Causal Loop diagram". Diagrams in the Markdown world are typically done with Mermaid (what a name), and so I rendered them with the free Mermaid editor
+<Figure
+  src={CLDForHorizontalTeam}
+  alt="Causal Loop Diagram showing local optimization trap in horizontally stratified Scrum teams"
+  caption="Causal Loop Diagram showing local optimization trap in horizontally stratified Scrum teams"
+  align='right'
+/>
+
+This picture illustrates some of the key challenges in the conversation and would make a good starting point for further conversation.
+## Conclusion: Using GenAI for Deeper Team Analysis
+Be careful of taking the outputs of the model too seriously, remember its only job is to predict the next most likely token, it has no understanding. In addition, if you read the [much longer version of the conversation](/sample-systems-thinking-conversation/), you will see the model made a few logical leaps that would need to be checked.
+
+## Systems Thinking a Claude Skill
+The skill is found in the repo: [Systems Thinking Skill for Claude Code](https://github.com/mlevison/systems-thinking). Please Github issues to make suggestions.
+
+## Conclusion: Using GenAI for Deeper Team Analysis
+Systems Thinking is most helpful when it is part of a conversation among a group working on a problem together. It is a tool that helps build a shared understanding of the world. The intention of this skill is to make it easier to have those conversations and to ask questions that might have been missed. Please use this with others and not in isolation.
+
+[^1]: Waters Centre Systems Thinking Cards: https://thinkingtoolsstudio.waterscenterst.org/cards
+[^2]: Claude Skills are specialized instruction sets that teach Claude how to excel at specific tasks - like creating professional documents, building presentations, or analyzing systems. A big benefit is that skills are only loaded into Claude's working memory when needed. So our Systems Thinking skill sits in the background, and Claude will pull it in when your conversation calls for it. This saves on tokens and makes it's use more efficient.
+
+<LinkList heading = "Related Blog Entries">
+    - Systems Thinking is much more useful than [AI Chatbots for Agile Coaches: Why They Fail](/blog/ai-chatbots-for-agile-coaches-why-they-fail/)
+    - [GenAI and the Feature Factory: Automating Away Collaboration](/blog/gen-ai-and-the-feature-factory-automating-away-collaboration/) - a systems problem where local optimization harms the whole
+    - [Agile Bonuses - The Damage They Do](/blog/agile-bonuses-the-damage-they-do/) - is an example of Systems Thinking
+    - [Scrum Anti-Patterns: Micromanagement](/blog/scrum-anti-patterns-micromanagement/)
+    - [Hidden Complexity Tax: How It Kills Organizational Resilience](/blog/how-hidden-complexity-tax-saps-organization-resilience/)
+    - [Canada's AI Strategy Mistakes Adoption for Productivity](/blog/canadas-ai-strategy-mistakes-adoption-for-productivity/) - Systems Thinking applied to healthcare bottlenecks
+</LinkList>
+===== TEAM FRICTION =====
+---
+title: 'Scrum by Example - Team Friction Inspires Working Agreements'
+date: '2023-11-23'
+lastUpdated: '2025-05-01'
+categories:
+  - 'scrum-by-example'
+  - 'team-dynamics-and-people'
+coverImage: './images/APR_Blog-Illustrations_Aug2019_ScrumByExample_WorkingAgreements_v2-A.jpg'
+excerpt: '_Scrum team **Working Agreements** are a simple, powerful way of creating explicit'
+---
+
+import HighlightBox from '@/components/global/highlight-box.astro'
+import Figure from '@/components/global/figure.astro';
+import APRBlogIllustrationsAug2019ScrumByExampleWorkingAgreementsV2A from 'images/APR_Blog-Illustrations_Aug2019_ScrumByExample_WorkingAgreements_v2-A.jpg';
+import APRBlogIllustrationsAug2019ScrumByExampleWorkingAgreementsV2B from 'images/APR_Blog-Illustrations_Aug2019_ScrumByExample_WorkingAgreements_v2-B.jpg';
+
+<Figure
+  src={APRBlogIllustrationsAug2019ScrumByExampleWorkingAgreementsV2A}
+  alt="Team Friction? Working Agreements may be the solution you need."
+  caption="Team Friction? Working Agreements may be the solution you need."
+/>
+
+
+_Scrum team **Working Agreements** are a simple, powerful way of creating explicit guidelines for what kind of work culture you want for your Team. They are a reminder for everyone about how they can commit to respectful behaviour and communication. In this post we'll see how the fictional World's Smallest Online Bookstore (WSOBS) Scrum team struggles without a Working Agreement, and why having one would be useful._
+
+Acceptance Criteria
+
+<HighlightBox heading="Dramatis Personae" variant="caseStudy">
+**Steve:** - A scrumMaster and the hero of our story
+
+**Paula:** - The Product Owner of Steve's team
+
+**Kirby** – one of the Team's software developers
+
+**Tonia** – the Team's Quality Assurance specialist
+
+**Doug** – another of the Team's software developers
+
+**Ian** – the Team's Business Logic programming specialist
+</HighlightBox>
+
+In the past few Sprints, there have been moments of social friction noticed by both Steve and the rest of the WSOBS Team. They included:
+
+Kirby was blunt when discussing a defect with both Tonia and Ian.
+
+Some discussions with the whole Team became so heated that the quieter team members stopped speaking up for several days.
+
+Doug was late for Daily Scrum on several days.
+
+On multiple occasions, Team members needed to ask Paula some questions, but she wasn't available by email, and they often didn't know how to find her.
+
+None of these individual issues was truly bad, however, taken together and left unchecked, they harm the Team's cohesion. When that happens, people opt to stay silent when there is an opportunity to share an opinion, and events like Daily Scrum becomes less useful when Team members signal their disrespect by frequently being late.
+
+During the next Retrospective, Steve mentions a few of these issues and says that he wants to talk about making their environment better. Tonia shares that she knows another one of their peer teams has created their own Working Agreement to reduce some of the friction and improve respect.
+
+Before we see how Steve helps his team in this episode, let's make sure we understand what a Working Agreement is, and should be.
+
+## What is a Working Agreement?
+
+A Working Agreement is a short set of guidelines created by the Scrum Team, that establishes what the expectations of the team members are for one another. A well-written Agreement should help establish and reinforce a clear, shared understanding about what team members agree is good behaviour and communication.
+
+## Why do Working Agreements Matter?
+
+Working Agreements help make implicit social expectations explicit. (Whoa, that's a mouthful.) They invite team members to tell each other what matters to them on a whole host of topics. This leads to a shared understanding and, in return, a reduction in friction. Done well, they also invite open and honest communication which helps create psychological safety.
+
+## Characteristics of an Effective Scrum Team Working Agreement
+
+A Working Agreement doesn't have a police force to ensure that it's followed. Its effectiveness comes from being:
+
+- **Public and Visible** – preferably written in a large font and posted in a prominent space (perhaps where Daily Stand-up takes place)
+- **Collaborative** – created by all, not imposed by others
+- **Short** – a small list of agreements that are easily remembered and lived up to trumps a big list that overwhelms people and gets forgotten
+- **Updated Frequently** – [Taiichi Ohno](https://blog.gembaacademy.com/2010/02/16/excerpts_from_an_interview_with_taiichi_ohno_july_1/) once said: "If the kanbans do not change for one month, you are salary thieves"
+- **Consequential** – when the agreements are violated, Team members call out the violation with respectful reminders
+
+## Working Agreements Should be Unique to Team Needs
+Each Scrum Team will create its own Working Agreement based on the context of its work. Elements of an Agreement might include some of these examples:
+
+- **Core hours** – times during the day that all Team members agree to be present and available for collaboration.
+- **Daily Standup** – the time that it happens.
+- **Attendance** for meetings or events – whether or not you agree to support decisions made. in your absence, whether you will let your team know in advance if you can't attend.
+- **Product Owner** – availability and contact information.
+- **Definition of Done** - an agreement about quality
+- How the Team **limits Work in Progress**.
+- How the Team ensures everyone has an **equal voice** and feels respected. For example, use of a talking stick, where the person who has the stick has the opportunity to talk and everyone else focuses on them. My favorite tool is a bean bag or ball that can easily be tossed from person to person, rather than a stick.
+- **Decision-Making** Process and Rules - establish a clear process for making decisions: consensus-based decision-making or voting mechanisms as needed. (See [Why Group Decision-Making Techniques are Important](/blog/why-are-group-decision-making-techniques-important/) for more depth.)
+- **Skill development** – maybe it's agreed that during each Sprint at least one Team Member will work on growing a skill outside of their core strengths.
+- **Technical Debt** - in the case of software development, maybe there's an element that states every Sprint the Team will make an effort to improve some part of their codebase.
+- **Impediments** - Guidelines for handling them.
+- An understanding of how to resolve **conflict** – for example, ask for a facilitator, or echo back your understanding of the other person's viewpoint, etc.
+- **Handling Outside Interruptions** - define procedures for managing interruptions during the Sprint itself, such as setting expectations with stakeholders and limiting distractions within the team.
+- **Sustainable Pace** - how can the team ensure that they're committing to work that is realistically achievable in the Sprint?
+- **Team Values** - review the Scrum Values and decide how they apply in your world. As a reminder, the Scrum Values are "Focus, Commitment, Courage, Openness and Respect". Many teams also discuss topics that include collaboration, continuous learning, and customer focus.
+- **Communication Channels** - agree on preferred communication channels (e.g. Slack, Microsoft Teams) for day-to-day interactions and set expectations around response times. (_Hint: instant response is unhealthy._)
+- **Collaboration Tools** - choose appropriate tools (e.g. Mural, Miro) to facilitate team collaboration and ensure everyone has access to them.
+- **Celebrating Successes** - how will the team celebrate successes?
+- **Handling Disagreements** - establish protocols for addressing disagreements within the team.
+- **Violations of Working Agreements** - define a simple rule on how to point out when someone breaks the working agreements.
+
+### Co-located teams might have working agreements for:
+- **Cell phones** – if or when it is appropriate to use them during Team events.
+- **Headphones** – when it is fine to use headphones, versus when Team members will not use them so they're available to communicate and collaborate with others.
+
+### Remote teams might consider:
+- Use of **cameras** in online meetings - establish guidelines around camera usage. (_Hint: collaboration is more effective when our cameras are on where possible._)
+- Commitment not to use other tools (email, chat, phone, …) during team events.
+
+### Hybrid teams:
+- The day(s) of the Sprint that all team members commit to being in the office (_Hint: where practical, Sprint Planning, Review and Retrospective are more effective in person_.)
+- How to include remote team members in a meeting when half the team is in the office and the other half is online.
+
+## Working Agreements and Scrum Values
+As part of a team coming up with their own list of elements to have in their Working Agreement, it is worth considering the Scrum Values as a source of guidance:
+
+- **Focus**: Because we focus on only a few things at a time, we work well together and produce excellent work. We deliver valuable items sooner.
+- **Courage**: Because we are not alone, we feel supported and have more resources at our disposal. This gives us the courage to undertake greater challenges.
+- **Openness**: As we work together, we practice expressing how we're doing, and what's in our way. We learn that it is good to express concerns so that they can be addressed.
+- **Commitment**: Because we have great control over our own destiny, we become more committed to success.
+- **Respect**: As we work together, sharing successes and failures, we come to respect each other, and to help each other become worthy of respect.
+
+Teams normally create a Working Agreement before their first Sprint by setting aside an hour or two beforehand. In the case of our fictional World's Smallest Online Bookstore (WSOB) Team, they haven't yet. No time like the present!
+
+### How To Build a Scrum Team Working Agreement - How Can a ScrumMaster Help?
+Sensing the atmosphere of the Team, Steve starts by helping them learn about Working Agreements. He first ensures that the Team understands what Working Agreements are, and how they will personally benefit from having them.
+
+_Mark's note: Spending some time on a good setup will reduce cynicism among Team members. Giving people some categories or areas in which Working Agreements will help, gives them a framework. For instance, [in our workshops](#workshops), categories are cell phones, laptops, break times, and punctuality. In the context of a Team, you might use some of the areas mentioned above, and perhaps draw on the Scrum Values, but ultimately the Team chooses what works best for them._
+
+Steve then facilitates a Retrospective to help the Team and Product Owner come together to sort out some of their problems. During the process, they discuss the friction they have felt over the previous few Sprints. They agree to create a Working Agreement and, since it will likely take over an hour, they elect to make it an action item for the next Sprint Retrospective.
+
+_There isn't an official or correct way to create Working Agreements, so Steve uses the approach that I share in my workshops. As usual for a ScrumMaster, good preparation pays dividends. Consider canvassing the Team beforehand about categories/areas for agreement._
+
+## Facilitating the Creation of a Working Agreement
+
+### Check-In
+As with Retrospectives, asking check-in questions helps to give team members an opportunity to engage with the purpose (in this case, create a Working Agreement) and to understand what might have your teammates worried or preoccupied. Try using a round-robin format, where each person speaks one-on-one with everyone else, in turn.
+
+Some opening questions you might use:
+- What has your attention today?
+- What keeps you up at night?
+- How would you describe where your head is? And your heart?
+- What are you grateful for?
+- How are you feeling today?
+
+Once we've established where our teammates are at as people, we can move on to crafting the working agreements proper.
+
+### Coach, But Don't Lead
+Use prompt questions such as the following examples to help the group craft their Working Agreement:
+
+- "What are the decisions that, if made now, could help us in the future when the pressure is on, or things haven't gone our way?[^1]
+- How do we envision our interactions and behaviours?
+- What are our shared values and principles?
+- How do we handle conflict and challenges?
+- How do we hold each other accountable?
+- How do we uphold these working agreements?
+
+Get everyone to answer. Explain the format you will use and any ground rules that you have in place.  For example, you might have ground rules:
+
+- Assume positive intent
+- If you say 'no' to a proposed item, you're expected to try to make it better.
+- Use the Decider Protocol: Thumbs Up – I'm good; Sideways – I can live with it; Thumbs down – I will block this proposal. (see: Core Protocols for more depth)
+
+Break groups larger than five people into sub-groups. _In my experience, it's easier to get small group agreement first, then bring it back to the whole._
+
+Invite the small groups to create a potential Working Agreement in each area or category. Invite them to create any additional Working Agreements they feel are needed to address concerns or conflicts.
+
+At the end of 5-10 minutes, get the groups back together and review the proposed items.
+
+After a couple of rounds of proposals, if there isn't any consensus on a particular item, move on —they can't establish an agreement in that area for now. Consider revisiting the item the next time Working Agreements get deliberated.
+
+Every few Sprints, the Working Agreement should be updated, often by checking it in Retrospective and asking a question like, "Are these still our working agreements? What would we like to update? What areas need new agreements?"
+
+After talking to Team members, Steve selects "Daily Scrum Start Time," "Respect," "Phone usage in Team Events," and "How to give everyone equal voice for discussion" as elements to include in the Working Agreement. He explains that if there are other categories that the Team would like to consider including in the Working Agreement, they're welcome to add them as they go.
+
+Given the previous friction between some Team members, he opts for a 1-2-4 model[^2] for discussing possible agreements. This model is designed to ensure that everyone has a voice in the process:
+
+- Each Team member (1) takes a few minutes to share to the whole group their ideas for potential agreements in each category.
+- They then work in pairs (2) to record the best ideas from each person. As facilitator, Steve is paying attention to the conversations and outcomes. It should be a red flag if one person is dominating their partner during this step.
+- Next, they move to groups of four (4) to further consolidate their ideas and present them to the group for discussion. In the case of Steve's Team, there are only six people, so they skip this step and move straight to final group consensus.
+
+Steve starts asking for proposed agreements in their first area of focus: Daily Scrum Start Time. After each potential working agreement, he uses the Decider Protocol to check for consensus rapidly. When there isn't immediate consensus, the person who said 'no' to an idea suggests what they think is a better one. If multiple people have an issue, then each is expected to offer a better idea. If too many people say no, then the proposer should consider withdrawing the proposal.
+
+In the case of Steve's World's Smallest Online Book Store Team, after 20 minutes, the team have their first set of Working Agreements:
+
+- Respect – when another Team member is talking, don't interrupt. When they've finished, pause, reflect, and share back your understanding of their idea.[^3]
+
+- Make sure everyone has a voice – more vocal Team members volunteer to speak last to give quieter Team members an opportunity to speak up.
+
+- Daily Scrum is 9:20 am, allowing all Team members to get their kids to school before coming in to work.
+
+- Cellphones in Team Events – they stay outside the room.
+
+- To improve the quality of all ideas, we encourage respectful dissent. At least one Team member volunteers to be the dissenter. Even if they think the original idea is good, they're expected to find criticisms of the idea with the goal of making it stronger.[^4]
+
+- Focus – during the Sprint, the Team is focused on the Sprint Goal. If something comes up that doesn't fit the goal, Team Members are expected to say no.
+
+_Notice that the last two items weren't among those previously suggested by Steve, instead, they appeared organically. For more on how psychological safety and collaboration contribute to team effectiveness, see [Characteristics of Effective Scrum Teams](/blog/characteristics-of-effective-scrum-teams/)._
+
+Steve then offers a suggestion of his own: "If you miss a meeting/event it is expected that you will support the decisions made there." Kirby, who has previous experience facilitating, reminded Steve that if he truly is playing the role of facilitator as part of his ScrumMaster duties, then he is expected to remain neutral and not inject his own ideas.
+
+<Figure
+  src={APRBlogIllustrationsAug2019ScrumByExampleWorkingAgreementsV2B}
+  alt="Working Agreements - the solution to create the work culture you want for your team."
+  caption="Working Agreements - the solution to create the work culture you want for your team."
+/>
+
+
+The Team compiles all the individual agreements in the Working Agreement and posts it on the Team room wall. In the months afterwards, Team members slowly get used to the idea of reminding their peers of behaviours that don't honour the Agreement. Every few Sprints, Steve asks in a Retrospective "Is this still our Working Agreement? Is there anything you would like to change?" The list evolves as Team members find more areas where they see benefits. After six months, they find themselves much better able to deal with tense problems within the Team, or when the outside pressure increases on them.
+
+_**[Scrum by Example](/blog/category/scrum-by-example/) is a narrative-style blog series designed to help people new to Scrum, especially new ScrumMasters. If you are new to the series, we recommend you [check out the introduction](/blog/category/scrum-by-example/) to learn more about the series and discover other helpful articles.**_
+
+## Want to learn how to put together really effective Working Agreements?
+
+If there is one idea at the heart of Scrum and Agile that is most important, it is respecting the people you work with. When you empower teams to make decisions about how they work, you use one of the most powerful methods to help them be more effective and become high-performing. Working Agreements are a great step toward that improvement. In our Certified ScrumMaster workshops, attendees discover how to support and facilitate these kinds of agreements. If you are committed to helping create a respectful environment for your team, we invite you to [join us to learn how and to gain practical, hands-on experience](/courses/certified-scrummaster-csm-training/).
+
+[^1]: [https://nomad8.com/articles/creating-working-agreements-that-are-actually-useful](https://nomad8.com/articles/creating-working-agreements-that-are-actually-useful)
+[^2]: [https://www.liberatingstructures.com/1-1-2-4-all/](https://www.liberatingstructures.com/1-1-2-4-all/)
+[^3]: [https://agilelearninglabs.com/2008/03/active-listening-techniques/](https://agilelearninglabs.com/2008/03/active-listening-techniques/)
+[^4]: [https://whatsthepont.com/2011/08/14/ritual-dissent-getting-better-proposals-and-dealing-with-saboteurs/](https://whatsthepont.com/2011/08/14/ritual-dissent-getting-better-proposals-and-dealing-with-saboteurs/)
+
+*Image attribution: Agile Pain Relief Consulting
+(Updated November 2023)*

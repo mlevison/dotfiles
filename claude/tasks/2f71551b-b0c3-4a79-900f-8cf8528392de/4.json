@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Write docs/demo-seed.md + backlog entries",
+  "description": "Doc: purpose, logins, commands, env, dataset. Backlog: demo-seed utility one-liner + the esbuild/xlsx/cookie vulnerabilities in Engineering.",
+  "activeForm": "Writing docs + backlog",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

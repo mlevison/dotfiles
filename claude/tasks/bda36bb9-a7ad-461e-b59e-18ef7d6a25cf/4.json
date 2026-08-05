@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Document remaining cleanup slices in backlog",
+  "description": "Document slices 3 (dead #{#..} spec-tag + stale TDD-header sweep across ~40 files) and 4 (fetch-mock fixture, remaining inline domain literals, oversized files) as one-liners in docs/product-backlog.md under Test-suite cleanup. Note ReceiptService/reconciliation vi.mock-hoisted preamble is not import-shareable.",
+  "activeForm": "Documenting remaining cleanup slices",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

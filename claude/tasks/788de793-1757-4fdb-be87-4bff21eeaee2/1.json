@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Dev-only auto-login for local stack",
+  "description": "src/lib/dev/autoLogin.ts gated on import.meta.env.DEV + loopback PUBLIC_SUPABASE_URL, hooked into +layout.svelte before authChecked flips. Share the demo credential constant with scripts/demo.",
+  "activeForm": "Building dev auto-login",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

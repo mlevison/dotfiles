@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Add category/triggers/dependencies frontmatter to every skill",
+  "description": "Inject uniform frontmatter fields (category, triggers, dependencies, triggered) into all SKILL.md files so they are the source of truth.",
+  "activeForm": "Adding frontmatter to skills",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

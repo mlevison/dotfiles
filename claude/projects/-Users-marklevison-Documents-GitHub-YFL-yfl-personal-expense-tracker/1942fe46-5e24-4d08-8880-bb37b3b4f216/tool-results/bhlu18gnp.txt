@@ -1,0 +1,704 @@
+src/lib/components/ReceiptImageViewer.svelte --- 1/7 --- Text
+ 12  12      * @component
+ 13  13      */
+ 14  14 
+ ..  15     import {
+ ..  16         MIN_ZOOM,
+ ..  17         ZOOM_STEP,
+ ..  18         calculateFitDimensions,
+ ..  19         calculateMaxZoom
+ ..  20     } from '$lib/utils/imageZoom';
+ ..  21 
+ 15  22     // Props — #{#pdf1a} added isPdf for PDF detection
+ 16  23     interface Props {
+ 17  24         imageUrl: string;
+
+src/lib/components/ReceiptImageViewer.svelte --- 2/7 --- Text
+ 48     let baseWidth = $state(0);        55     let baseWidth = $state(0);
+ 49     let baseHeight = $state(0);       56     let baseHeight = $state(0);
+ 50                                       57 
+ ..                                       58     // The image's own resolution, 
+ ..                                       .. which sets how far it can honestly 
+ ..                                       .. be zoomed
+ ..                                       59     let naturalWidth = $state(0);
+ ..                                       60 
+ 51     // Refs                           61     // Refs
+ 52     let scrollContainer: HTMLDivEle   62     let scrollContainer: HTMLDivEle
+ .. ment | undefined = $state(undefined   .. ment | undefined = $state(undefined
+ .. );                                    .. );
+ 53                                       63 
+ 54     // Constants                      64     // Constants
+ 55     const MIN_ZOOM = 100;             .. 
+ 56     const MAX_ZOOM = 400;             .. 
+ 57     const ZOOM_STEP = 50;             .. 
+ 58     const PAN_STEP = 50;              65     const PAN_STEP = 50;
+ 59     const DOUBLE_TAP_DELAY = 300; /   66     const DOUBLE_TAP_DELAY = 300; /
+ .. / ms                                  .. / ms
+ 60                                       67 
+ ..                                       68     /**
+ ..                                       69      * The zoom ceiling is a proper
+ ..                                       .. ty of THIS image, not a fixed perce
+ ..                                       .. ntage: it is
+ ..                                       70      * the point where one image pi
+ ..                                       .. xel fills one CSS pixel. Beyond it 
+ ..                                       .. the browser
+ ..                                       71      * would only interpolate, so t
+ ..                                       .. he controls stop there — and for an
+ ..                                       ..  image
+ ..                                       72      * already at or under viewport
+ ..                                       ..  size they never leave 100% at all.
+ ..                                       73      */
+ ..                                       74     let maxZoom = $derived(calculat
+ ..                                       .. eMaxZoom(naturalWidth, baseWidth));
+ ..                                       75 
+ 61     // Pending scroll adjustment fo   76     // Pending scroll adjustment fo
+ .. r zoom-to-cursor                      .. r zoom-to-cursor
+ 62     let rafId = 0;                    77     let rafId = 0;
+ 63                                       78 
+
+src/lib/components/ReceiptImageViewer.svelte --- 3/7 --- Text
+ 71      */                               86      */
+ 72     function handleImageLoad(e: Eve   87     function handleImageLoad(e: Eve
+ .. nt) {                                 .. nt) {
+ 73         const img = e.target as HTM   88         const img = e.target as HTM
+ .. LImageElement;                        .. LImageElement;
+ 74         const natW = img.naturalWid   89         naturalWidth = img.naturalW
+ .. th;                                   .. idth;
+ 75         const natH = img.naturalHei   90         const fit = calculateFitDim
+ .. ght;                                  .. ensions(
+ ..                                       91             img.naturalWidth,
+ ..                                       92             img.naturalHeight,
+ 76         const maxW = window.innerWi   93             window.innerWidth * 0.9
+ .. dth * 0.9;                            .. ,
+ 77         const maxH = window.innerHe   94             window.innerHeight * 0.
+ .. ight * 0.8;                           .. 8
+ 78         const scale = Math.min(maxW   95         );
+ ..  / natW, maxH / natH, 1);             .. 
+ 79         baseWidth = natW * scale;     96         baseWidth = fit.width;
+ 80         baseHeight = natH * scale;    97         baseHeight = fit.height;
+ 81     }                                 98     }
+ 82                                       99 
+ 83     /**                              100     /**
+
+src/lib/components/ReceiptImageViewer.svelte --- 4/7 --- Text
+ 86      */                              103      */
+ 87     function zoomTo(newZoom: number  104     function zoomTo(newZoom: number
+ .. , cursorX?: number, cursorY?: numbe  ... , cursorX?: number, cursorY?: numbe
+ .. r) {                                 ... r) {
+ 88         const container = scrollCon  105         const container = scrollCon
+ .. tainer;                              ... tainer;
+ 89         newZoom = Math.max(MIN_ZOOM  106         newZoom = Math.max(MIN_ZOOM
+ .. , Math.min(MAX_ZOOM, newZoom));      ... , Math.min(maxZoom, newZoom));
+ 90                                      107 
+ 91         if (!container || baseWidth  108         if (!container || baseWidth
+ ..  === 0) {                            ...  === 0) {
+ 92             zoom = newZoom;          109             zoom = newZoom;
+
+src/lib/components/ReceiptImageViewer.svelte --- 5/7 --- Text
+122                                      139 
+123     /**                              140     /**
+124      * #{#zom1a} Zoom in by one ste  141      * #{#zom1a} Zoom in by one ste
+... p (snaps to 50% increments)          ... p (snaps to 50% increments)
+...                                      142      *
+...                                      143      * The ceiling is rarely a mult
+...                                      ... iple of ZOOM_STEP, so the last step
+...                                      ...  lands on the
+...                                      144      * ceiling itself rather than o
+...                                      ... vershooting it or becoming unreacha
+...                                      ... ble.
+125      */                              145      */
+126     function zoomIn(cursorX?: numbe  146     function zoomIn(cursorX?: numbe
+... r, cursorY?: number) {               ... r, cursorY?: number) {
+127         zoomTo(Math.ceil((zoom + 1)  147         zoomTo(Math.min(Math.ceil((
+...  / ZOOM_STEP) * ZOOM_STEP, cursorX,  ... zoom + 1) / ZOOM_STEP) * ZOOM_STEP,
+...  cursorY);                           ...  maxZoom), cursorX, cursorY);
+128     }                                148     }
+129                                      149 
+130     /**                              150     /**
+
+src/lib/components/ReceiptImageViewer.svelte --- 6/7 --- Text
+392 412             resetZoom();
+393 413             baseWidth = 0;
+394 414             baseHeight = 0;
+... 415             naturalWidth = 0;
+395 416         }
+396 417     });
+397 418 
+
+src/lib/components/ReceiptImageViewer.svelte --- 7/7 --- Text
+509                 <!-- Zoom in button  530                 <!-- Zoom in button
+...  -->                                 ...  -->
+510                 <button              531                 <button
+511                     onclick={() =>   532                     onclick={() => 
+... zoomIn()}                            ... zoomIn()}
+512                     disabled={zoom   533                     disabled={zoom 
+... >= MAX_ZOOM}                         ... >= maxZoom}
+513                     aria-label="Zoo  534                     aria-label="Zoo
+... m in"                                ... m in"
+514                     class="rounded   535                     class="rounded 
+... p-2 transition-colors hover:bg-whit  ... p-2 transition-colors hover:bg-whit
+... e/10 disabled:cursor-not-allowed di  ... e/10 disabled:cursor-not-allowed di
+... sabled:opacity-30"                   ... sabled:opacity-30"
+515                     type="button"    536                     type="button"
+
+src/lib/services/ReceiptService.ts --- 1/3 --- TypeScript
+  4   4 import type { ReceiptExtract } from '$lib/utils/sanitize';
+  5   5 import { isSuspiciousDate } from '$lib/utils/dateValidation';
+  6   6 import { resolveOcrReceiptDate } from '$lib/utils/receiptDateCorrection';
+  7   7 import { isResizableImage, resizeImage } from '$lib/utils/imageResize';
+  8   8 import { getSignedReceiptUrl } from '$lib/utils/signedUrl';
+  9   9 import { sanitizeFilename } from '$lib/utils/sanitizeFilename';
+ 10  10 
+ 11  11 const IMAGE_TYPES = ['image/jpeg', 'image/png', 'image/heic'];
+ 12  12 const PDF_TYPE = 'application/pdf';
+ ..  13 
+ ..  14 /**
+ ..  15  * What we agree to STORE — these describe the Receipt Image produced by
+ ..  16  * `prepareFileForUpload`, not the Source File a person picked.
+ ..  17  */
+ 13  18 const MAX_IMAGE_MB = 5;
+ 14  19 const MAX_PDF_MB = 10;
+ ..  20 
+ ..  21 /**
+ ..  22  * What we are willing to DECODE. Purely a memory guard: above this, loading the
+ ..  23  * image to shrink it can wedge or crash the tab, so nothing is gained by trying.
+ ..  24  * It is not a statement about acceptable receipts — a 12MB phone photo is fine.
+ ..  25  */
+ ..  26 const MAX_SOURCE_MB = 25;
+ ..  27 
+ ..  28 type Validation = { ok: true } | { ok: false; message: string };
+ ..  29 
+ ..  30 /** The Receipt Image to store, and whether we managed to shrink it. */
+ ..  31 type PreparedUpload = { file: File; shrunk: boolean };
+ ..  32 
+ ..  33 const megabytes = (file: File) => file.size / (1024 * 1024);
+ 15  34 
+ 16  35 /** The database row also carries family_id (set by trigger/RLS), which the model omits. */
+ 17  36 type InsertedReceiptRow = ReceiptRow & { family_id: string | null };
+
+src/lib/services/ReceiptService.ts --- 2/3 --- TypeScript
+161         });                          180         });
+162     }                                181     }
+163                                      182 
+...                                      183     /**
+...                                      184      * Gate the Source File before 
+...                                      ... we decode it: is this a kind of fil
+...                                      ... e we handle,
+...                                      185      * and is it small enough to be
+...                                      ...  worth loading into memory at all?
+...                                      186      *
+...                                      187      * Deliberately says nothing ab
+...                                      ... out the 5MB image limit — that limi
+...                                      ... t describes
+...                                      188      * what we store, and this file
+...                                      ...  has not been shrunk yet. See
+...                                      189      * `docs/adr/0006-the-stored-im
+...                                      ... age-is-the-contract.md`.
+...                                      190      */
+164     validateFile(file: File): { ok:  191     validateSourceFile(file: File):
+...  true } | { ok: false; message: str  ...  Validation {
+... ing } {                              ... 
+165         const type = file.type;      ... 
+166         const sizeMB = file.size /   ... 
+... (1024 * 1024);                       ... 
+167         if ([...IMAGE_TYPES, PDF_TY  192         if ([...IMAGE_TYPES, PDF_TY
+... PE].indexOf(type) === -1) {          ... PE].indexOf(file.type) === -1) {
+168             return { ok: false, mes  193             return { ok: false, mes
+... sage: 'Unsupported file type. Allow  ... sage: 'Unsupported file type. Allow
+... ed: JPEG, PNG, HEIC, PDF.' };        ... ed: JPEG, PNG, HEIC, PDF.' };
+169         }                            194         }
+170         if (IMAGE_TYPES.includes(ty  195         if (megabytes(file) > MAX_S
+... pe) && sizeMB > MAX_IMAGE_MB) {      ... OURCE_MB) {
+171             return { ok: false, mes  196             return { ok: false, mes
+... sage: `Image too large. Max ${MAX_I  ... sage: `File too large to process. M
+... MAGE_MB}MB.` };                      ... ax ${MAX_SOURCE_MB}MB.` };
+172         }                            197         }
+173         if (type === PDF_TYPE && si  ... 
+... zeMB > MAX_PDF_MB) {                 ... 
+174             return { ok: false, mes  ... 
+... sage: `PDF too large. Max ${MAX_PDF  ... 
+... _MB}MB.` };                          ... 
+175         }                            ... 
+176         return { ok: true };         198         return { ok: true };
+177     }                                199     }
+...                                      200 
+...                                      201     /**
+...                                      202      * Gate the Receipt Image we ar
+...                                      ... e about to store. Reached only afte
+...                                      ... r the resize,
+...                                      203      * so an image over the limit h
+...                                      ... ere means the shrink did not happen
+...                                      ...  — say that,
+...                                      204      * rather than telling someone 
+...                                      ... their photo is too big when the app
+...                                      ... 's own job
+...                                      205      * was to make it smaller.
+...                                      206      */
+...                                      207     validateReceiptImage({ file, sh
+...                                      ... runk }: PreparedUpload): Validation
+...                                      ...  {
+...                                      208         const sizeMB = megabytes(fi
+...                                      ... le);
+...                                      209         if (file.type === PDF_TYPE)
+...                                      ...  {
+...                                      210             return sizeMB > MAX_PDF
+...                                      ... _MB
+...                                      211                 ? { ok: false, mess
+...                                      ... age: `PDF too large. Max ${MAX_PDF_
+...                                      ... MB}MB.` }
+...                                      212                 : { ok: true };
+...                                      213         }
+...                                      214         if (sizeMB <= MAX_IMAGE_MB)
+...                                      ...  return { ok: true };
+...                                      215         return {
+...                                      216             ok: false,
+...                                      217             message: shrunk
+...                                      218                 ? `Image too large.
+...                                      ...  Max ${MAX_IMAGE_MB}MB.`
+...                                      219                 : `This image could
+...                                      ...  not be shrunk, and the original is
+...                                      ...  over ${MAX_IMAGE_MB}MB. Try a smal
+...                                      ... ler photo.`
+...                                      220         };
+...                                      221     }
+178                                      222 
+179     /**                              223     /**
+180      * Upload a receipt file, extra  224      * Upload a receipt file, extra
+... ct its data via OCR, and persist th  ... ct its data via OCR, and persist th
+... e receipt row.                       ... e receipt row.
+
+src/lib/services/ReceiptService.ts --- 3/3 --- TypeScript
+184      * - No orphan storage files: i  228      * - No orphan storage files: i
+... f the insert fails after upload, th  ... f the insert fails after upload, th
+... e blob is removed.                   ... e blob is removed.
+185      */                              229      */
+186     async uploadAndCreate(file: Fil  230     async uploadAndCreate(file: Fil
+... e) {                                 ... e) {
+187         const val = this.validateFi  231         const source = this.validat
+... le(file);                            ... eSourceFile(file);
+188         if (!val.ok) throw new Erro  232         if (!source.ok) throw new E
+... r(val.message);                      ... rror(source.message);
+...                                      233 
+...                                      234         // Shrink first, then judge
+...                                      ...  the result. Both steps sit outside
+...                                      ...  withRetry:
+...                                      235         // a rejection here is dete
+...                                      ... rministic, so retrying it would onl
+...                                      ... y delay the
+...                                      236         // error, and re-decoding t
+...                                      ... he image on every attempt wastes me
+...                                      ... mory.
+...                                      237         const prepared = await this
+...                                      ... .prepareFileForUpload(file);
+...                                      238         const artifact = this.valid
+...                                      ... ateReceiptImage(prepared);
+...                                      239         if (!artifact.ok) throw new
+...                                      ...  Error(artifact.message);
+189                                      240 
+190         return withRetry(async () =  241         return withRetry(async () =
+... > {                                  ... > {
+191             const fileToUpload = aw  ... 
+... ait this.prepareFileForUpload(file)  ... 
+... ;                                    ... 
+192             const path = await this  242             const path = await this
+... .uploadToStorage(fileToUpload);      ... .uploadToStorage(prepared.file);
+193             const extract = await t  243             const extract = await t
+... his.extractReceiptDataFailSoft(path  ... his.extractReceiptDataFailSoft(path
+... , file.type);                        ... , prepared.file.type);
+194             const values = await th  244             const values = await th
+... is.buildReceiptInsert(file, path, e  ... is.buildReceiptInsert(file, path, e
+... xtract);                             ... xtract);
+195             const data = await this  245             const data = await this
+... .insertReceiptOrCleanupUpload(value  ... .insertReceiptOrCleanupUpload(value
+... s, path);                            ... s, path);
+196             await this.autoAssignCa  246             await this.autoAssignCa
+... tegoryBestEffort(data, extract?.mer  ... tegoryBestEffort(data, extract?.mer
+... chant_name ?? null);                 ... chant_name ?? null);
+197             return data as ReceiptR  247             return data as ReceiptR
+... ow;                                  ... ow;
+198         });                          248         });
+199     }                                249     }
+200                                      250 
+201     /** #{#rsz2a} Resize JPEG/PNG i  251     /**
+... mages before upload; falls back to   ... 
+... the original on failure. */          ... 
+...                                      252      * #{#rsz2a} Turn the Source Fi
+...                                      ... le into the Receipt Image: every im
+...                                      ... age becomes a
+...                                      253      * JPEG within the pixel budget
+...                                      ... . PDFs pass through untouched.
+...                                      254      *
+...                                      255      * A failure is not fatal here 
+...                                      ... — the original is returned and `shr
+...                                      ... unk: false`
+...                                      256      * lets the caller explain the 
+...                                      ... eventual rejection accurately.
+...                                      257      */
+202     private async prepareFileForUpl  258     private async prepareFileForUpl
+... oad(file: File): Promise<File> {     ... oad(file: File): Promise<PreparedUp
+...                                      ... load> {
+203         const shouldResize = ['imag  ... 
+... e/jpeg', 'image/png'].includes(file  ... 
+... .type);                              ... 
+204         if (!shouldResize) return f  259         if (!isResizableImage(file.
+... ile;                                 ... type)) return { file, shrunk: false
+...                                      ...  };
+205                                      260 
+206         try {                        261         try {
+207             const originalSize = fi  ... 
+... le.size;                             ... 
+208             const resized = await r  262             const resized = await r
+... esizeImage(file, 2000, 0.85);        ... esizeImage(file);
+209             const resizedSize = res  ... 
+... ized.size;                           ... 
+210                                      ... 
+211             console.log(             263             console.log(
+212                 `Image resized: ${(  264                 `Image resized: ${(
+... originalSize / 1024).toFixed(2)}KB   ... file.size / 1024).toFixed(2)}KB → $
+... → ${(resizedSize / 1024).toFixed(2)  ... {(resized.size / 1024).toFixed(2)}K
+... }KB (${((1 - resizedSize / original  ... B (${((1 - resized.size / file.size
+... Size) * 100).toFixed(1)}% reduction  ... ) * 100).toFixed(1)}% reduction)`
+... )`                                   ... 
+213             );                       265             );
+214             return resized;          266             return { file: resized,
+...                                      ...  shrunk: true };
+215         } catch (error) {            267         } catch (error) {
+216             console.error('Image re  268             console.error('Image re
+... size failed, using original:', erro  ... size failed, using original:', erro
+... r);                                  ... r);
+217             return file; // Fall ba  269             return { file, shrunk: 
+... ck to original                       ... false };
+218         }                            270         }
+219     }                                271     }
+220                                      272 
+
+src/lib/utils/imageResize.ts --- 1/2 --- TypeScript
+  1 /**                                    1 /**
+  2  * #{#rsz1a} #{#rsz1b} - Receipt Im    2  * #{#rsz1a} #{#rsz1b} - Receipt Im
+  . age Resizing                           . age Resizing
+  3  *                                     3  *
+  4  * Resizes images before upload to     4  * Turns the **Source File** a pers
+  . optimize for Mistral OCR processing    . on picked into the **Receipt Image*
+  . .                                      . * we store:
+  5  * - Max dimension: 2000px on longe    5  * at most 2400px on the longest ax
+  . st axis                                . is, JPEG at 85%, whatever arrived. 
+  .                                        . The size
+  6  * - Compression: 85% quality          6  * limits in `ReceiptService` descr
+  .                                        . ibe the result of this function, no
+  .                                        . t its
+  7  * - Supports: JPEG, PNG               7  * input — see `docs/adr/0006-the-s
+  .                                        . tored-image-is-the-contract.md`.
+  8  */                                    8  */
+  9                                        9 
+ 10 export interface ResizeDimensions {   10 export interface ResizeDimensions {
+ 11     width: number;                    11     width: number;
+ 12     height: number;                   12     height: number;
+ 13 }                                     13 }
+ ..                                       14 
+ ..                                       15 /** Longest-axis budget for a store
+ ..                                       .. d Receipt Image. Chosen for human z
+ ..                                       .. oom, not OCR. */
+ ..                                       16 export const MAX_IMAGE_DIMENSION = 
+ ..                                       .. 2400;
+ ..                                       17 
+ ..                                       18 /** JPEG quality for a stored Recei
+ ..                                       .. pt Image. */
+ ..                                       19 export const IMAGE_QUALITY = 0.85;
+ ..                                       20 
+ ..                                       21 /** Every stored Receipt Image is a
+ ..                                       ..  JPEG; only PDFs pass through untou
+ ..                                       .. ched. */
+ ..                                       22 const OUTPUT_TYPE = 'image/jpeg';
+ ..                                       23 
+ ..                                       24 /** The image types the receipts up
+ ..                                       .. load control offers. */
+ ..                                       25 const RESIZABLE_TYPES = ['image/jpe
+ ..                                       .. g', 'image/png', 'image/heic'];
+ ..                                       26 
+ ..                                       27 /**
+ ..                                       28  * Whether a Source File of this ty
+ ..                                       .. pe should be decoded and re-encoded
+ ..                                       .. .
+ ..                                       29  *
+ ..                                       30  * HEIC is included deliberately: S
+ ..                                       .. afari — the only place HEIC origina
+ ..                                       .. tes — can
+ ..                                       31  * decode it into a Canvas, and ski
+ ..                                       .. pping it sent full-resolution phone
+ ..                                       ..  photos
+ ..                                       32  * straight to storage. Anything el
+ ..                                       .. se (PDFs, and image types we never 
+ ..                                       .. offer) is
+ ..                                       33  * stored exactly as received.
+ ..                                       34  */
+ ..                                       35 export function isResizableImage(mi
+ ..                                       .. meType: string): boolean {
+ ..                                       36     return RESIZABLE_TYPES.includes
+ ..                                       .. (mimeType);
+ ..                                       37 }
+ ..                                       38 
+ ..                                       39 /**
+ ..                                       40  * Rename a Source File to match th
+ ..                                       .. e JPEG we actually store, so the st
+ ..                                       .. orage
+ ..                                       41  * object's extension is not a lie.
+ ..                                       ..  This never affects `original_filen
+ ..                                       .. ame`
+ ..                                       42  * (#{#ofn2a}), which keeps the nam
+ ..                                       .. e the person recognizes.
+ ..                                       43  */
+ ..                                       44 export function toJpegFilename(file
+ ..                                       .. name: string): string {
+ ..                                       45     return filename.replace(/(\.[^.
+ ..                                       .. /\\]*)?$/, '.jpg');
+ ..                                       46 }
+ 14                                       47 
+ 15 /**                                   48 /**
+ 16  * #{#rsz1a} - Calculate resize dim   49  * #{#rsz1a} - Calculate resize dim
+ .. ensions maintaining aspect ratio      .. ensions maintaining aspect ratio
+ 17  *                                    50  *
+ 18  * Acceptance Criteria:               51  * Acceptance Criteria:
+ 19  * - Maximum dimension on longest a   52  * - Maximum dimension on longest a
+ .. xis must be 2000px                    .. xis must be MAX_IMAGE_DIMENSION
+ 20  * - Aspect ratio must be preserved   53  * - Aspect ratio must be preserved
+ ..  during resize                        ..  during resize
+ 21  * - Images smaller than 2000px on    54  * - Images already within the budg
+ .. longest axis keep original dimensio   .. et keep original dimensions
+ .. ns                                    .. 
+ 22  *                                    55  *
+ 23  * @param originalWidth - Original    56  * @param originalWidth - Original 
+ .. image width in pixels                 .. image width in pixels
+ 24  * @param originalHeight - Original   57  * @param originalHeight - Original
+ ..  image height in pixels               ..  image height in pixels
+ 25  * @param maxSize - Maximum dimensi   58  * @param maxSize - Maximum dimensi
+ .. on on longest axis (default: 2000)    .. on on longest axis
+ 26  * @returns New dimensions with pre   59  * @returns New dimensions with pre
+ .. served aspect ratio                   .. served aspect ratio
+ 27  */                                   60  */
+ 28 export function calculateResizeDime   61 export function calculateResizeDime
+ .. nsions(                               .. nsions(
+ 29     originalWidth: number,            62     originalWidth: number,
+ 30     originalHeight: number,           63     originalHeight: number,
+ 31     maxSize: number = 2000            64     maxSize: number = MAX_IMAGE_DIM
+ ..                                       .. ENSION
+ 32 ): ResizeDimensions {                 65 ): ResizeDimensions {
+ 33     const longestAxis = Math.max(or   66     const longestAxis = Math.max(or
+ .. iginalWidth, originalHeight);         .. iginalWidth, originalHeight);
+ 34                                       67 
+
+src/lib/utils/imageResize.ts --- 2/2 --- TypeScript
+ 47     };                                80     };
+ 48 }                                     81 }
+ 49                                       82 
+ 50 /**                                   83 /** Promise-shaped `canvas.toBlob`,
+ ..                                       ..  which is callback-only. */
+ 51  * #{#rsz1a} #{#rsz1b} - Resize an    84 function encodeCanvas(canvas: HTMLC
+ .. image file using Canvas API           .. anvasElement, quality: number): Pro
+ ..                                       .. mise<Blob> {
+ 52  *                                    85     return new Promise((resolve, re
+ ..                                       .. ject) => {
+ 53  * Acceptance Criteria:               86         canvas.toBlob(
+ 54  * - Both JPEG and PNG formats must   87             (blob) => (blob ? resol
+ ..  be resized                           .. ve(blob) : reject(new Error('Failed
+ ..                                       ..  to encode image'))),
+ 55  * - Lossy compression at 85% quali   88             OUTPUT_TYPE,
+ .. ty must be applied                    .. 
+ 56  * - Original filename extension mu   89             quality
+ .. st be preserved                       .. 
+ 57  * - Resizing must occur client-sid   90         );
+ .. e (browser) before upload             .. 
+ 58  * - Images smaller than 2000px sti   91     });
+ .. ll have compression applied           .. 
+ 59  * - EXIF orientation must be handl   92 }
+ .. ed (#{#rsz2b})                        .. 
+ 60  *                                    93 
+ 61  * @param file - Original image fil   94 /**
+ .. e (JPEG or PNG)                       .. 
+ 62  * @param maxSize - Maximum dimensi   95  * #{#rsz1a} #{#rsz1b} - Resize an 
+ .. on on longest axis (default: 2000)    .. image file using Canvas API
+ 63  * @param quality - Compression qua   96  *
+ .. lity 0-1 (default: 0.85)              .. 
+ 64  * @returns Resized image file        97  * Acceptance Criteria:
+ 65  */                                   98  * - JPEG, PNG and HEIC are all res
+ ..                                       .. ized, and all come out as JPEG. PNG
+ ..                                       ..  could not
+ ..                                       99  *   honour a quality setting while
+ ..                                       ..  it stayed PNG — `toBlob` ignores t
+ ..                                       .. he argument
+ ..                                      100  *   for lossless formats — so a PN
+ ..                                      ... G "resize" used to be able to grow 
+ ..                                      ... the file.
+ ..                                      101  * - Resizing occurs client-side (b
+ ..                                      ... rowser) before upload
+ ..                                      102  * - Images already within the budg
+ ..                                      ... et are still re-encoded, and so sti
+ ..                                      ... ll shrink
+ ..                                      103  * - EXIF orientation is honoured (
+ ..                                      ... #{#rsz2b})
+ ..                                      104  * - The file is decoded ONCE. `cre
+ ..                                      ... ateImageBitmap` is itself the decod
+ ..                                      ... e; the
+ ..                                      105  *   `<img>` element this used to l
+ ..                                      ... oad first was a second full decode 
+ ..                                      ... of the same
+ ..                                      106  *   bytes, doubling peak memory on
+ ..                                      ...  exactly the large photos we now ac
+ ..                                      ... cept.
+ ..                                      107  *
+ ..                                      108  * Throws if the image cannot be de
+ ..                                      ... coded or encoded — the caller decid
+ ..                                      ... es whether
+ ..                                      109  * that is fatal.
+ ..                                      110  *
+ ..                                      111  * @param file - Source File
+ ..                                      112  * @param maxSize - Maximum dimensi
+ ..                                      ... on on longest axis
+ ..                                      113  * @param quality - Compression qua
+ ..                                      ... lity 0-1
+ ..                                      114  * @returns The Receipt Image to st
+ ..                                      ... ore
+ ..                                      115  */
+ 66 export async function resizeImage(   116 export async function resizeImage(
+ 67     file: File,                      117     file: File,
+ 68     maxSize: number = 2000,          118     maxSize: number = MAX_IMAGE_DIM
+ ..                                      ... ENSION,
+ 69     quality: number = 0.85           119     quality: number = IMAGE_QUALITY
+ 70 ): Promise<File> {                   120 ): Promise<File> {
+ 71     // Only resize JPEG and PNG      ... 
+ 72     if (!['image/jpeg', 'image/png'  121     if (!isResizableImage(file.type
+ .. ].includes(file.type)) {             ... )) {
+ 73         return file;                 122         return file;
+ 74     }                                123     }
+ 75                                      124 
+ 76     return new Promise((resolve, re  ... 
+ .. ject) => {                           ... 
+ 77         const img = new Image();     ... 
+ 78         const canvas = document.cre  ... 
+ .. ateElement('canvas');                ... 
+ 79         const ctx = canvas.getConte  ... 
+ .. xt('2d');                            ... 
+ 80                                      ... 
+ 81         if (!ctx) {                  ... 
+ 82             reject(new Error('Canva  ... 
+ .. s context not available'));          ... 
+ 83             return;                  ... 
+ 84         }                            ... 
+ 85                                      ... 
+ 86         img.onload = async () => {   ... 
+ 87             try {                    ... 
+ 88                 // #{#rsz2b} - Hand  125     // #{#rsz2b} - createImageBitma
+ .. le EXIF orientation using createIma  ... p applies EXIF orientation as it de
+ .. geBitmap                             ... codes
+ 89                 const bitmap = awai  126     const bitmap = await createImag
+ .. t createImageBitmap(file, {          ... eBitmap(file, { imageOrientation: '
+ ..                                      ... from-image' });
+ 90                     imageOrientatio  127 
+ .. n: 'from-image'                      ... 
+ 91                 });                  128     try {
+ 92                                      ... 
+ 93                 // Calculate new di  ... 
+ .. mensions                             ... 
+ 94                 const { width, heig  129         const { width, height } = c
+ .. ht } = calculateResizeDimensions(bi  ... alculateResizeDimensions(bitmap.wid
+ .. tmap.width, bitmap.height, maxSize)  ... th, bitmap.height, maxSize);
+ .. ;                                    ... 
+ 95                                      130 
+ 96                 // Set canvas size   131         const canvas = document.cre
+ ..                                      ... ateElement('canvas');
+ 97                 canvas.width = widt  132         canvas.width = width;
+ .. h;                                   ... 
+ 98                 canvas.height = hei  133         canvas.height = height;
+ .. ght;                                 ... 
+ 99                                      134 
+100                 // Draw resized ima  135         const ctx = canvas.getConte
+... ge                                   ... xt('2d');
+...                                      136         if (!ctx) throw new Error('
+...                                      ... Canvas context not available');
+101                 ctx.drawImage(bitma  137         ctx.drawImage(bitmap, 0, 0,
+... p, 0, 0, width, height);             ...  width, height);
+102                                      138 
+103                 // Convert to blob   139         const blob = await encodeCa
+... with compression                     ... nvas(canvas, quality);
+104                 canvas.toBlob(       140 
+105                     (blob) => {      ... 
+106                         if (!blob)   ... 
+... {                                    ... 
+107                             reject(  ... 
+... new Error('Failed to create blob'))  ... 
+... ;                                    ... 
+108                             return;  141         return new File([blob], toJ
+...                                      ... pegFilename(file.name), {
+109                         }            ... 
+110                                      ... 
+111                         // #{#rsz3b  ... 
+... } - Log resize metrics               ... 
+112                         const origi  ... 
+... nalSize = file.size;                 ... 
+113                         const resiz  ... 
+... edSize = blob.size;                  ... 
+114                         const reduc  ... 
+... tion = ((1 - resizedSize / original  ... 
+... Size) * 100).toFixed(1);             ... 
+115                                      ... 
+116                         console.log  ... 
+... ('Image resized:', {                 ... 
+117                             origina  ... 
+... lSize: `${(originalSize / 1024).toF  ... 
+... ixed(2)}KB`,                         ... 
+118                             resized  ... 
+... Size: `${(resizedSize / 1024).toFix  ... 
+... ed(2)}KB`,                           ... 
+119                             reducti  ... 
+... on: `${reduction}%`,                 ... 
+120                             origina  ... 
+... lDimensions: `${bitmap.width}x${bit  ... 
+... map.height}`,                        ... 
+121                             resized  ... 
+... Dimensions: `${width}x${height}`,    ... 
+122                             format:  ... 
+...  file.type                           ... 
+123                         });          ... 
+124                                      ... 
+125                         // Create n  ... 
+... ew File from blob                    ... 
+126                         const resiz  ... 
+... edFile = new File([blob], file.name  ... 
+... , {                                  ... 
+127                             type: f  142             type: OUTPUT_TYPE,
+... ile.type,                            ... 
+128                             lastMod  143             lastModified: file.last
+... ified: Date.now()                    ... Modified
+129                         });          144         });
+130                                      ... 
+131                         // Clean up  ... 
+132                         URL.revokeO  ... 
+... bjectURL(img.src);                   ... 
+133                         bitmap.clos  ... 
+... e();                                 ... 
+134                                      ... 
+135                         resolve(res  ... 
+... izedFile);                           ... 
+136                     },               ... 
+137                     file.type,       ... 
+138                     quality          ... 
+139                 );                   ... 
+140             } catch (error) {        ... 
+141                 URL.revokeObjectURL  ... 
+... (img.src);                           ... 
+142                 reject(error);       ... 
+143             }                        ... 
+144         };                           ... 
+145                                      ... 
+146         img.onerror = () => {        145     } finally {
+147             URL.revokeObjectURL(img  146         bitmap.close();
+... .src);                               ... 
+148             reject(new Error('Faile  ... 
+... d to load image'));                  ... 
+149         };                           147     }
+150                                      ... 
+151         // Load image                ... 
+152         img.src = URL.createObjectU  ... 
+... RL(file);                            ... 
+153     });                              ... 
+154 }                                    148 }
+

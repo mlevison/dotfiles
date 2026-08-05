@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "2A: Convert CategoryDropdown.spec.ts to real render test",
+  "description": "The entire spec reimplements component logic in 25 local helpers and asserts against them. Replace with a real vitest-browser-svelte render test (CategoryDropdown.svelte.spec.ts) exercising the actual component. Teeth-prove.",
+  "activeForm": "Converting CategoryDropdown spec to render test",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

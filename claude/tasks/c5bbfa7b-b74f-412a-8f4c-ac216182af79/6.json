@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Finalize: version, docs, backlog, checks",
+  "description": "Bump version.ts, update design doc + product-backlog, run npm run check + eslint + prettier on touched files + full unit suite.",
+  "activeForm": "Finalizing",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

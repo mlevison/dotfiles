@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Add extractForwardedDate helper + tests",
+  "description": "Create supabase/functions/_shared/forwardedEmailDate.ts with a TZ-safe extractForwardedDate(body) that parses the forwarded-header Date:/Sent: line (month-name + ISO forms) into YYYY-MM-DD, and a co-located vitest .test.ts covering Gmail/Apple/Outlook/RFC formats, forward-of-forward, ambiguous-numeric rejection, and null tail.",
+  "activeForm": "Building extractForwardedDate helper + tests",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

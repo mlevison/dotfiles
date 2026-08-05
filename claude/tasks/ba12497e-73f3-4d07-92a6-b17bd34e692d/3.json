@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Build index generator script and regenerate _skill-index.md",
+  "description": "Write gen_index that walks Skills/ reading frontmatter and regenerates the Quick Trigger table + Skills sections. This is the permanent sync tool for #6.",
+  "activeForm": "Building index generator",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

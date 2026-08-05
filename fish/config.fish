@@ -25,3 +25,6 @@ fish_add_path "$HOME/.deno/bin"
 
 # 4️⃣ LOCAL BIN (Standard user path)
 fish_add_path "$HOME/.local/bin"
+
+# DockFlow CLI alias
+alias dockflow "/Applications/DockFlow.app/Contents/MacOS/DockFlowCLI"

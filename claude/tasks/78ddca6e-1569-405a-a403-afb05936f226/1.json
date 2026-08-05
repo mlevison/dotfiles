@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Pure waterfall model buildWaterfallBridge",
+  "description": "Create src/lib/utils/spendingWaterfall.ts: reconciling horizontal-waterfall model from current+prior reports, union of groups/categories across both years (surfaces disappeared spend), accordion via expandedGroups, running totals. Whole-month parity window = current.months.length.",
+  "activeForm": "Building the pure waterfall model",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

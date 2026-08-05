@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Tier 3: fix trivial ESLint errors (unused vars, each-key)",
+  "description": "Remove unused vars/imports (login page, ReceiptImageViewer, fileValidation param, duplicateHelpers.spec, receipt-edit-modal.spec) and add keys to {#each} in CategoryFilter + admin resize.",
+  "activeForm": "Fixing Tier 3 ESLint errors",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

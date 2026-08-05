@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Write demo-teardown.ts + wire npm scripts",
+  "description": "Standalone teardown entrypoint + add seed:demo / seed:demo:teardown npm scripts.",
+  "activeForm": "Writing teardown + npm scripts",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

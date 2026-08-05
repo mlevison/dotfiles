@@ -1,0 +1,8 @@
+{
+  "id": "2",
+  "subject": "Add delete-category to HierarchyEditor + hierarchy page",
+  "description": "Add onDeleteCategory prop + delete button to HierarchyEditor.svelte, update its spec, and wire a confirming deleteCategory handler in spending/hierarchy/+page.svelte.",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Write API fetch + CLI entry (syncMetrics.ts)",
+  "description": "Create buffer-post/syncMetrics.ts: paginated sent-posts-with-metrics query, org id, 6-week window, per-channel fetch, merge, write history, --dry-run/--weeks flags, and clear insights:read scope-error handling.",
+  "activeForm": "Writing API fetch + CLI entry",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

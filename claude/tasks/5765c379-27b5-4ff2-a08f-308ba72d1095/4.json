@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Run type check + tests",
+  "description": "Run npm run check and the relevant vitest suites; clear any warnings in touched files.",
+  "activeForm": "Running type check + tests",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

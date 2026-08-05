@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Refactor resend/index.ts to use the common handler",
+  "description": "Replace the three duplicated resolveOcrReceiptDate+suspicious+notify blocks (body-text, attachment, body-text-fallback) with one closure that calls resolveEmailReceiptDate, notifies on suspicious, and warns on dateSource 'none'. Covers PDFs/attachments via the shared fallback.",
+  "activeForm": "Refactoring resend/index.ts",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

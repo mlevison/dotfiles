@@ -1,0 +1,9 @@
+{
+  "id": "5",
+  "subject": "Shared fetchMock fixture + migrate",
+  "description": "Create src/lib/tests/fixtures/fetchMock.ts (stubFetchJson + installFetchMock lifecycle) and migrate the save/restore fetch boilerplate in ExchangeRateService, imageResize, receiptDateCorrection, and ReceiptService.* specs. Run affected suites.",
+  "activeForm": "Building shared fetchMock fixture",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

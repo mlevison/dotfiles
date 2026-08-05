@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Add Category column to the Receipts table",
+  "description": "Extract shared category-assignment logic from expenses/+page.svelte:282; widen applyRuleToVisibleExpenses to the three fields it reads; add the Category column between Amount and Actions with interactive: true and full Expenses parity (immediate persist, rule auto-create, apply-to-visible, toast, selection fan-out).",
+  "activeForm": "Adding the Category column",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

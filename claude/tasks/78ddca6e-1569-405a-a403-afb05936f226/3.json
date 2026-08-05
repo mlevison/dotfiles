@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Wire Bridge view into /spending page",
+  "description": "Add 'bridge' to view toggle (disabled unless hasPrior), keep priorReport in state, render SpendingBridge when selected.",
+  "activeForm": "Wiring the Bridge view into the page",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

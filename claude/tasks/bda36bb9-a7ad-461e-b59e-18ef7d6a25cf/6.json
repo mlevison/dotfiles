@@ -1,0 +1,9 @@
+{
+  "id": "6",
+  "subject": "Domain builders + migrate inline literals",
+  "description": "Add makeCategory/makeVendorCategoryRule to rowBuilders.ts (+ makeSplitReceiptRow if it shrinks ReceiptService.split). Migrate inline Category/VendorRule literals in CategoryService, family-category-visibility, ExpenseService.categoryAssignment, ReconciliationService, and split. Run affected suites.",
+  "activeForm": "Adding domain builders",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

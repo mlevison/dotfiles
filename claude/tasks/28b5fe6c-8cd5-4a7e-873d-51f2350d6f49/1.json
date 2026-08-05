@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Write pure metrics-mapping + merge module",
+  "description": "Create buffer-post/metricsSync.ts: PostMetric→engagement mappers per platform (preserving history.json shapes), UTC→ET timestamp conversion, and mergeMetricsIntoHistory (text-prefix + datetime matching, backfill posted, LinkedIn-creates/others-skip semantics).",
+  "activeForm": "Writing pure metrics-mapping module",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "2A: Audit remaining specs for reimplemented-logic / hollow tests",
+  "description": "Sweep transactions-page-filters, reconciliation-foreign-currency, ReceiptService.uploadMeta/autoCategory and others for spec-local functions that assert their own output. Distinguish legit fixture/mock helpers from reimplemented SUT logic.",
+  "activeForm": "Auditing specs for reimplemented logic",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

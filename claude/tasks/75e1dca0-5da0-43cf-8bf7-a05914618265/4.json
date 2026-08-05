@@ -1,0 +1,9 @@
+{
+  "id": "4",
+  "subject": "Delete client auto-assign; port tests to integration suite",
+  "description": "Delete autoAssignCategoryBestEffort and ReceiptService.autoCategory.spec.ts; port the cases into the integration suite alongside family-category-visibility.spec.ts, and assert SQL normalize_vendor() against the existing case list at ExpenseService.vendorRules.spec.ts:170.",
+  "activeForm": "Porting tests to the integration suite",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

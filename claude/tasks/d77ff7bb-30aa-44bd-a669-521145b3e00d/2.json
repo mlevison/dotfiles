@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "RV-11: collapse dead double-condition in scoreCandidate",
+  "description": "Compute receiptAmountCAD once above the guard so the isForeignCurrency && exchange_rate ternary no longer re-tests. ReconciliationService.ts:374.",
+  "activeForm": "Collapsing the scoreCandidate double-condition (RV-11)",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

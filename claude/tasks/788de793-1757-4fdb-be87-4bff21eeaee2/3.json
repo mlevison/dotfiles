@@ -1,0 +1,9 @@
+{
+  "id": "3",
+  "subject": "Write bombadil/transactions.ts specification",
+  "description": "Default properties only (no export *), hand-written action generator confined to /transactions controls, pathname tripwire, selection/counter invariants. Wire tsconfig include, .gitignore, npm scripts.",
+  "activeForm": "Writing the Bombadil specification",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

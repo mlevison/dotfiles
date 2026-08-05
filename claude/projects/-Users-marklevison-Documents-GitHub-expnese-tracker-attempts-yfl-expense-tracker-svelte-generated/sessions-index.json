@@ -1,0 +1,138 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "072f592c-287a-4cb6-a7f3-8288d1de855a",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/072f592c-287a-4cb6-a7f3-8288d1de855a.jsonl",
+      "fileMtime": 1768088462549,
+      "firstPrompt": "On the reconcilation page please change all references to ignore transaction to exclude. No just a UI change, but code references as well. Please also search further afield and tell me where else we n…",
+      "messageCount": 33,
+      "created": "2026-01-10T23:33:25.107Z",
+      "modified": "2026-01-10T23:41:02.535Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "71c70dd0-2bb8-480a-abe3-94d932ec140c",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/71c70dd0-2bb8-480a-abe3-94d932ec140c.jsonl",
+      "fileMtime": 1768152588554,
+      "firstPrompt": "<command-message>xspec is running…</command-message> <command-name>/xspec</command-name> <command-args>when the user doesn't have any receipts, transactions or expenses displayed it is confusing. Two…",
+      "messageCount": 14,
+      "created": "2026-01-11T17:24:38.951Z",
+      "modified": "2026-01-11T17:29:48.545Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "7288cd91-f61b-467d-9455-537215d40c74",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/7288cd91-f61b-467d-9455-537215d40c74.jsonl",
+      "fileMtime": 1768068347696,
+      "firstPrompt": "What does the status column on",
+      "messageCount": 17,
+      "created": "2026-01-10T17:42:23.440Z",
+      "modified": "2026-01-10T18:05:47.688Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "7336a67c-ff0d-4d24-9f5c-1304e6b27b3b",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/7336a67c-ff0d-4d24-9f5c-1304e6b27b3b.jsonl",
+      "fileMtime": 1768085421112,
+      "firstPrompt": "/xtdd We need to add another credit card type to the supported list. This time Wealh Simple.",
+      "messageCount": 25,
+      "created": "2026-01-10T22:42:05.668Z",
+      "modified": "2026-01-10T22:50:21.105Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "82bccdcf-6c02-415d-9802-3eb6a3720657",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/82bccdcf-6c02-415d-9802-3eb6a3720657.jsonl",
+      "fileMtime": 1768094449134,
+      "firstPrompt": "<command-message>xdebug is running…</command-message> <command-name>/xdebug</command-name> <command-args>when the user switches to the expenses tab, I assumed the application would see if there are an…",
+      "messageCount": 45,
+      "created": "2026-01-11T01:09:17.890Z",
+      "modified": "2026-01-11T01:20:49.120Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "89c1d895-9cb7-482f-a1f8-3ded0280add8",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/89c1d895-9cb7-482f-a1f8-3ded0280add8.jsonl",
+      "fileMtime": 1768153137383,
+      "firstPrompt": "<command-message>xspec is running…</command-message> <command-name>/xspec</command-name> <command-args>eliminate the spending summary from the expense categorization page.</command-args>",
+      "messageCount": 14,
+      "created": "2026-01-11T17:35:42.742Z",
+      "modified": "2026-01-11T17:38:57.373Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "a4b74c74-22e7-49ce-a826-0b919809f28d",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/a4b74c74-22e7-49ce-a826-0b919809f28d.jsonl",
+      "fileMtime": 1768142104037,
+      "firstPrompt": "<command-message>xspec is running…</command-message> <command-name>/xspec</command-name> <command-args>when the user confirms that a date is correct, the receipts dialog remains active. If the subsequ…",
+      "messageCount": 12,
+      "created": "2026-01-11T14:24:47.332Z",
+      "modified": "2026-01-11T14:35:04.030Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "c1223283-2740-4fc4-b824-cd85dc9c073c",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/c1223283-2740-4fc4-b824-cd85dc9c073c.jsonl",
+      "fileMtime": 1768164113945,
+      "firstPrompt": "<command-message>xdebug is running…</command-message> <command-name>/xdebug</command-name> <command-args>expense category and transactions exclusion decisions made by one user are not visible to anoth…",
+      "messageCount": 88,
+      "created": "2026-01-11T20:02:29.400Z",
+      "modified": "2026-01-11T20:41:53.937Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "d7ec905b-b1ee-40b8-bc2d-820229560e6f",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/d7ec905b-b1ee-40b8-bc2d-820229560e6f.jsonl",
+      "fileMtime": 1768069773379,
+      "firstPrompt": "/xspec",
+      "messageCount": 26,
+      "created": "2026-01-10T18:11:09.001Z",
+      "modified": "2026-01-10T18:29:33.369Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "d93caea8-9acc-47f4-b977-078af8293100",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/d93caea8-9acc-47f4-b977-078af8293100.jsonl",
+      "fileMtime": 1768161485311,
+      "firstPrompt": "<command-message>xdebug is running…</command-message> <command-name>/xdebug</command-name> <command-args>when my wife logs into the app she see's no receipts. I can confirm she is logged in and her us…",
+      "messageCount": 76,
+      "created": "2026-01-11T18:03:29.896Z",
+      "modified": "2026-01-11T19:58:05.301Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    },
+    {
+      "sessionId": "e001fb46-f47f-47a1-937e-e93646a8e10e",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison-Documents-GitHub-expnese-tracker-attempts-yfl-expense-tracker-svelte-generated/e001fb46-f47f-47a1-937e-e93646a8e10e.jsonl",
+      "fileMtime": 1768141280670,
+      "firstPrompt": "<command-message>xspec is running…</command-message> <command-name>/xspec</command-name> <command-args>uncategorized, categorized etc sometimes display the number for all receipts, not the number in v…",
+      "messageCount": 24,
+      "created": "2026-01-11T14:10:37.589Z",
+      "modified": "2026-01-11T14:21:20.658Z",
+      "gitBranch": "master",
+      "projectPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/Users/marklevison/Documents/GitHub/expnese-tracker-attempts/yfl-expense-tracker-svelte-generated"
+}

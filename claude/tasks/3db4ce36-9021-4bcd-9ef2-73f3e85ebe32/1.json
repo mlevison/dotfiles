@@ -1,0 +1,9 @@
+{
+  "id": "1",
+  "subject": "Add npm run validate and strip the duplicated validator from the skill",
+  "description": "Expose batchPost's existing preflight as `npm run validate -- --file X`, then delete the 20-line node one-liner from evergreen-posting/SKILL.md and point it at the command.",
+  "activeForm": "Adding npm run validate",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

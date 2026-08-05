@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "deny": [
+      "Read(./llm_history/**)"
+    ]
+	},
+  "enabledPlugins": {
+    "superpowers@superpowers-marketplace": true
+  }
+}

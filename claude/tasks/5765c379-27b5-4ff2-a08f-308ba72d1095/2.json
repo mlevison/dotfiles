@@ -1,0 +1,9 @@
+{
+  "id": "2",
+  "subject": "Add common resolveEmailReceiptDate handler + tests",
+  "description": "Create the single hoisted null-date handler that all three resend paths call: receipt date first (resolveOcrReceiptDate), else forwarded-email fallback (through the suspicious-window check), else dateSource 'none'. Co-located vitest tests.",
+  "activeForm": "Building resolveEmailReceiptDate handler + tests",
+  "status": "completed",
+  "blocks": [],
+  "blockedBy": []
+}

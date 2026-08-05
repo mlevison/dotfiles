@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "sessionId": "4e313d2a-982a-456c-bf90-376c6fa6d1a7",
+      "fullPath": "/Users/marklevison/.claude/projects/-Users-marklevison--claude-skills-systems-thinking/4e313d2a-982a-456c-bf90-376c6fa6d1a7.jsonl",
+      "fileMtime": 1769027518566,
+      "firstPrompt": "I want to modify [@SKILL.md](file:///Users/marklevison/.claude/skills/systems-thinking/SKILL.md)  to select the",
+      "messageCount": 11,
+      "created": "2026-01-20T21:18:30.681Z",
+      "modified": "2026-01-21T20:31:58.559Z",
+      "gitBranch": "main",
+      "projectPath": "/Users/marklevison/.claude/skills/systems-thinking",
+      "isSidechain": false
+    }
+  ],
+  "originalPath": "/Users/marklevison/.claude/skills/systems-thinking"
+}
