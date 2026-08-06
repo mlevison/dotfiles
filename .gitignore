@@ -19,6 +19,7 @@ claude/projects/**/*.log
 claude/logs/
 claude/backups/
 claude/debug/
+claude/shell-snapshots
 
 # Ignore machine-specific runtime state
 claude/state/
