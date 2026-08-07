@@ -1,0 +1,598 @@
+src/constants/cta.ts --- 1/4 --- TypeScript
+  1 /**                                    1 /**
+  2  * Shared constants for Call-to-Act    2  * Shared constants for Call-to-Act
+  . ion (CTA) components                   . ion (CTA) components
+  3  * Centralized marketing copy, URLs    3  * Centralized marketing copy, URLs
+  . , and configuration for modal-popup    . , and configuration for the four CT
+  .  and cta-banner components             . A
+  .                                        4  * surfaces: the two pinned ones (s
+  .                                        . ticky bar, slide-in) and the two in
+  .                                        . -flow
+  .                                        5  * ones (cta-banner, link-sidebar).
+  .                                        .  See CONTEXT.md for the vocabulary.
+  4  */                                    6  */
+  5                                        7 
+  6 import ModalImage from '@/content/b    . 
+  . log/using-genai-to-code-not-so-fast    . 
+  . /images/ai-promise-vs-reality.jpg';    . 
+  7 import BannerImage from '@/assets/i    8 import BannerImage from '@/assets/i
+  . mages/global/ai-feature-factory-wit    . mages/global/ai-feature-factory-wit
+  . h-opacity.png';                        . h-opacity.png';
+  8 import SidebarImage from '@/content    9 import SidebarImage from '@/content
+  . /blog/using-genai-to-code-not-so-fa    . /blog/using-genai-to-code-not-so-fa
+  . st/images/ai-promise-vs-reality.jpg    . st/images/ai-promise-vs-reality.jpg
+  . ';                                     . ';
+  9 import type { ImageMetadata } from    10 import type { ImageMetadata } from 
+  . 'astro';                              .. 'astro';
+
+src/constants/cta.ts --- 2/4 --- TypeScript
+ 32 interface CTAContent {                33 interface CTAContent {
+ 33   heading: string;                    34   heading: string;
+ 34   subHeading: string;                 35   subHeading: string;
+ ..                                       36   /** Sidebar body copy: read at br
+ ..                                       .. owsing pace, so longer than subHead
+ ..                                       .. ing. */
+ 35   modalHeading: string;               37   sidebarBody: string;
+ ..                                       38   /** Sidebar link label: plain and
+ ..                                       ..  descriptive, not a command. */
+ 36   modalButtonText: string;            39   sidebarButtonText: string;
+ 37   /** Sidebar body copy: read at br   40   /**
+ .. owsing pace, so longer than subHead   .. 
+ .. ing. */                               .. 
+ ..                                       41    * Sticky bar copy. One line, on 
+ ..                                       .. screen at every scroll position, so
+ ..                                       ..  it has
+ ..                                       42    * to survive a 375px viewport wi
+ ..                                       .. thout wrapping to three lines. Shor
+ ..                                       .. test of
+ ..                                       43    * every register here.
+ ..                                       44    */
+ 38   sidebarBody: string;                45   stickyBarText: string;
+ 39   /** Sidebar link label: plain and   46   stickyBarButtonText: string;
+ ..  descriptive, not a command. */       .. 
+ ..                                       47   /**
+ ..                                       48    * Slide-in copy. Posed as a ques
+ ..                                       .. tion with two answers, both of whic
+ ..                                       .. h land on
+ ..                                       49    * the quiz cover. The answers ca
+ ..                                       .. rry no meaning to the quiz (see HIS
+ ..                                       .. TORY.md
+ ..                                       50    * on the shelved prefill); they 
+ ..                                       .. differ only by utm_content, so the 
+ ..                                       .. numbers
+ ..                                       51    * say which framing pulled peopl
+ ..                                       .. e in.
+ ..                                       52    */
+ 40   sidebarButtonText: string;          53   slideInHeading: string;
+ ..                                       54   slideInBody: string;
+ ..                                       55   slideInButtonPrimaryText: string;
+ ..                                       56   slideInButtonSecondaryText: strin
+ ..                                       .. g;
+ 41   bodyText: string;                   57   bodyText: string;
+ 42   buttonText: string;                 58   buttonText: string;
+ 43   buttonLink: string;                 59   buttonLink: string;
+ 44   /** When true, render a newslette   60   /** When true, render a newslette
+ .. r signup form instead of a link but   .. r signup form instead of a link but
+ .. ton */                                .. ton */
+ 45   showForm?: boolean;                 61   showForm?: boolean;
+ 46 }                                     62 }
+ 47                                       63 
+ 48 /**                                   64 /**
+ 49  * Primary (control) variant conten   65  * Primary (control) variant conten
+ .. t                                     .. t
+ 50  * "Which parts of the Scrum Master   66  * "Which parts of the Scrum Master
+ ..  job still need a person?": links t   ..  job still need a person?": links t
+ .. o the                                 .. o the
+ 51  * self-hosted quiz at /quiz/scrum-   67  * self-hosted quiz at /quiz/scrum-
+ .. master-ai/. The hook is the reader'   .. master-ai/. The hook is the reader'
+ .. s own                                 .. s own
+ 52  * job, not the industry's failure    68  * job, not the industry's failure 
+ .. statistics: some of the work is get   .. statistics: some of the work is get
+ .. ting                                  .. ting
+ 53  * more valuable and some is being    69  * more valuable and some is being 
+ .. absorbed by tools, and the quiz map   .. absorbed by tools, and the quiz map
+ .. s which                               .. s which
+ 54  * is which. Deliberately promises    70  * is which. Deliberately promises 
+ .. a map rather than a score, because    .. a map rather than a score, because 
+ .. the quiz                              .. the quiz
+ 55  * itself refuses to hand out a num   71  * itself refuses to hand out a num
+ .. ber, a tier or an archetype.          .. ber, a tier or an archetype.
+ 56  *                                    72  *
+ 57  * Three surfaces, three registers.   73  * Four surfaces, four registers. T
+ ..  The banner (heading) and the sideb   .. he banner (heading) and the sidebar
+ .. ar carry                              ..  carry
+ 58  * the landing page's headline verb   74  * the landing page's headline verb
+ .. atim: both are read at browsing pac   .. atim: both are read at browsing pac
+ .. e, so the                             .. e, so the
+ 59  * exact message match is worth mor   75  * exact message match is worth mor
+ .. e than brevity. The modal fires 30    .. e than brevity. The sticky bar is o
+ .. seconds                               .. n screen
+ 60  * into a post and gets about two s   76  * the whole time and has one line 
+ .. econds of attention, so modalHeadin   .. to work with, so it drops the job t
+ .. g is                                  .. itle the
+ 61  * shorter and drops the job title,   77  * surrounding page already establi
+ ..  which the surrounding page already   .. shes. The slide-in arrives mid-arti
+ ..                                       .. cle and
+ 62  * establishes. The shared phrase "   78  * asks rather than announces. The 
+ .. still need a person" is what keeps    .. shared phrase "still need a person"
+ .. all three                             ..  is what
+ 63  * matched to the landing page, so    79  * keeps them matched to the landin
+ .. keep it if you rewrite one of them.   .. g page, so keep it if you rewrite o
+ ..                                       .. ne.
+ ..                                       80  *
+ ..                                       81  * FIRST DRAFT: the four sticky-bar
+ ..                                       .. /slide-in strings are AI-drafted pl
+ ..                                       .. aceholders
+ ..                                       82  * awaiting Mark's rewrite. Everyth
+ ..                                       .. ing else is his.
+ 64  */                                   83  */
+ 65 export const CTA_PRIMARY: CTAConten   84 export const CTA_PRIMARY: CTAConten
+ .. t = {                                 .. t = {
+ 66   heading: 'Which parts of the Scru   85   heading: 'Which parts of the Scru
+ .. m Master job still need a person?',   .. m Master job still need a person?',
+ 67   subHeading: 'Eight questions, abo   86   subHeading: 'Eight questions, abo
+ .. ut three minutes. No score, no arch   .. ut three minutes. No score, no arch
+ .. etype.',                              .. etype.',
+ 68   modalHeading: 'Which parts of you   87   stickyBarText: 'Which parts of yo
+ .. r job still need a person?',          .. ur job still need a person?',
+ 69   modalButtonText: 'Show Me the Map   88   stickyBarButtonText: 'Show me the
+ .. ',                                    ..  map',
+ ..                                       89   slideInHeading: 'Which parts of y
+ ..                                       .. our job could a tool already do?',
+ ..                                       90   slideInBody: 'Eight questions, ab
+ ..                                       .. out three minutes.',
+ ..                                       91   slideInButtonPrimaryText: 'I’m no
+ ..                                       .. t sure',
+ ..                                       92   slideInButtonSecondaryText: 'I th
+ ..                                       .. ink I know',
+ 70   sidebarBody:                        93   sidebarBody:
+ 71     'Eight questions. Three minutes   94     'Eight questions. Three minutes
+ .. . See which parts of the work are g   .. . See which parts of the work are g
+ .. etting more valuable, and which par   .. etting more valuable, and which par
+ .. ts the tools are starting to do. No   .. ts the tools are starting to do. No
+ ..  score, no archetype, just what I s   ..  score, no archetype, just what I s
+ .. ee and where I’d start.',             .. ee and where I’d start.',
+ 72   sidebarButtonText: 'Take the Quiz   95   sidebarButtonText: 'Take the Quiz
+ .. ',                                    .. ',
+
+src/constants/cta.ts --- 3/4 --- TypeScript
+108   postHogButtonID: 'cta-button-clic  131   postHogButtonID: 'cta-button-clic
+... k-posthog',                          ... k-posthog',
+109 } as const;                          132 } as const;
+110                                      133 
+111 /**                                  134 /**
+112  * Shared images for CTA components  135  * Shared images for CTA components
+113  *                                   136  *
+114  * Both images are left over from t  137  * Both images are left over from t
+... he AI-failure-modes campaign and ar  ... he AI-failure-modes campaign and ar
+... e about                              ... e about
+115  * GenAI coding, not the Scrum Mast  138  * GenAI coding, not the Scrum Mast
+... er role. They still read as "AI", b  ... er role. They still read as "AI", b
+... ut a                                 ... ut a
+116  * cover that matches the role quiz  139  * cover that matches the role quiz
+...  would suit the copy better.         ...  would suit the copy better. The pi
+...                                      ... nned
+...                                      140  * surfaces carry no image at all: 
+...                                      ... a bottom-corner card has no room fo
+...                                      ... r one.
+117  */                                  141  */
+118 export const MODAL_IMAGES: {         ... 
+119   image: ImageMetadata;              ... 
+120 } = {                                ... 
+121   image: ModalImage,                 ... 
+122 };                                   ... 
+123                                      ... 
+124 export const BANNER_IMAGES: {        142 export const BANNER_IMAGES: {
+125   image: ImageMetadata;              143   image: ImageMetadata;
+126 } = {                                144 } = {
+127   image: BannerImage,                145   image: BannerImage,
+128 };                                   146 };
+129                                      147 
+130 /**                                  148 /**
+131  * Sidebar image. Carries its own i  149  * Sidebar image. Carries its own i
+... mageAlt because, unlike the modal,   ... mageAlt because the sidebar has no 
+... the                                  ... behaviour
+132  * sidebar has no behaviour config   150  * config to hang it off. Imported 
+... to hang it off. Currently the same   ... separately from BANNER_IMAGES so th
+... asset as                             ... e two
+133  * MODAL_IMAGES, imported separatel  151  * surfaces can diverge without one
+... y so the two surfaces can diverge w  ...  silently changing the other.
+... ithout                               ... 
+134  * one silently changing the other.  152  */
+135  */                                  ... 
+136 export const SIDEBAR_IMAGES: {       153 export const SIDEBAR_IMAGES: {
+137   image: ImageMetadata;              154   image: ImageMetadata;
+138   imageAlt: string;                  155   imageAlt: string;
+
+src/constants/cta.ts --- 4/4 --- TypeScript
+141   imageAlt: 'sketch of GenAI promis  158   imageAlt: 'sketch of GenAI promis
+... es vs reality',                      ... es vs reality',
+142 };                                   159 };
+143                                      160 
+144 /**                                  161 /**
+145  * Configuration for modal popup be  162  * Slide-in behaviour.
+... havior                               ... 
+146  */                                  163  *
+...                                      164  * The suppression clock starts whe
+...                                      ... n the slide-in APPEARS, not when it
+...                                      ...  is
+...                                      165  * dismissed, which is what the ret
+...                                      ... ired modal did too. Keeping that un
+...                                      ... changed is
+...                                      166  * what makes the launch numbers co
+...                                      ... mparable to the modal's: only the s
+...                                      ... urface
+...                                      167  * changed, not how often it is all
+...                                      ... owed to show.
+...                                      168  */
+147 export const MODAL_CONFIG = {        169 export const SLIDE_IN_CONFIG = {
+...                                      170   /** Share of the page scrolled be
+...                                      ... fore it appears, 0..1 of full scrol
+...                                      ... l depth. */
+148   delayMilliSeconds: 30000,          171   scrollTriggerFraction: 0.5,
+149   closeButtonText: 'No thanks',      172   displayIntervalDays: 15,
+150   imageAlt:                          173   dismissLabel: 'Dismiss',
+151     'AI promise versus reality: a 1  ... 
+... 0x productivity daydream on one sid  ... 
+... e, more time and more defects on th  ... 
+... e other',                            ... 
+152   displayIntervalDays: 15, // Days   ... 
+... between modal displays               ... 
+153 } as const;                          174 } as const;
+...                                      175 
+...                                      176 /**
+...                                      177  * Sticky bar behaviour. Dismissal 
+...                                      ... is session-scoped: it respects a "n
+...                                      ... o" for
+...                                      178  * this visit without permanently c
+...                                      ... osting the surface on someone who c
+...                                      ... omes back
+...                                      179  * next week, which matters for a b
+...                                      ... ar that is on nearly every page.
+...                                      180  */
+...                                      181 export const STICKY_BAR_CONFIG = {
+...                                      182   dismissLabel: 'Dismiss',
+...                                      183 } as const;
+...                                      184 
+...                                      185 /**
+...                                      186  * Content pages (those behind src/
+...                                      ... pages/[id].astro) show the sticky b
+...                                      ... ar by
+...                                      187  * default. It is withheld from any
+...                                      ...  page marked `noIndex` in frontmatt
+...                                      ... er, since
+...                                      188  * every one of those is mid-flow f
+...                                      ... or something else, plus the slugs b
+...                                      ... elow.
+...                                      189  *
+...                                      190  * Deliberately NOT derived from `n
+...                                      ... oIndex` alone: "don't index this" a
+...                                      ... nd "don't
+...                                      191  * advertise on this" are two diffe
+...                                      ... rent intentions that merely overlap
+...                                      ... , and
+...                                      192  * these two pages are where they c
+...                                      ... ome apart.
+...                                      193  */
+...                                      194 export const STICKY_BAR_EXCLUDED_PA
+...                                      ... GES: readonly string[] = [
+...                                      195   'privacy-policy',
+...                                      196   // Someone here is mid-action on 
+...                                      ... something worth more than a quiz.
+...                                      197   'contact-us',
+...                                      198 ];
+154                                      199 
+155 /**                                  200 /**
+156  * Type for attribution sources      201  * Type for attribution sources
+157  */                                  202  */
+158 export type Attribution = 'glossary  203 export type Attribution = 'glossary
+... ' | 'blog' | 'home-page';            ... ' | 'blog' | 'home-page' | 'page';
+
+src/utils/storage.ts --- 1/2 --- TypeScript
+  1 /**                                    1 /**
+  2  * Browser storage utilities for mo    2  * Browser storage for CTA surface 
+  . dal popup frequency control            . suppression.
+  3  * Handles localStorage operations     3  *
+  . with comprehensive error handling      . 
+  4  */                                    4  * The two pinned surfaces suppress
+  .                                        .  on different clocks and in differe
+  .                                        . nt stores,
+  .                                        5  * because they are asking for diff
+  .                                        . erent amounts of patience:
+  .                                        6  *
+  .                                        7  * - Slide-in: 15 days in localStor
+  .                                        . age, timed from when it APPEARED. D
+  .                                        . ismissing
+  .                                        8  *   it early changes nothing; the 
+  .                                        . clock has already started.
+  .                                        9  * - Sticky bar: the rest of the se
+  .                                        . ssion, in sessionStorage, timed fro
+  .                                        . m
+  .                                       10  *   DISMISSAL. It shows on nearly 
+  .                                       .. every page, so a fortnight-long sil
+  .                                       .. ence would
+  .                                       11  *   be too much, and sessionStorag
+  .                                       .. e means "session" needs no date ari
+  .                                       .. thmetic.
+  .                                       12  *
+  .                                       13  * Every read fails open: if storag
+  .                                       .. e is unavailable (SSR, private brow
+  .                                       .. sing, a
+  .                                       14  * locked-down browser) the surface
+  .                                       ..  shows. Showing a CTA one time too 
+  .                                       .. many is a
+  .                                       15  * smaller harm than a surface that
+  .                                       ..  silently never appears for a slice
+  .                                       ..  of
+  .                                       16  * visitors nobody can identify.
+  .                                       17  */
+  5                                       18 
+  6 const STORAGE_KEY = 'agilePainRelie   19 const SLIDE_IN_LAST_SHOWN_KEY = 'ag
+  . f:modalLastShown';                    .. ilePainRelief:ctaSlideInLastShown';
+  .                                       20 const STICKY_BAR_DISMISSED_KEY = 'a
+  .                                       .. gilePainRelief:ctaStickyBarDismisse
+  .                                       .. d';
+  7                                       21 
+  8 /**                                   22 /**
+  9  * Check if localStorage is availab   23  * Check if localStorage is availab
+  . le in the current environment         .. le in the current environment
+
+src/utils/storage.ts --- 2/2 --- TypeScript
+ 23   }                                   37   }
+ 24 }                                     38 }
+ ..                                       39 
+ ..                                       40 /**
+ ..                                       41  * Check if sessionStorage is avail
+ ..                                       .. able in the current environment
+ ..                                       42  *
+ ..                                       43  * @returns {boolean} True if sessi
+ ..                                       .. onStorage is available and writable
+ ..                                       44  */
+ ..                                       45 export function isSessionStorageAva
+ ..                                       .. ilable(): boolean {
+ ..                                       46   try {
+ ..                                       47     const testKey = '__storage_test
+ ..                                       .. __';
+ ..                                       48     sessionStorage.setItem(testKey,
+ ..                                       ..  'test');
+ ..                                       49     sessionStorage.removeItem(testK
+ ..                                       .. ey);
+ ..                                       50     return true;
+ ..                                       51   } catch (e) {
+ ..                                       52     console.warn('sessionStorage is
+ ..                                       ..  not available:', e);
+ ..                                       53     return false;
+ ..                                       54   }
+ ..                                       55 }
+ 25                                       56 
+ 26 /**                                   57 /**
+ 27  * Check if the modal should be sho   58  * Check whether the slide-in's sup
+ .. wn based on the last shown timestam   .. pression window has lapsed.
+ .. p                                     .. 
+ 28  *                                    59  *
+ 29  * @param {number} intervalDays - N   60  * @param {number} intervalDays - D
+ .. umber of days between modal display   .. ays between slide-in appearances
+ .. s                                     .. 
+ 30  * @returns {boolean} True if modal   61  * @returns {boolean} True if the s
+ ..  should be shown, false if shown re   .. lide-in may be shown
+ .. cently                                .. 
+ 31  *                                    62  *
+ 32  * @example                           63  * @example
+ 33  * if (shouldShowModal(15)) {         64  * if (shouldShowSlideIn(15)) {
+ 34  *   // Show the modal                65  *   // Arm the scroll trigger
+ 35  * }                                  66  * }
+ 36  */                                   67  */
+ 37 export function shouldShowModal(int   68 export function shouldShowSlideIn(i
+ .. ervalDays: number): boolean {         .. ntervalDays: number): boolean {
+ 38   try {                               69   try {
+ 39     if (!isLocalStorageAvailable())   70     if (!isLocalStorageAvailable())
+ ..  {                                    ..  {
+ 40       // Fallback: show modal if st   .. 
+ .. orage unavailable                     .. 
+ 41       return true;                    71       return true;
+ 42     }                                 72     }
+ 43                                       73 
+ 44     const lastShownStr = localStora   74     const lastShownStr = localStora
+ .. ge.getItem(STORAGE_KEY);              .. ge.getItem(SLIDE_IN_LAST_SHOWN_KEY)
+ ..                                       .. ;
+ 45                                       75 
+ 46     // Never shown before - show mo   76     // Never shown before
+ .. dal                                   .. 
+ 47     if (!lastShownStr) {              77     if (!lastShownStr) {
+ 48       return true;                    78       return true;
+ 49     }                                 79     }
+ 50                                       80 
+ 51     const lastShown = parseInt(last   81     const lastShown = parseInt(last
+ .. ShownStr, 10);                        .. ShownStr, 10);
+ 52                                       82 
+ 53     // Corrupted data - show modal    83     // Corrupted data
+ 54     if (isNaN(lastShown)) {           84     if (isNaN(lastShown)) {
+ 55       console.warn('Invalid timesta   85       console.warn('Invalid timesta
+ .. mp in localStorage, showing modal')   .. mp in localStorage, showing slide-i
+ .. ;                                     .. n');
+ 56       return true;                    86       return true;
+ 57     }                                 87     }
+ 58                                       88 
+ 59     const now = Date.now();           .. 
+ 60     const intervalMs = intervalDays   89     const intervalMs = intervalDays
+ ..  * 24 * 60 * 60 * 1000;               ..  * 24 * 60 * 60 * 1000;
+ 61     const timeSinceLastShown = now    90     return Date.now() - lastShown >
+ .. - lastShown;                          .. = intervalMs;
+ 62                                       .. 
+ 63     // Show modal if interval has p   .. 
+ .. assed                                 .. 
+ 64     return timeSinceLastShown >= in   .. 
+ .. tervalMs;                             .. 
+ 65   } catch (e) {                       91   } catch (e) {
+ 66     console.warn('Error checking mo   92     console.warn('Error checking sl
+ .. dal frequency, defaulting to show:'   .. ide-in frequency, defaulting to sho
+ .. , e);                                 .. w:', e);
+ 67     return true;                      93     return true;
+ 68   }                                   94   }
+ 69 }                                     95 }
+ 70                                       96 
+ 71 /**                                   97 /**
+ 72  * Record that the modal was shown    98  * Start the slide-in's suppression
+ .. by storing the current timestamp      ..  window. Called when it appears, no
+ ..                                       .. t when it
+ ..                                       99  * is dismissed.
+ 73  *                                   100  *
+ 74  * @returns {boolean} True if succe  101  * @returns {boolean} True if succe
+ .. ssfully recorded, false otherwise    ... ssfully recorded, false otherwise
+ 75  */                                  102  */
+ 76 export function recordModalShown():  103 export function recordSlideInShown(
+ ..  boolean {                           ... ): boolean {
+ 77   try {                              104   try {
+ 78     if (!isLocalStorageAvailable())  105     if (!isLocalStorageAvailable())
+ ..  {                                   ...  {
+ 79       return false;                  106       return false;
+ 80     }                                107     }
+ 81                                      108 
+ 82     localStorage.setItem(STORAGE_KE  109     localStorage.setItem(SLIDE_IN_L
+ .. Y, Date.now().toString());           ... AST_SHOWN_KEY, Date.now().toString(
+ ..                                      ... ));
+ 83     return true;                     110     return true;
+ 84   } catch (e) {                      111   } catch (e) {
+ 85     console.warn('Failed to record   112     console.warn('Failed to record 
+ .. modal shown timestamp:', e);         ... slide-in shown timestamp:', e);
+ 86     return false;                    113     return false;
+ 87   }                                  114   }
+ 88 }                                    115 }
+ 89                                      116 
+ 90 /**                                  117 /**
+ 91  * Clear the modal timestamp (usefu  118  * Whether the visitor has dismisse
+ .. l for testing)                       ... d the sticky bar during this sessio
+ ..                                      ... n.
+ 92  */                                  119  *
+ ..                                      120  * @returns {boolean} True if it wa
+ ..                                      ... s dismissed and should stay hidden
+ ..                                      121  */
+ ..                                      122 export function isStickyBarDismisse
+ ..                                      ... d(): boolean {
+ ..                                      123   try {
+ ..                                      124     if (!isSessionStorageAvailable(
+ ..                                      ... )) {
+ ..                                      125       return false;
+ ..                                      126     }
+ ..                                      127 
+ ..                                      128     return sessionStorage.getItem(S
+ ..                                      ... TICKY_BAR_DISMISSED_KEY) !== null;
+ ..                                      129   } catch (e) {
+ ..                                      130     console.warn('Error checking st
+ ..                                      ... icky bar dismissal, defaulting to s
+ ..                                      ... how:', e);
+ ..                                      131     return false;
+ ..                                      132   }
+ ..                                      133 }
+ ..                                      134 
+ ..                                      135 /**
+ ..                                      136  * Suppress the sticky bar for the 
+ ..                                      ... rest of this session.
+ ..                                      137  *
+ ..                                      138  * @returns {boolean} True if succe
+ ..                                      ... ssfully recorded, false otherwise
+ ..                                      139  */
+ ..                                      140 export function recordStickyBarDism
+ ..                                      ... issed(): boolean {
+ ..                                      141   try {
+ ..                                      142     if (!isSessionStorageAvailable(
+ ..                                      ... )) {
+ ..                                      143       return false;
+ ..                                      144     }
+ ..                                      145 
+ ..                                      146     sessionStorage.setItem(STICKY_B
+ ..                                      ... AR_DISMISSED_KEY, 'true');
+ ..                                      147     return true;
+ ..                                      148   } catch (e) {
+ ..                                      149     console.warn('Failed to record 
+ ..                                      ... sticky bar dismissal:', e);
+ ..                                      150     return false;
+ ..                                      151   }
+ ..                                      152 }
+ ..                                      153 
+ ..                                      154 /**
+ ..                                      155  * Clear both surfaces' suppression
+ ..                                      ...  state. Useful when testing by hand
+ ..                                      ... .
+ ..                                      156  */
+ 93 export function clearModalTimestamp  157 export function clearCtaSuppression
+ .. (): void {                           ... (): void {
+ 94   try {                              158   try {
+ 95     if (!isLocalStorageAvailable())  159     if (isLocalStorageAvailable()) 
+ ..  {                                   ... {
+ 96       return;                        160       localStorage.removeItem(SLIDE
+ ..                                      ... _IN_LAST_SHOWN_KEY);
+ 97     }                                161     }
+ 98                                      162     if (isSessionStorageAvailable()
+ ..                                      ... ) {
+ 99     localStorage.removeItem(STORAGE  163       sessionStorage.removeItem(STI
+ .. _KEY);                               ... CKY_BAR_DISMISSED_KEY);
+ ..                                      164     }
+100   } catch (e) {                      165   } catch (e) {
+101     console.warn('Failed to clear m  166     console.warn('Failed to clear C
+... odal timestamp:', e);                ... TA suppression state:', e);
+102   }                                  167   }
+103 }                                    168 }
+
+src/utils/tracking.ts --- TypeScript
+ 2  * Utilities for tracking and analyt   2  * Utilities for tracking and analyt
+ . ics                                    . ics
+ 3  */                                    3  */
+ .                                        4 
+ .                                        5 /**
+ .                                        6  * The CTA surface a click came from
+ .                                        . , as a utm_medium value.
+ .                                        7  *
+ .                                        8  * A union rather than a bare string
+ .                                        .  because a typo here produces traffi
+ .                                        . c that
+ .                                        9  * looks real in PostHog but belongs
+ .                                        .  to no surface, and nothing else in 
+ .                                        . the
+ .                                       10  * build would catch it.
+ .                                       11  */
+ .                                       12 export type UTMMedium = 'inline' | '
+ .                                       .. popup' | 'sticky-bar' | 'slide-in';
+ 4                                       13 
+ 5 /**                                   14 /**
+ 6  * Adds UTM parameters to a URL for   15  * Adds UTM parameters to a URL for 
+ . tracking purposes                     .. tracking purposes
+ 7  *                                    16  *
+ 8  * @param url - The base URL to add   17  * @param url - The base URL to add 
+ . parameters to                         .. parameters to
+ 9  * @param source - The utm_source va  18  * @param source - The utm_source va
+ . lue (e.g., 'glossary', 'blog', 'home  .. lue (e.g., 'glossary', 'blog', 'home
+ . -page')                               .. -page')
+10  * @param medium - The utm_medium va  19  * @param medium - The utm_medium va
+.. lue ('inline' for banners, 'popup' f  .. lue: which CTA surface the click cam
+.. or modals)                            .. e from
+..                                       20  * @param content - Optional utm_con
+..                                       .. tent, distinguishing two links on on
+..                                       .. e
+..                                       21  *   surface. The slide-in's two ans
+..                                       .. wer buttons use it; they go to the s
+..                                       .. ame
+11  * @returns URL with UTM parameters   22  *   place and differ only here.
+.. appended                              .. 
+..                                       23  * @returns URL with UTM parameters 
+..                                       .. appended
+12  *                                    24  *
+13  * @example                           25  * @example
+14  * addUTMParams('https://example.com  26  * addUTMParams('https://example.com
+.. ', 'blog', 'popup')                   .. ', 'blog', 'slide-in', 'not-sure')
+15  * // Returns: 'https://example.com?  27  * // Returns: 'https://example.com?
+.. utm_source=blog&utm_medium=popup'     .. utm_source=blog&utm_medium=slide-in&
+..                                       .. utm_content=not-sure'
+16  */                                   28  */
+17 export function addUTMParams(         29 export function addUTMParams(
+18   url: string,                        30   url: string,
+19   source: string,                     31   source: string,
+20   medium: 'inline' | 'popup'          32   medium: UTMMedium,
+..                                       33   content?: string
+21 ): string {                           34 ): string {
+..                                       35   const base = `${url}?utm_source=${
+..                                       .. source}&utm_medium=${medium}`;
+22   return `${url}?utm_source=${source  36   return content ? `${base}&utm_cont
+.. }&utm_medium=${medium}`;              .. ent=${content}` : base;
+23 }                                     37 }
+

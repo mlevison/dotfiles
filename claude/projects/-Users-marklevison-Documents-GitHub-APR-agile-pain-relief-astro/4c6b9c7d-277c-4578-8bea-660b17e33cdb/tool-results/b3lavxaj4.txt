@@ -1,0 +1,1201 @@
+CLAUDE.md --- 1/3 --- Text
+ 22  22 - `shared/` — Code and data used by both the Astro site and the email-automation CLI: `cakemail-constants.ts` (list/sender IDs, From name/address, form URLs), `corsizio.ts` (the Corsizio API client, used by the schedule sync and the course-email CLI but never by the site itself), and the generated `course-schedule.json`. Changes here DO trigger Netlify rebuilds.
+ 23  23 - `email-automation/` — Node.js CLI for sending course emails via Cakemail. Has its own `package.json` / `tsconfig.json` / `.env`. Run commands from inside `email-automation/`. See `email-automation/CLAUDE.md` for details. Changes to this directory do NOT trigger Netlify rebuilds (see `netlify.toml`).
+ 24  24 - `pandoc/` — Brand-styled Typst template and build script for turning vault markdown into lead-magnet PDFs. See "Lead-magnet PDFs" below.
+ ..  25 - `CONTEXT.md` — The project glossary: the canonical word for each domain concept, and the words to avoid. Purely vocabulary, no implementation detail. Read it before naming something new; add to it when a term is settled.
+ 25  26 - `docs/adr/` — Architecture Decision Records, for choices where the rejected options matter as much as the chosen one (currently: the unguessable-slug workbook gate). `CLAUDE.md` says how a thing works; an ADR says what else was considered and why it lost. Add one only when that trade-off is worth preserving.
+ 26  27 - `reference/` — Read-only source material consulted while writing site content (e.g. point-in-time captures of Scrum Alliance course pages). Not code, not published, never imported by the build. See `reference/README.md`.
+ 27  28 - `scripts/` — Repo-level utility scripts run through npm (`corsizio-sync.ts`, `posthog-export.ts`).
+
+CLAUDE.md --- 2/3 --- Text
+ 92                                       93 
+ 93 ### General newsletter signup (Turn   94 ### General newsletter signup (Turn
+ .. stile-gated → Cakemail form)          .. stile-gated → Cakemail form)
+ 94                                       95 
+ 95 The inline newsletter form, modal p   96 The inline newsletter form and CTA 
+ .. opup, and CTA banner all use `src/c   .. banner both use `src/components/glo
+ .. omponents/global/newsletter/form-su   .. bal/newsletter/form-submission.tsx`
+ .. bmission.tsx`, which POSTs `email`,   .. , which POSTs `email`, `custom_attr
+ ..  `custom_attributes[firstname]`, `c   .. ibutes[firstname]`, `custom_attribu
+ .. ustom_attributes[lastname]` (plus a   .. tes[lastname]` (plus a Turnstile to
+ ..  Turnstile token and `form=newslett   .. ken and `form=newsletter`) as multi
+ .. er`) as multipart form-data to `/ap   .. part form-data to `/api/newsletter-
+ .. i/newsletter-signup`; the function    .. signup`; the function verifies the 
+ .. verifies the token and forwards to    .. token and forwards to the Cakemail 
+ .. the Cakemail form server-side (see    .. form server-side (see "Signup bot p
+ .. "Signup bot protection" above). The   .. rotection" above). The user's sourc
+ ..  user's source of truth is the DOI    .. e of truth is the DOI confirmation 
+ .. confirmation email.                   .. email.
+ 96                                       97 
+ 97 **Two-axis signup tagging.** Every    98 **Two-axis signup tagging.** Every 
+ .. signup applies two tags, both in th   .. signup applies two tags, both in th
+ .. e single form POST. The taxonomy is   .. e single form POST. The taxonomy is
+ ..  two TypeScript enums in `src/const   ..  two TypeScript enums in `src/const
+ .. ants/signup.ts` (`SignupType`, `Sig   .. ants/signup.ts` (`SignupType`, `Sig
+ .. nupSource`) whose **member values A   .. nupSource`) whose **member values A
+ .. RE the Cakemail tags** — so the cal   .. RE the Cakemail tags** — so the cal
+ .. l site reads `SignupType.Popup` whi   .. l site reads `SignupType.Popup` whi
+ .. le the wire value is the tag, with    .. le the wire value is the tag, with 
+ .. no separate lookup table. The thin    .. no separate lookup table. The thin 
+ .. helper `appendSignupTags()` in `src   .. helper `appendSignupTags()` in `src
+ .. /lib/newsletter-tags.ts` appends ty   .. /lib/newsletter-tags.ts` appends ty
+ .. pe + source + any extra raw tags as   .. pe + source + any extra raw tags as
+ ..  `tags[<name>]=true`.                 ..  `tags[<name>]=true`.
+ 98                                       99 
+ 99 - **TYPE** (which widget): `SignupT  100 - **TYPE** (which widget): `SignupT
+ .. ype` → `Inline = SignupNewsletterFo  ... ype` → `Inline = SignupNewsletterFo
+ .. rm`, `Sidebar = SignupSidebar`, `We  ... rm`, `Sidebar = SignupSidebar`, `We
+ .. binar = SignupWebinar`, `Banner = S  ... binar = SignupWebinar`, `Banner = S
+ .. ignupBanner`, `Popup = SignupPopup`  ... ignupBanner`, `Popup = SignupPopup`
+ .. . `FormSubmission` takes a `signupT  ... . `FormSubmission` takes a `signupT
+ .. ype` prop; callers pass the enum me  ... ype` prop; callers pass the enum me
+ .. mber (`newsletter-submission.astro`  ... mber (`newsletter-submission.astro`
+ ..  → `Inline`, `webinar-submission.as  ...  → `Inline`, `webinar-submission.as
+ .. tro` → `Webinar`, `cta-banner.astro  ... tro` → `Webinar`, `cta-banner.astro
+ .. ` → `Banner`, `modal-popup.astro` →  ... ` → `Banner`). `Popup = SignupPopup
+ ..  `Popup`).                           ... ` is **currently unused** — the mod
+ ..                                      ... al popup it belonged to was retired
+ ..                                      ...  on 2026-08-06 and its replacements
+ ..                                      ...  carry no form. The member is kept 
+ ..                                      ... because ~2,243 migrated contacts al
+ ..                                      ... ready carry `Signup*` tags and `sig
+ ..                                      ... nuppopup` is one of them; deleting 
+ ..                                      ... it would orphan a tag that still ex
+ ..                                      ... ists in Cakemail.
+100 - **SOURCE** (which page): `SignupS  101 - **SOURCE** (which page): `SignupS
+... ource` → `Homepage = FromHomepage`,  ... ource` → `Homepage = FromHomepage`,
+...  `Blog = FromBlog`, `Glossary = Fro  ...  `Blog = FromBlog`, `Glossary = Fro
+... mGlossary`, `Other = FromOther`. Th  ... mGlossary`, `Other = FromOther`. Th
+... e page passes its own source explic  ... e page passes its own source explic
+... itly (the component never sniffs `w  ... itly (the component never sniffs `w
+... indow.location`). `FormSubmission`   ... indow.location`). `FormSubmission` 
+... and the AI forms default to `Other`  ... and the AI forms default to `Other`
+... ; the homepage `<Newsletter>` passe  ... ; the homepage `<Newsletter>` passe
+... s `SignupSource.Homepage`. The bann  ... s `SignupSource.Homepage`. The bann
+... er and popup require a `source` pro  ... er requires a `source` prop, passed
+... p, passed by each rendering page (`  ...  by each rendering page (`index.ast
+... index.astro`, `blog/index.astro`, `  ... ro`, `blog/index.astro`, `glossary/
+... glossary/index.astro`, `blog/[id].a  ... index.astro`) alongside the existin
+... stro`, `glossary/[id].astro`) along  ... g `attribution` prop — `attribution
+... side the existing `attribution` pro  ... ` drives UTM values and stays as-is
+... p — `attribution` drives UTM values  ... ; `source` drives the tag. They are
+...  and stays as-is; `source` drives t  ...  separate props on purpose (two sub
+... he tag. They are separate props on   ... systems), which is why there is no 
+... purpose (two subsystems), which is   ... attribution→source translation tabl
+... why there is no attribution→source   ... e.
+... translation table.                   ... 
+101                                      102 
+102 These use the `tags[<name>]=true` d  103 These use the `tags[<name>]=true` d
+... ict the Cakemail form accepts (same  ... ict the Cakemail form accepts (same
+...  as the quiz's `aiquiz`). Names mat  ...  as the quiz's `aiquiz`). Names mat
+... ch tags already in the Cakemail acc  ... ch tags already in the Cakemail acc
+... ount, except `SignupSidebar`, which  ... ount, except `SignupSidebar`, which
+...  auto-creates on first submission.   ...  auto-creates on first submission. 
+... Cakemail lowercases tags on storage  ... Cakemail lowercases tags on storage
+... , so segment queries use the lowerc  ... , so segment queries use the lowerc
+... ased form (`signuppopup`, `fromhome  ... ased form (`signuppopup`, `fromhome
+... page`, … — see [[reference-cakemail  ... page`, … — see [[reference-cakemail
+... -lowercase-tags]]).                  ... -lowercase-tags]]).
+103                                      104 
+
+CLAUDE.md --- 3/3 --- Text
+391 - Adding both trailing-slash and no  392 - Adding both trailing-slash and no
+... n-trailing-slash versions of the sa  ... n-trailing-slash versions of the sa
+... me redirect (causes route collision  ... me redirect (causes route collision
+... s)                                   ... s)
+392 - Adding redirects from a page's ow  393 - Adding redirects from a page's ow
+... n path to itself with a trailing sl  ... n path to itself with a trailing sl
+... ash (e.g., `'/glossary': '/glossary  ... ash (e.g., `'/glossary': '/glossary
+... /'`). Netlify already handles trail  ... /'`). Netlify already handles trail
+... ing slash normalization, so this cr  ... ing slash normalization, so this cr
+... eates an infinite redirect loop      ... eates an infinite redirect loop
+393                                      394 
+394 ## CTA / Popup System                395 ## CTA Surfaces
+395                                      396 
+396 Centralized in `src/constants/cta.t  397 Centralized in `src/constants/cta.t
+... s` with three rendering components:  ... s` with four rendering components. 
+...                                      ... `CONTEXT.md` holds the vocabulary. 
+...                                      ... Two are **pinned** (fixed to a view
+...                                      ... port edge) and two are **in-flow**:
+397                                      398 
+...                                      399 | Component | Kind | Where |
+398 - `src/components/global/modal-popu  400 | --- | --- | --- |
+... p.astro` — Popup on blog and glossa  ... 
+... ry pages (30s delay, 15-day frequen  ... 
+... cy cap)                              ... 
+...                                      401 | `cta-sticky-bar.astro` | pinned |
+...                                      ...  home, blog index, blog/all, blog c
+...                                      ... ategories, glossary index, most con
+...                                      ... tent pages |
+...                                      402 | `cta-slide-in.astro` | pinned | b
+...                                      ... log posts, glossary entries |
+399 - `src/components/global/cta-banner  403 | `cta-banner.astro` | in-flow | ho
+... .astro` — Inline banner on homepage  ... mepage, blog index, glossary index,
+... , blog index, and glossary index     ...  `/learn` |
+400 - `src/components/global/link-sideb  404 | `link-sidebar.astro` | in-flow | 
+... ar.astro` — Sidebar card on blog po  ... blog posts, glossary entries |
+... sts and glossary entries             ... 
+401                                      405 
+402 **One CTA, three registers.** The b  406 **One pinned surface per page, enfo
+... anner (`heading`) and sidebar carry  ... rced by the routes.** A page shows 
+...  the target landing page's headline  ... the sticky bar or the slide-in, nev
+...  verbatim: both are read at browsin  ... er both, because no route imports b
+... g pace, so exact message match beat  ... oth components. There is no layout-
+... s brevity. The modal (`modalHeading  ... level flag and no invariant to keep
+... `) interrupts 30 seconds into a pos  ...  in sync — if you add a surface to 
+... t and gets about two seconds of att  ... a route, check what that route alre
+... ention, so it is shorter and can dr  ... ady imports. The rule governs pinne
+... op context the surrounding page alr  ... d surfaces only; the banner and sid
+... eady establishes. Whatever distinct  ... ebar sit in the normal content flow
+... ive phrase ties them to the landing  ...  and stack freely alongside either.
+...  page should survive in all three.   ... 
+... **None of the three takes copy prop  ... 
+... s** — `link-sidebar.astro` used to   ... 
+... hold its own defaults and drifted o  ... 
+... ut of date as a result. Edit `cta.t  ... 
+... s`, nothing else.                    ... 
+403                                      407 
+...                                      408 **There is no blocking popup, and t
+...                                      ... here must not be one.** The retired
+...                                      ...  `modal-popup.astro` darkened the p
+...                                      ... age, locked scrolling and trapped f
+...                                      ... ocus. Neither replacement darkens, 
+...                                      ... locks, or overlays the full page. T
+...                                      ... hat is the load-bearing constraint:
+...                                      ...  a lightbox is what Google penalise
+...                                      ... s as a mobile interstitial, and it 
+...                                      ... reads as a third-party ad rather th
+...                                      ... an as Mark's voice. Lightboxes do c
+...                                      ... onvert better, so this will get pro
+...                                      ... posed again; see `HISTORY.md` (2026
+...                                      ... -08-06).
+...                                      409 
+...                                      410 **Which pages get the sticky bar.**
+...                                      ...  Route files decide for themselves 
+...                                      ... by importing the component. Content
+...                                      ...  pages behind `src/pages/[id].astro
+...                                      ... ` get it **by default**, withheld w
+...                                      ... hen frontmatter sets `noIndex` (eve
+...                                      ... ry such page is mid-flow for someth
+...                                      ... ing else) or the slug is in `STICKY
+...                                      ... _BAR_EXCLUDED_PAGES` (`privacy-poli
+...                                      ... cy`, `contact-us`). The two rules a
+...                                      ... re kept separate on purpose: 404 is
+...                                      ...  `noIndex` and is excluded on its o
+...                                      ... wn merits, `privacy-policy` is not 
+...                                      ... `noIndex` at all, and "don't index 
+...                                      ... this" is not the same intention as 
+...                                      ... "don't advertise on this".
+...                                      411 
+...                                      412 **Suppression** lives in `src/utils
+...                                      ... /storage.ts`, and differs per surfa
+...                                      ... ce because they ask for different p
+...                                      ... atience:
+...                                      413 
+...                                      414 - **Slide-in** — appears at 50% scr
+...                                      ... oll depth, then suppressed **15 day
+...                                      ... s** in `localStorage`. The clock st
+...                                      ... arts when it *appears*, not when it
+...                                      ...  is dismissed (what the modal did t
+...                                      ... oo, which is what keeps the numbers
+...                                      ...  comparable). Dismiss is the X only
+...                                      ... : click-outside is meaningless for 
+...                                      ... a surface that never blocks the pag
+...                                      ... e, so it would turn every click on 
+...                                      ... the article into a dismissal.
+...                                      415 - **Sticky bar** — appears on load,
+...                                      ...  dismissable for the **rest of the 
+...                                      ... session** in `sessionStorage`. It's
+...                                      ...  on nearly every page, so a fortnig
+...                                      ... ht of silence would be too much, an
+...                                      ... d `sessionStorage` makes "session" 
+...                                      ... self-defining.
+...                                      416 
+...                                      417 **No CTA surface asks for an email.
+...                                      ... ** All of them link to the quiz cov
+...                                      ... er; the quiz's own capture step aft
+...                                      ... er the last question is the only as
+...                                      ... k. The slide-in poses a question wi
+...                                      ... th two answer buttons, but they go 
+...                                      ... to the same URL and differ only by 
+...                                      ... `utm_content` — nothing is carried 
+...                                      ... into the quiz. (Prefilling the quiz
+...                                      ... 's first answer was designed and sh
+...                                      ... elved; see `HISTORY.md`.)
+...                                      418 
+...                                      419 **Analytics.** `cta_shown` / `cta_d
+...                                      ... ismissed` fire to PostHog via `src/
+...                                      ... utils/cta-analytics.ts` with `{ sur
+...                                      ... face, attribution, path }`. Clicks 
+...                                      ... are left to autocapture through `da
+...                                      ... ta-ph-capture-attribute-*`. `utm_me
+...                                      ... dium` is the typed `UTMMedium` unio
+...                                      ... n in `src/utils/tracking.ts` (`inli
+...                                      ... ne` | `popup` | `sticky-bar` | `sli
+...                                      ... de-in`) — keep it a union, because 
+...                                      ... a typo produces traffic that looks 
+...                                      ... real but belongs to no surface.
+...                                      420 
+...                                      421 **One CTA, four registers.** The ba
+...                                      ... nner (`heading`) and sidebar carry 
+...                                      ... the landing page's headline verbati
+...                                      ... m: both are read at browsing pace, 
+...                                      ... so exact message match beats brevit
+...                                      ... y. The sticky bar (`stickyBarText`)
+...                                      ...  has one line at every scroll posit
+...                                      ... ion, so it drops context the surrou
+...                                      ... nding page establishes. The slide-i
+...                                      ... n (`slideInHeading`) arrives mid-ar
+...                                      ... ticle and asks rather than announce
+...                                      ... s. Whatever distinctive phrase ties
+...                                      ...  them to the landing page should su
+...                                      ... rvive in all four. **None of them t
+...                                      ... akes copy props** — `link-sidebar.a
+...                                      ... stro` used to hold its own defaults
+...                                      ...  and drifted out of date as a resul
+...                                      ... t. Edit `cta.ts`, nothing else.
+...                                      422 
+404 **How it works:**                    423 **How it works:**
+405                                      424 
+406 - `CTA_PRIMARY: CTAContent` — The a  425 - `CTA_PRIMARY: CTAContent` — all c
+... ctive CTA copy (heading, body, butt  ... opy for all four surfaces. `sidebar
+... on text, link) for all three surfac  ... Body` / `sidebarButtonText`, `stick
+... es. `sidebarBody` / `sidebarButtonT  ... yBarText` / `stickyBarButtonText`, 
+... ext` are the sidebar's copy; `SIDEB  ... `slideInHeading` / `slideInBody` / 
+... AR_IMAGES` (image + alt) is its ima  ... `slideInButton*Text`. Imagery is `S
+... gery, alongside the existing `MODAL  ... IDEBAR_IMAGES` / `BANNER_IMAGES`; t
+... _IMAGES` / `BANNER_IMAGES`           ... he pinned surfaces carry no image
+...                                      426 - `SLIDE_IN_CONFIG` / `STICKY_BAR_C
+...                                      ... ONFIG` — behaviour (scroll fraction
+...                                      ... , suppression days, dismiss labels)
+407 - `CTA_VARIANT: CTAContent | null`   427 - `CTA_VARIANT: CTAContent | null` 
+... — Set to `null` when no A/B test is  ... — `null` when no A/B test is runnin
+...  running; populate with a `CTAConte  ... g; populate to activate a second va
+... nt` object to activate a second var  ... riant. All four components render t
+... iant                                 ... he variant block only when it is no
+...                                      ... n-null
+408 - `AB_TEST_ENABLED` — Master switch  ... 
+... ; when `false`, always shows primar  ... 
+... y                                    ... 
+409 - Both components conditionally ren  ... 
+... der the variant block only when `CT  ... 
+... A_VARIANT` is not null               ... 
+410 - PostHog tracks button clicks via   428 - `AB_TEST_ENABLED` — master switch
+... `data-ph-capture-attribute-*` attri  ... ; when `false`, always shows primar
+... butes                                ... y
+411 - Modal frequency controlled via lo  ... 
+... calStorage (`src/utils/storage.ts`)  ... 
+412                                      429 
+413 **To update CTA copy:** Edit `CTA_P  430 **To update CTA copy:** Edit `CTA_P
+... RIMARY` in `src/constants/cta.ts`.   ... RIMARY` in `src/constants/cta.ts`. 
+... No component changes needed.         ... No component changes needed.
+414 **CTA forms vs link buttons:** All   431 **CTA forms vs link buttons:** Ever
+... popup/banner CTAs render a link but  ... y CTA surface renders a link button
+... ton. The shared `FormSubmission` co  ... . The shared `FormSubmission` compo
+... mponent (used by the newsletter sec  ... nent (used by the newsletter sectio
+... tion of pages, the modal popup, and  ... n of pages and the CTA banner) POST
+...  the CTA banner) POSTs (Turnstile-g  ... s (Turnstile-gated) to `/api/newsle
+... ated) to `/api/newsletter-signup`,   ... tter-signup`, which forwards to Cak
+... which forwards to Cakemail's Newsle  ... email's Newsletter Subscribers form
+... tter Subscribers form server-side.   ...  server-side. Its `source` prop app
+... Its `source` prop applies a per-pla  ... lies a per-placement signup tag; se
+... cement signup tag; see "General new  ... e "General newsletter signup" above
+... sletter signup" above.               ... .
+415 **To run an A/B test:** Populate `C  432 **To run an A/B test:** Populate `C
+... TA_VARIANT` with a `CTAContent` obj  ... TA_VARIANT` with a `CTAContent` obj
+... ect and set `AB_TEST_ENABLED = true  ... ect and set `AB_TEST_ENABLED = true
+... `.                                   ... `.
+416                                      433 
+417 ## Social Media Posting              434 ## Social Media Posting
+
+HISTORY.md --- Text
+ 4  4 Newest first. (Detailed, current behaviour lives in `CLAUDE.md`; this file is the
+ 5  5 "why we did it" story.)
+ 6  6 
+ .  7 ## 2026-08-06 — The modal popup is gone, replaced by a sticky bar and a slide-in
+ .  8 
+ .  9 **Why.** The modal darkened the page, locked scrolling, and trapped focus 30
+ . 10 seconds into every blog post and glossary entry. That pattern is the one Google
+ . 11 penalises as a mobile interstitial, and it reads as a third-party ad rather than
+ . 12 as Mark's own voice. Research into what actually drives quiz starts pointed at
+ . 13 two non-blocking surfaces instead: a **sticky bar** for browsing pages and a
+ . 14 **slide-in** for articles, where the reader is already engaged.
+ . 15 
+ . 16 **One pinned surface per page, held by the routes.** A page shows the sticky bar
+ . 17 or the slide-in, never both, because no route imports both components. There is
+ . 18 no shared layout flag to keep in sync and no invariant to remember. The in-flow
+ . 19 surfaces (CTA banner, link sidebar) are untouched by the rule: the hazards it
+ . 20 guards against are physical ones about pinned elements stacking at an edge.
+ . 21 
+ . 22 **Where each one goes.** Slide-in: blog posts and glossary entries, exactly where
+ . 23 the modal used to be. Sticky bar: home, the blog and glossary index pages,
+ . 24 blog/all, blog categories, and content pages by default. Content pages are
+ . 25 excluded when they're `noIndex` (all of those are mid-flow for something else)
+ . 26 plus `privacy-policy` and `contact-us` by name. That last part is deliberately
+ . 27 _not_ derived from `noIndex` alone: 404 is `noIndex` and got excluded on its own
+ . 28 merits, `privacy-policy` isn't `noIndex` at all, and "don't index this" and
+ . 29 "don't advertise on this" are two intentions that merely overlap.
+ . 30 
+ . 31 **Different suppression for different asks.** The slide-in is suppressed 15 days
+ . 32 in `localStorage`, timed from when it appears rather than when it is dismissed —
+ . 33 the same clock the modal used, so the launch numbers stay comparable and only the
+ . 34 surface changed. The sticky bar is dismissable for the rest of the session only,
+ . 35 in `sessionStorage`; it's on nearly every page, so a fortnight of silence would
+ . 36 be too much, and `sessionStorage` means "session" needs no date arithmetic. The
+ . 37 slide-in got a fresh storage key rather than inheriting the modal's, so nobody
+ . 38 starts out suppressed and the first fortnight's reach isn't understated.
+ . 39 
+ . 40 **No surface asks for an email.** All of them link to the quiz cover; the quiz's
+ . 41 own capture step, after the last question, remains the only ask. Two things the
+ . 42 research recommended were deliberately not done. **Prefill** — putting the quiz's
+ . 43 first question in the slide-in and carrying the answer through — was designed and
+ . 44 then shelved: it needs a new contract from the surface into `QuizStepper`, which
+ . 45 has to be built as a general engine feature since the engine is meant to stay
+ . 46 extractable, and it can't be attributed separately if it ships alongside the
+ . 47 surface swap. What survives of the idea is cosmetic and free: the slide-in poses
+ . 48 a question with two answer buttons that both go to the same place and differ only
+ . 49 by `utm_content`, so the numbers still say which framing pulled. **The mid-quiz
+ . 50 email gate and a 5–7 question count** were also declined — the repo built the
+ . 51 `capturePosition: 'start'` gate, ran it, and reverted it, and the live quiz's
+ . 52 eight questions are a settled decision, not drift.
+ . 53 
+ . 54 **Measurement.** `cta_shown` and `cta_dismissed` go to PostHog with
+ . 55 `{ surface, attribution, path }`; clicks stay on autocapture via the existing
+ . 56 `data-ph-capture-attribute-*` mechanism. `cta_shown` fires for the sticky bar too,
+ . 57 even though its impressions are nearly pageviews — "nearly" being the problem,
+ . 58 since three separate rules withhold it, and replaying those against history later
+ . 59 is work nobody would do. `utm_medium` gained `sticky-bar` and `slide-in` as a
+ . 60 typed union, because a typo there produces traffic that looks real but belongs to
+ . 61 no surface and nothing else in the build would catch it.
+ . 62 
+ . 63 **Not done:** no automated tests (the repo has no unit-test framework and adding
+ . 64 one was judged out of proportion to three lines of date arithmetic), and the
+ . 65 sticky bar overlays content rather than reserving space for itself. The second is
+ . 66 provisional — it permanently covers the last ~56px of a page until dismissed, and
+ . 67 the `padding-bottom` fix is one CSS variable away if it looks wrong in use.
+ . 68 
+ 7 69 ## 2026-08-05 — Browser signups land on a staging list, not on Newsletter Subscribers
+ 8 70 
+
+src/components/global/modal-popup.astro --- Text
+  1 ---
+  2 import Button from '@/components/global/button';
+  3 import FormSubmission from '@/components/global/newsletter/form-submission';
+  4 import { HeadingType, TextAlignment } from '@/utils/formattingEnums';
+  5 import SectionHeading from '@/components/global/section-heading.astro';
+  6 import Picture from 'astro/components/Picture.astro';
+  7 import {
+  8   CTA_DEFAULTS,
+  9   CTA_PRIMARY,
+ 10   CTA_VARIANT,
+ 11   CTA_VARIANT_IDS,
+ 12   MODAL_IMAGES,
+ 13   MODAL_CONFIG,
+ 14   type Attribution,
+ 15 } from '@/constants/cta';
+ 16 import { addUTMParams } from '@/utils/tracking';
+ 17 import { SignupType, SignupSource } from '@/constants/signup';
+ 18 import type { ImageMetadata } from 'astro';
+ 19 
+ 20 interface Props {
+ 21   attribution: Attribution;
+ 22   source: SignupSource;
+ 23   image?: ImageMetadata;
+ 24   imageAlt?: string;
+ 25 }
+ 26 
+ 27 const {
+ 28   attribution,
+ 29   source,
+ 30   image = MODAL_IMAGES.image,
+ 31   imageAlt = MODAL_CONFIG.imageAlt,
+ 32 } = Astro.props;
+ 33 
+ 34 const primaryHref = addUTMParams(CTA_PRIMARY.buttonLink, attribution, 'popup');
+ 35 const variantHref = CTA_VARIANT
+ 36   ? addUTMParams(CTA_VARIANT.buttonLink, attribution, 'popup')
+ 37   : '';
+ 38 ---
+ 39 
+ 40 <div
+ 41   id="modal-popup"
+ 42   class="modal-popup"
+ 43   role="dialog"
+ 44   aria-modal="true"
+ 45   aria-labelledby="modal-title"
+ 46   data-attribution={attribution}
+ 47 >
+ 48   <div class="modal-backdrop" data-modal-close></div>
+ 49   <div class="modal-content" role="document">
+ 50     <button class="modal-close" data-modal-close aria-label="Close modal">
+ 51       <span aria-hidden="true">&times;</span>
+ 52     </button>
+ 53 
+ 54     <!-- Primary variant -->
+ 55     <div data-variant="primary" class="hidden">
+ 56       {
+ 57         CTA_PRIMARY.showForm ? (
+ 58           <FormSubmission
+ 59             client:only="react"
+ 60             heading={CTA_PRIMARY.modalHeading}
+ 61             body={CTA_PRIMARY.bodyText}
+ 62             layout="compact"
+ 63             signupType={SignupType.Popup}
+ 64             source={source}
+ 65           />
+ 66         ) : (
+ 67           <>
+ 68             <SectionHeading
+ 69               headingType={HeadingType.h2}
+ 70               heading={CTA_PRIMARY.modalHeading}
+ 71               textAlignment={TextAlignment.center}
+ 72             />
+ 73             <div class="mt-6">
+ 74               <Picture src={image} alt={imageAlt} />
+ 75               <div class="modal-body my-6 items-center text-center">
+ 76                 <p>{CTA_PRIMARY.bodyText}</p>
+ 77               </div>
+ 78             </div>
+ 79             <div class="modal-buttons">
+ 80               <Button
+ 81                 href={primaryHref}
+ 82                 label={CTA_PRIMARY.modalButtonText}
+ 83                 variant="default"
+ 84                 data-ph-capture-attribute-button-click={
+ 85                   CTA_DEFAULTS.postHogButtonID
+ 86                 }
+ 87                 data-ph-capture-attribute-test-variant={CTA_VARIANT_IDS.primary}
+ 88                 className="modal-button-primary"
+ 89                 client:load
+ 90               />
+ 91               <Button
+ 92                 href="#"
+ 93                 label={MODAL_CONFIG.closeButtonText}
+ 94                 variant="secondary"
+ 95                 size="sm"
+ 96                 className="modal-button-secondary"
+ 97                 data-modal-close
+ 98                 client:load
+ 99               />
+100             </div>
+101           </>
+102         )
+103       }
+104     </div>
+105 
+106     {/* Test variant: rendered only when CTA_VARIANT is populated in cta.ts */}
+107     {
+108       CTA_VARIANT && (
+109         <div data-variant="variant" class="hidden">
+110           {CTA_VARIANT.showForm ? (
+111             <FormSubmission
+112               client:only="react"
+113               heading={CTA_VARIANT.modalHeading}
+114               body={CTA_VARIANT.bodyText}
+115               layout="compact"
+116               signupType={SignupType.Popup}
+117               source={source}
+118             />
+119           ) : (
+120             <>
+121               <SectionHeading
+122                 headingType={HeadingType.h2}
+123                 heading={CTA_VARIANT.modalHeading}
+124                 textAlignment={TextAlignment.center}
+125               />
+126               <div class="mt-6">
+127                 <Picture src={image} alt={imageAlt} />
+128                 <div class="modal-body my-6 items-center text-center">
+129                   <p>{CTA_VARIANT.bodyText}</p>
+130                 </div>
+131               </div>
+132               <div class="modal-buttons">
+133                 <Button
+134                   href={variantHref}
+135                   label={CTA_VARIANT.modalButtonText}
+136                   variant="default"
+137                   data-ph-capture-attribute-button-click={
+138                     CTA_DEFAULTS.postHogButtonID
+139                   }
+140                   data-ph-capture-attribute-test-variant={
+141                     CTA_VARIANT_IDS.variant
+142                   }
+143                   className="modal-button-primary"
+144                   client:load
+145                 />
+146                 <Button
+147                   href="#"
+148                   label={MODAL_CONFIG.closeButtonText}
+149                   variant="secondary"
+150                   size="sm"
+151                   className="modal-button-secondary"
+152                   data-modal-close
+153                   client:load
+154                 />
+155               </div>
+156             </>
+157           )}
+158         </div>
+159       )
+160     }
+161   </div>
+162 
+163   <script>
+164     import { AB_TEST_ENABLED, MODAL_CONFIG } from '@/constants/cta';
+165     import { shouldShowModal, recordModalShown } from '@/utils/storage';
+166 
+167     document.addEventListener('DOMContentLoaded', () => {
+168       const modal = document.getElementById('modal-popup') as HTMLElement;
+169 
+170       if (!modal) return;
+171 
+172       // Pick random variant (or always primary if A/B testing disabled)
+173       const variantId =
+174         AB_TEST_ENABLED && Math.random() >= 0.5 ? 'variant' : 'primary';
+175 
+176       // Show chosen variant content
+177       const variantEl = modal.querySelector(`[data-variant="${variantId}"]`);
+178       if (variantEl) {
+179         variantEl.classList.remove('hidden');
+180       }
+181 
+182       // Check if we should show the modal based on frequency control
+183       if (!shouldShowModal(MODAL_CONFIG.displayIntervalDays)) {
+184         return;
+185       }
+186 
+187       // Show modal after configured delay
+188       setTimeout(() => {
+189         modal.classList.add('modal-show');
+190         document.body.style.overflow = 'hidden';
+191 
+192         // Record that we showed the modal
+193         recordModalShown();
+194 
+195         // Focus trap: Get all focusable elements
+196         const focusableElements = modal.querySelectorAll(
+197           'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
+198         );
+199         const firstFocusable = focusableElements[0] as HTMLElement;
+200         const lastFocusable = focusableElements[
+201           focusableElements.length - 1
+202         ] as HTMLElement;
+203 
+204         // Set initial focus
+205         firstFocusable?.focus();
+206 
+207         // Trap focus within modal
+208         const handleTabKey = (e: KeyboardEvent) => {
+209           if (e.key !== 'Tab') return;
+210 
+211           if (e.shiftKey) {
+212             if (document.activeElement === firstFocusable) {
+213               lastFocusable?.focus();
+214               e.preventDefault();
+215             }
+216           } else {
+217             if (document.activeElement === lastFocusable) {
+218               firstFocusable?.focus();
+219               e.preventDefault();
+220             }
+221           }
+222         };
+223 
+224         modal.addEventListener('keydown', handleTabKey);
+225       }, MODAL_CONFIG.delayMilliSeconds);
+226 
+227       // Close modal function
+228       const closeModal = () => {
+229         modal.classList.remove('modal-show');
+230         document.body.style.overflow = '';
+231       };
+232 
+233       // ESC key closes modal
+234       document.addEventListener('keydown', (e) => {
+235         if (e.key === 'Escape' && modal.classList.contains('modal-show')) {
+236           closeModal();
+237         }
+238       });
+239 
+240       // Click on backdrop or close button closes modal
+241       const closeElements = modal.querySelectorAll('[data-modal-close]');
+242       closeElements.forEach((element) => {
+243         element.addEventListener('click', (e) => {
+244           e.preventDefault();
+245           closeModal();
+246         });
+247       });
+248     });
+249   </script>
+250 </div>
+251 
+
+src/constants/cta.ts --- 1/4 --- TypeScript
+  1 /**                                    1 /**
+  2  * Shared constants for Call-to-Act    2  * Shared constants for Call-to-Act
+  . ion (CTA) components                   . ion (CTA) components
+  3  * Centralized marketing copy, URLs    3  * Centralized marketing copy, URLs
+  . , and configuration for modal-popup    . , and configuration for the four CT
+  .  and cta-banner components             . A
+  .                                        4  * surfaces: the two pinned ones (s
+  .                                        . ticky bar, slide-in) and the two in
+  .                                        . -flow
+  .                                        5  * ones (cta-banner, link-sidebar).
+  .                                        .  See CONTEXT.md for the vocabulary.
+  4  */                                    6  */
+  5                                        7 
+  6 import ModalImage from '@/content/b    . 
+  . log/using-genai-to-code-not-so-fast    . 
+  . /images/ai-promise-vs-reality.jpg';    . 
+  7 import BannerImage from '@/assets/i    8 import BannerImage from '@/assets/i
+  . mages/global/ai-feature-factory-wit    . mages/global/ai-feature-factory-wit
+  . h-opacity.png';                        . h-opacity.png';
+  8 import SidebarImage from '@/content    9 import SidebarImage from '@/content
+  . /blog/using-genai-to-code-not-so-fa    . /blog/using-genai-to-code-not-so-fa
+  . st/images/ai-promise-vs-reality.jpg    . st/images/ai-promise-vs-reality.jpg
+  . ';                                     . ';
+  9 import type { ImageMetadata } from    10 import type { ImageMetadata } from 
+  . 'astro';                              .. 'astro';
+
+src/constants/cta.ts --- 2/4 --- TypeScript
+ 32 interface CTAContent {                33 interface CTAContent {
+ 33   heading: string;                    34   heading: string;
+ 34   subHeading: string;                 35   subHeading: string;
+ ..                                       36   /** Sidebar body copy: read at br
+ ..                                       .. owsing pace, so longer than subHead
+ ..                                       .. ing. */
+ 35   modalHeading: string;               37   sidebarBody: string;
+ ..                                       38   /** Sidebar link label: plain and
+ ..                                       ..  descriptive, not a command. */
+ 36   modalButtonText: string;            39   sidebarButtonText: string;
+ 37   /** Sidebar body copy: read at br   40   /**
+ .. owsing pace, so longer than subHead   .. 
+ .. ing. */                               .. 
+ ..                                       41    * Sticky bar copy. One line, on 
+ ..                                       .. screen at every scroll position, so
+ ..                                       ..  it has
+ ..                                       42    * to survive a 375px viewport wi
+ ..                                       .. thout wrapping to three lines. Shor
+ ..                                       .. test of
+ ..                                       43    * every register here.
+ ..                                       44    */
+ 38   sidebarBody: string;                45   stickyBarText: string;
+ 39   /** Sidebar link label: plain and   46   stickyBarButtonText: string;
+ ..  descriptive, not a command. */       .. 
+ ..                                       47   /**
+ ..                                       48    * Slide-in copy. Posed as a ques
+ ..                                       .. tion with two answers, both of whic
+ ..                                       .. h land on
+ ..                                       49    * the quiz cover. The answers ca
+ ..                                       .. rry no meaning to the quiz (see HIS
+ ..                                       .. TORY.md
+ ..                                       50    * on the shelved prefill); they 
+ ..                                       .. differ only by utm_content, so the 
+ ..                                       .. numbers
+ ..                                       51    * say which framing pulled peopl
+ ..                                       .. e in.
+ ..                                       52    */
+ 40   sidebarButtonText: string;          53   slideInHeading: string;
+ ..                                       54   slideInBody: string;
+ ..                                       55   slideInButtonPrimaryText: string;
+ ..                                       56   slideInButtonSecondaryText: strin
+ ..                                       .. g;
+ 41   bodyText: string;                   57   bodyText: string;
+ 42   buttonText: string;                 58   buttonText: string;
+ 43   buttonLink: string;                 59   buttonLink: string;
+ 44   /** When true, render a newslette   60   /** When true, render a newslette
+ .. r signup form instead of a link but   .. r signup form instead of a link but
+ .. ton */                                .. ton */
+ 45   showForm?: boolean;                 61   showForm?: boolean;
+ 46 }                                     62 }
+ 47                                       63 
+ 48 /**                                   64 /**
+ 49  * Primary (control) variant conten   65  * Primary (control) variant conten
+ .. t                                     .. t
+ 50  * "Which parts of the Scrum Master   66  * "Which parts of the Scrum Master
+ ..  job still need a person?": links t   ..  job still need a person?": links t
+ .. o the                                 .. o the
+ 51  * self-hosted quiz at /quiz/scrum-   67  * self-hosted quiz at /quiz/scrum-
+ .. master-ai/. The hook is the reader'   .. master-ai/. The hook is the reader'
+ .. s own                                 .. s own
+ 52  * job, not the industry's failure    68  * job, not the industry's failure 
+ .. statistics: some of the work is get   .. statistics: some of the work is get
+ .. ting                                  .. ting
+ 53  * more valuable and some is being    69  * more valuable and some is being 
+ .. absorbed by tools, and the quiz map   .. absorbed by tools, and the quiz map
+ .. s which                               .. s which
+ 54  * is which. Deliberately promises    70  * is which. Deliberately promises 
+ .. a map rather than a score, because    .. a map rather than a score, because 
+ .. the quiz                              .. the quiz
+ 55  * itself refuses to hand out a num   71  * itself refuses to hand out a num
+ .. ber, a tier or an archetype.          .. ber, a tier or an archetype.
+ 56  *                                    72  *
+ 57  * Three surfaces, three registers.   73  * Four surfaces, four registers. T
+ ..  The banner (heading) and the sideb   .. he banner (heading) and the sidebar
+ .. ar carry                              ..  carry
+ 58  * the landing page's headline verb   74  * the landing page's headline verb
+ .. atim: both are read at browsing pac   .. atim: both are read at browsing pac
+ .. e, so the                             .. e, so the
+ 59  * exact message match is worth mor   75  * exact message match is worth mor
+ .. e than brevity. The modal fires 30    .. e than brevity. The sticky bar is o
+ .. seconds                               .. n screen
+ 60  * into a post and gets about two s   76  * the whole time and has one line 
+ .. econds of attention, so modalHeadin   .. to work with, so it drops the job t
+ .. g is                                  .. itle the
+ 61  * shorter and drops the job title,   77  * surrounding page already establi
+ ..  which the surrounding page already   .. shes. The slide-in arrives mid-arti
+ ..                                       .. cle and
+ 62  * establishes. The shared phrase "   78  * asks rather than announces. The 
+ .. still need a person" is what keeps    .. shared phrase "still need a person"
+ .. all three                             ..  is what
+ 63  * matched to the landing page, so    79  * keeps them matched to the landin
+ .. keep it if you rewrite one of them.   .. g page, so keep it if you rewrite o
+ ..                                       .. ne.
+ ..                                       80  *
+ ..                                       81  * FIRST DRAFT: the four sticky-bar
+ ..                                       .. /slide-in strings are AI-drafted pl
+ ..                                       .. aceholders
+ ..                                       82  * awaiting Mark's rewrite. Everyth
+ ..                                       .. ing else is his.
+ 64  */                                   83  */
+ 65 export const CTA_PRIMARY: CTAConten   84 export const CTA_PRIMARY: CTAConten
+ .. t = {                                 .. t = {
+ 66   heading: 'Which parts of the Scru   85   heading: 'Which parts of the Scru
+ .. m Master job still need a person?',   .. m Master job still need a person?',
+ 67   subHeading: 'Eight questions, abo   86   subHeading: 'Eight questions, abo
+ .. ut three minutes. No score, no arch   .. ut three minutes. No score, no arch
+ .. etype.',                              .. etype.',
+ 68   modalHeading: 'Which parts of you   87   stickyBarText: 'Which parts of yo
+ .. r job still need a person?',          .. ur job still need a person?',
+ 69   modalButtonText: 'Show Me the Map   88   stickyBarButtonText: 'Show me the
+ .. ',                                    ..  map',
+ ..                                       89   slideInHeading: 'Which parts of y
+ ..                                       .. our job could a tool already do?',
+ ..                                       90   slideInBody: 'Eight questions, ab
+ ..                                       .. out three minutes.',
+ ..                                       91   slideInButtonPrimaryText: 'I’m no
+ ..                                       .. t sure',
+ ..                                       92   slideInButtonSecondaryText: 'I th
+ ..                                       .. ink I know',
+ 70   sidebarBody:                        93   sidebarBody:
+ 71     'Eight questions. Three minutes   94     'Eight questions. Three minutes
+ .. . See which parts of the work are g   .. . See which parts of the work are g
+ .. etting more valuable, and which par   .. etting more valuable, and which par
+ .. ts the tools are starting to do. No   .. ts the tools are starting to do. No
+ ..  score, no archetype, just what I s   ..  score, no archetype, just what I s
+ .. ee and where I’d start.',             .. ee and where I’d start.',
+ 72   sidebarButtonText: 'Take the Quiz   95   sidebarButtonText: 'Take the Quiz
+ .. ',                                    .. ',
+
+src/constants/cta.ts --- 3/4 --- TypeScript
+108   postHogButtonID: 'cta-button-clic  131   postHogButtonID: 'cta-button-clic
+... k-posthog',                          ... k-posthog',
+109 } as const;                          132 } as const;
+110                                      133 
+111 /**                                  134 /**
+112  * Shared images for CTA components  135  * Shared images for CTA components
+113  *                                   136  *
+114  * Both images are left over from t  137  * Both images are left over from t
+... he AI-failure-modes campaign and ar  ... he AI-failure-modes campaign and ar
+... e about                              ... e about
+115  * GenAI coding, not the Scrum Mast  138  * GenAI coding, not the Scrum Mast
+... er role. They still read as "AI", b  ... er role. They still read as "AI", b
+... ut a                                 ... ut a
+116  * cover that matches the role quiz  139  * cover that matches the role quiz
+...  would suit the copy better.         ...  would suit the copy better. The pi
+...                                      ... nned
+...                                      140  * surfaces carry no image at all: 
+...                                      ... a bottom-corner card has no room fo
+...                                      ... r one.
+117  */                                  141  */
+118 export const MODAL_IMAGES: {         ... 
+119   image: ImageMetadata;              ... 
+120 } = {                                ... 
+121   image: ModalImage,                 ... 
+122 };                                   ... 
+123                                      ... 
+124 export const BANNER_IMAGES: {        142 export const BANNER_IMAGES: {
+125   image: ImageMetadata;              143   image: ImageMetadata;
+126 } = {                                144 } = {
+127   image: BannerImage,                145   image: BannerImage,
+128 };                                   146 };
+129                                      147 
+130 /**                                  148 /**
+131  * Sidebar image. Carries its own i  149  * Sidebar image. Carries its own i
+... mageAlt because, unlike the modal,   ... mageAlt because the sidebar has no 
+... the                                  ... behaviour
+132  * sidebar has no behaviour config   150  * config to hang it off. Imported 
+... to hang it off. Currently the same   ... separately from BANNER_IMAGES so th
+... asset as                             ... e two
+133  * MODAL_IMAGES, imported separatel  151  * surfaces can diverge without one
+... y so the two surfaces can diverge w  ...  silently changing the other.
+... ithout                               ... 
+134  * one silently changing the other.  152  */
+135  */                                  ... 
+136 export const SIDEBAR_IMAGES: {       153 export const SIDEBAR_IMAGES: {
+137   image: ImageMetadata;              154   image: ImageMetadata;
+138   imageAlt: string;                  155   imageAlt: string;
+
+src/constants/cta.ts --- 4/4 --- TypeScript
+141   imageAlt: 'sketch of GenAI promis  158   imageAlt: 'sketch of GenAI promis
+... es vs reality',                      ... es vs reality',
+142 };                                   159 };
+143                                      160 
+144 /**                                  161 /**
+145  * Configuration for modal popup be  162  * Slide-in behaviour.
+... havior                               ... 
+146  */                                  163  *
+...                                      164  * The suppression clock starts whe
+...                                      ... n the slide-in APPEARS, not when it
+...                                      ...  is
+...                                      165  * dismissed, which is what the ret
+...                                      ... ired modal did too. Keeping that un
+...                                      ... changed is
+...                                      166  * what makes the launch numbers co
+...                                      ... mparable to the modal's: only the s
+...                                      ... urface
+...                                      167  * changed, not how often it is all
+...                                      ... owed to show.
+...                                      168  */
+147 export const MODAL_CONFIG = {        169 export const SLIDE_IN_CONFIG = {
+...                                      170   /** Share of the page scrolled be
+...                                      ... fore it appears, 0..1 of full scrol
+...                                      ... l depth. */
+148   delayMilliSeconds: 30000,          171   scrollTriggerFraction: 0.5,
+149   closeButtonText: 'No thanks',      172   displayIntervalDays: 15,
+150   imageAlt:                          173   dismissLabel: 'Dismiss',
+151     'AI promise versus reality: a 1  ... 
+... 0x productivity daydream on one sid  ... 
+... e, more time and more defects on th  ... 
+... e other',                            ... 
+152   displayIntervalDays: 15, // Days   ... 
+... between modal displays               ... 
+153 } as const;                          174 } as const;
+...                                      175 
+...                                      176 /**
+...                                      177  * Sticky bar behaviour. Dismissal 
+...                                      ... is session-scoped: it respects a "n
+...                                      ... o" for
+...                                      178  * this visit without permanently c
+...                                      ... osting the surface on someone who c
+...                                      ... omes back
+...                                      179  * next week, which matters for a b
+...                                      ... ar that is on nearly every page.
+...                                      180  */
+...                                      181 export const STICKY_BAR_CONFIG = {
+...                                      182   dismissLabel: 'Dismiss',
+...                                      183 } as const;
+...                                      184 
+...                                      185 /**
+...                                      186  * Content pages (those behind src/
+...                                      ... pages/[id].astro) show the sticky b
+...                                      ... ar by
+...                                      187  * default. It is withheld from any
+...                                      ...  page marked `noIndex` in frontmatt
+...                                      ... er, since
+...                                      188  * every one of those is mid-flow f
+...                                      ... or something else, plus the slugs b
+...                                      ... elow.
+...                                      189  *
+...                                      190  * Deliberately NOT derived from `n
+...                                      ... oIndex` alone: "don't index this" a
+...                                      ... nd "don't
+...                                      191  * advertise on this" are two diffe
+...                                      ... rent intentions that merely overlap
+...                                      ... , and
+...                                      192  * these two pages are where they c
+...                                      ... ome apart.
+...                                      193  */
+...                                      194 export const STICKY_BAR_EXCLUDED_PA
+...                                      ... GES: readonly string[] = [
+...                                      195   'privacy-policy',
+...                                      196   // Someone here is mid-action on 
+...                                      ... something worth more than a quiz.
+...                                      197   'contact-us',
+...                                      198 ];
+154                                      199 
+155 /**                                  200 /**
+156  * Type for attribution sources      201  * Type for attribution sources
+157  */                                  202  */
+158 export type Attribution = 'glossary  203 export type Attribution = 'glossary
+... ' | 'blog' | 'home-page';            ... ' | 'blog' | 'home-page' | 'page';
+
+src/pages/[id].astro --- 1/3 --- Text
+  2   2 export const prerender = true;
+  3   3 
+  4   4 import Layout from '@/layouts/base.astro';
+  .   5 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+  .   6 import { STICKY_BAR_EXCLUDED_PAGES } from '@/constants/cta';
+  5   7 import {
+  6   8   Breadcrumb,
+  7   9   BreadcrumbItem,
+
+src/pages/[id].astro --- 2/3 --- Text
+ 70  72 };
+ 71  73 
+ 72  74 const { Content } = await render(page);
+ ..  75 
+ ..  76 // Content pages carry the sticky bar by default. A `noIndex` page is always
+ ..  77 // mid-flow for something else (thank-you, confirmation, pre-course prep), and
+ ..  78 // the named exclusions are pages where a quiz invite is noise. See
+ ..  79 // STICKY_BAR_EXCLUDED_PAGES for why the two rules are kept separate.
+ ..  80 const showStickyBar =
+ ..  81   !(page.data.noIndex ?? false) && !STICKY_BAR_EXCLUDED_PAGES.includes(page.id);
+ 73  82 ---
+ 74  83 
+ 75  84 <Layout
+
+src/pages/[id].astro --- 3/3 --- Text
+103 112       </div>
+104 113     </div>
+105 114   </div>
+... 115   {showStickyBar && <CtaStickyBar attribution="page" />}
+106 116 </Layout>
+
+src/pages/blog/[id].astro --- 1/2 --- Text
+  2 export const prerender = true;         2 export const prerender = true;
+  3                                        3 
+  4 import clsx from 'clsx';               4 import clsx from 'clsx';
+  5 import ModalPopup from '@/component    5 import CtaSlideIn from '@/component
+  . s/global/modal-popup.astro';           . s/global/cta-slide-in.astro';
+  6 import { SignupSource } from '@/con    . 
+  . stants/signup';                        . 
+  7 import Layout from '@/layouts/base.    6 import Layout from '@/layouts/base.
+  . astro';                                . astro';
+  8 import TableOfContentsAccordian fro    7 import TableOfContentsAccordian fro
+  . m '@/components/blog/table-of-conte    . m '@/components/blog/table-of-conte
+  . nts-accordian';                        . nts-accordian';
+  9 import TableOfContents from '@/comp    8 import TableOfContents from '@/comp
+  . onents/blog/table-of-contents.astro    . onents/blog/table-of-contents.astro
+  . ';                                     . ';
+
+src/pages/blog/[id].astro --- 2/2 --- Text
+234         </div>                       233         </div>
+235       </aside>                       234       </aside>
+236     </div>                           235     </div>
+237     <ModalPopup attribution="blog"   236     <CtaSlideIn attribution="blog" 
+... source={SignupSource.Blog} />        ... />
+238   </div>                             237   </div>
+239 </Layout>                            238 </Layout>
+240                                      239 
+
+src/pages/blog/all.astro --- 1/2 --- Text
+ 3  3 
+ 4  4 import { HeadingType, TextAlignment } from '@/utils/formattingEnums';
+ 5  5 import Layout from '@/layouts/base.astro';
+ .  6 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+ 6  7 import SectionHeading from '../../components/global/section-heading.astro';
+ 7  8 import AllBlogs from '@/components/blog/full-blog-list.astro';
+ 8  9 
+
+src/pages/blog/all.astro --- 2/2 --- Text
+47 48     />
+48 49   </section>
+49 50   <AllBlogs />
+.. 51   <CtaStickyBar attribution="blog" />
+50 52 </Layout>
+
+src/pages/blog/category/[id].astro --- 1/2 --- Text
+  3   3 
+  4   4 import { HeadingType, TextAlignment } from '@/utils/formattingEnums';
+  5   5 import Layout from '@/layouts/base.astro';
+  .   6 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+  6   7 import FullBlogList from '@/components/blog/full-blog-list.astro';
+  7   8 import SectionHeading from '@/components/global/section-heading.astro';
+  8   9 import { getCollection, getEntry, render } from 'astro:content';
+
+src/pages/blog/category/[id].astro --- 2/2 --- Text
+118 119       <Content />
+119 120     </div>
+120 121   </section>
+... 122   <CtaStickyBar attribution="blog" />
+121 123 </Layout>
+
+src/pages/blog/index.astro --- 1/2 --- Text
+ 2  2 export const prerender = true;
+ 3  3 
+ 4  4 import CtaBanner from '@/components/global/cta-banner.astro';
+ .  5 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+ 5  6 import { SignupSource } from '@/constants/signup';
+ 6  7 import Layout from '@/layouts/base.astro';
+ 7  8 import WideHero from '@/components/global/wide-hero.astro';
+
+src/pages/blog/index.astro --- 2/2 --- Text
+68 69   <LatestBlogs />
+69 70 
+70 71   {categories.map((category) => <BlogCategorySection category={category} />)}
+.. 72   <CtaStickyBar attribution="blog" />
+71 73 </Layout>
+
+src/pages/glossary/[id].astro --- 1/2 --- Text
+  3                                        3 
+  4 import Layout from '@/layouts/base.    4 import Layout from '@/layouts/base.
+  . astro';                                . astro';
+  5 import clsx from 'clsx';               5 import clsx from 'clsx';
+  6 import ModalPopup from '@/component    6 import CtaSlideIn from '@/component
+  . s/global/modal-popup.astro';           . s/global/cta-slide-in.astro';
+  7 import { SignupSource } from '@/con    . 
+  . stants/signup';                        . 
+  8 import LinkSidebar from '@/componen    7 import LinkSidebar from '@/componen
+  . ts/global/link-sidebar.astro';         . ts/global/link-sidebar.astro';
+  9 import RelatedTerms from '@/compone    8 import RelatedTerms from '@/compone
+  . nts/glossary/related-terms.astro';     . nts/glossary/related-terms.astro';
+ 10 import TermsSidebar from '@/compone    9 import TermsSidebar from '@/compone
+ .. nts/glossary/terms-sidebar';           . nts/glossary/terms-sidebar';
+
+src/pages/glossary/[id].astro --- 2/2 --- Text
+202         </div>                       201         </div>
+203       </aside>                       202       </aside>
+204     </div>                           203     </div>
+205     <ModalPopup attribution="glossa  204     <CtaSlideIn attribution="glossa
+... ry" source={SignupSource.Glossary}   ... ry" />
+... />                                   ... 
+206   </div>                             205   </div>
+207 </Layout>                            206 </Layout>
+
+src/pages/glossary/index.astro --- 1/2 --- Text
+ 2  2 export const prerender = true;
+ 3  3 
+ 4  4 import CtaBanner from '@/components/global/cta-banner.astro';
+ .  5 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+ 5  6 import { SignupSource } from '@/constants/signup';
+ 6  7 import Layout from '@/layouts/base.astro';
+ 7  8 
+
+src/pages/glossary/index.astro --- 2/2 --- Text
+65 66       </div>
+66 67     </div>
+67 68   </section>
+.. 69   <CtaStickyBar attribution="glossary" />
+68 70 </Layout>
+
+src/pages/index.astro --- 1/2 --- Text
+ 4  4 import Layout from '../layouts/base.astro';
+ 5  5 import Hero from '@/components/pages/home/hero.astro';
+ 6  6 import CtaBanner from '@/components/global/cta-banner.astro';
+ .  7 import CtaStickyBar from '@/components/global/cta-sticky-bar.astro';
+ 7  8 import Newsletter from '@/components/global/newsletter/newsletter-submission.astro';
+ 8  9 import Testimonials from '@/components/testimonials/testimonials.astro';
+ 9 10 import ThreeBoxChooser from '@/components/pages/home/three-box-chooser.astro';
+
+src/pages/index.astro --- 2/2 --- Text
+34 35   <Bonuses>
+35 36     <Button slot="button" href="#workshops" size="lg" />
+36 37   </Bonuses>
+.. 38   <CtaStickyBar attribution="home-page" />
+37 39 </Layout>
+
+src/styles/global.css --- Text (16 CSS parse errors, exceeded DFT_PARSE_ERROR_LIMIT)
+342 342     scroll-margin-top: 6rem;
+343 343   }
+344 ... 
+345 ...   /* Modal Popup Styles */
+346 ...   .modal-popup {
+347 ...     position: fixed;
+348 ...     inset: 0;
+349 ...     z-index: 9999;
+350 ...     display: none;
+351 ...     align-items: center;
+352 ...     justify-content: center;
+353 ...     opacity: 0;
+354 ...     transition: opacity 0.3s ease-in-out;
+355 ...   }
+356 ... 
+357 ...   .modal-popup.modal-show {
+358 ...     display: flex;
+359 ...     opacity: 1;
+360 ...   }
+361 ... 
+362 ...   .modal-backdrop {
+363 ...     position: absolute;
+364 ...     inset: 0;
+365 ...     background-color: rgba(0, 0, 0, 0.5);
+366 ...     cursor: pointer;
+367 ...   }
+368 ... 
+369 ...   .modal-content {
+370 ...     position: relative;
+371 ...     background-color: var(--card);
+372 ...     color: var(--card-foreground);
+373 ...     border-radius: var(--radius-lg);
+374 ...     box-shadow:
+375 ...       0 20px 25px -5px rgba(0, 0, 0, 0.1),
+376 ...       0 10px 10px -5px rgba(0, 0, 0, 0.04);
+377 ...     max-width: 90vw;
+378 ...     max-height: 90vh;
+379 ...     overflow-y: auto;
+380 ...     padding: 2rem;
+381 ...     margin: 1rem;
+382 ...     width: 100%;
+383 ...     animation: modal-slide-in 0.3s ease-out;
+384 ...   }
+385 ... 
+386 ...   @media (min-width: 640px) {
+387 ...     .modal-content {
+388 ...       width: auto;
+389 ...       min-width: 400px;
+390 ...       max-width: 600px;
+391 ...     }
+392 ...   }
+393 ... 
+394 ...   @keyframes modal-slide-in {
+395 ...     from {
+396 ...       transform: translateY(-2rem);
+397 ...       opacity: 0;
+398 ...     }
+399 ...     to {
+400 ...       transform: translateY(0);
+401 ...       opacity: 1;
+402 ...     }
+403 ...   }
+404 ... 
+405 ...   .modal-close {
+406 ...     position: absolute;
+407 ...     top: 1rem;
+408 ...     right: 1rem;
+409 ...     background: none;
+410 ...     border: none;
+411 ...     font-size: 2rem;
+412 ...     line-height: 1;
+413 ...     color: var(--muted-foreground);
+414 ...     cursor: pointer;
+415 ...     padding: 0.25rem;
+416 ...     width: 2rem;
+417 ...     height: 2rem;
+418 ...     display: flex;
+419 ...     align-items: center;
+420 ...     justify-content: center;
+421 ...     border-radius: var(--radius-md);
+422 ...     transition:
+423 ...       background-color 0.2s,
+424 ...       color 0.2s;
+425 ...   }
+426 ... 
+427 ...   .modal-close:hover {
+428 ...     background-color: var(--accent);
+429 ...     color: var(--accent-foreground);
+430 ...   }
+431 ... 
+432 ...   .modal-close:focus {
+433 ...     outline: 2px solid var(--ring);
+434 ...     outline-offset: 2px;
+435 ...   }
+436 ... 
+437 ...   .modal-body {
+438 ...     margin-bottom: 1.5rem;
+439 ...   }
+440 ... 
+441 ...   .modal-buttons {
+442 ...     display: flex;
+443 ...     flex-direction: column;
+444 ...     gap: 0.75rem;
+445 ...   }
+446 ... 
+447 ...   .modal-button-primary {
+448 ...     width: 100%;
+449 ...   }
+450 ... 
+451 ...   .modal-button-secondary {
+452 ...     width: 100%;
+453 ...   }
+fatal: external diff died, stopping at src/utils/storage.ts
